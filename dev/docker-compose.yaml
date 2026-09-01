@@ -1,0 +1,44 @@
+version: "3.2"
+services:
+  zosConnect:
+    image: icr.io/zosconnect/ibm-zcon-designer:3.0.101
+    platform: linux/amd64
+    # Environment variables are loaded from .env file in the project root
+    # Create .env file with CICS and IMS connection settings
+    environment:
+      - CICS_USER
+      - CICS_PASSWORD
+      - CICS_HOST
+      - CICS_PORT
+      - IMS_USER
+      - IMS_PASSWORD
+      - IMS_HOST
+      - IMS_PORT
+      - IMS_DATASTORE
+      - HTTP_PORT=9080
+      - zosconnect_remote_download_allowlist=BLOCK_ALL
+    ports:
+      - "9443:9443"
+      - "9080:9080"
+    volumes:
+      - ../src/api:/workspace/project
+      - ../logs/:/logs/
+      # - ../certs:/config/resources/security/:ro
+    networks:
+      - bank-network
+
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "3001:80"
+    volumes:
+      - ../src/frontend:/usr/share/nginx/html:ro
+      - ./nginx.frontend.conf:/etc/nginx/templates/default.conf.template:ro
+    depends_on:
+      - zosConnect
+    networks:
+      - bank-network
+
+networks:
+  bank-network:
+    driver: bridge
