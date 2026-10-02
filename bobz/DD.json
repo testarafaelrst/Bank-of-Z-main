@@ -1,0 +1,200 @@
+{
+  "version": "3.0.0",
+  "entries": [
+    {
+      "name": "COMM-CUSTNO",
+      "type": "variable",
+      "shortDescription": "Communication Area Customer Number",
+      "longDescription": "Stores the customer number passed via the communication area (COMMAREA) to identify the customer for whom a new bank account is being created. Used to validate customer existence by linking to the INQCUST program and to populate the account record in the DB2 ACCOUNT table and the processed transaction (PROCTRAN) record.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        },
+        {
+          "programName": "INQCUST"
+        },
+        {
+          "programName": "INQACCCU"
+        }
+      ]
+    },
+    {
+      "name": "COMM-ACC-TYPE",
+      "type": "variable",
+      "shortDescription": "Communication Area Account Type",
+      "longDescription": "Stores the type of bank account being created (e.g., 'ISA', 'MORTGAGE', 'SAVING', 'CURRENT', 'LOAN'), received via the communication area. Drives the account type validation business rule check and is mapped to the DB2 ACCOUNT table column ACCOUNT_TYPE upon a successful insert.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "COMM-SUCCESS",
+      "type": "variable",
+      "shortDescription": "Communication Area Success Indicator",
+      "longDescription": "A flag variable within the communication area used to indicate whether the account creation process succeeded ('Y') or failed ('N'). Governs the overall flow of the program — set to 'Y' on successful DB2 insert and set to 'N' on any failure condition such as invalid customer, invalid account type, too many existing accounts, or DB2 errors.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        },
+        {
+          "programName": "INQACCCU"
+        }
+      ]
+    },
+    {
+      "name": "COMM-FAIL-CODE",
+      "type": "variable",
+      "shortDescription": "Communication Area Failure Code",
+      "longDescription": "Stores a single-character failure code in the communication area to indicate the specific reason for an account creation failure. Possible values include '1' (customer not found), '3' (enqueue failure), '5' (dequeue failure), '7' (DB2 insert failure), '8' (too many accounts), '9' (account count error), and 'A' (invalid account type).",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "ACCOUNT-NUMBER",
+      "type": "variable",
+      "shortDescription": "Account Number",
+      "longDescription": "Stores the newly assigned bank account number generated during account creation. Derived by incrementing the last account number retrieved from the DB2 CONTROL table and used to populate the account record written to the DB2 ACCOUNT table.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "NCS-ACC-NO-VALUE",
+      "type": "variable",
+      "shortDescription": "Named Counter Service Account Number Value",
+      "longDescription": "Stores the current value of the Named Counter Service (NCS) counter for account numbering. Incremented by one to produce the next sequential account number, then moved to the account number fields and back to the CONTROL table to maintain the account number sequence.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "NCS-ACC-NO-NAME",
+      "type": "variable",
+      "shortDescription": "Named Counter Service Account Number Name",
+      "longDescription": "Stores the name identifier for the Named Counter Service (NCS) resource used to manage sequential account number assignment. Constructed from a base name ('BANKZACCT') and the bank sort code. Used as the RESOURCE parameter in CICS ENQ and DEQ commands to serialize access to the account number counter.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "HV-ACCOUNT-INT-RATE",
+      "type": "variable",
+      "shortDescription": "Host Variable Account Interest Rate",
+      "longDescription": "A DB2 host variable storing the interest rate applicable to the newly created account. Populated from the communication area field COMM-INT-RT and inserted into the ACCOUNT_INTEREST_RATE column of the DB2 ACCOUNT table during account creation.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "HV-ACCOUNT-OVERDRAFT-LIM",
+      "type": "variable",
+      "shortDescription": "Host Variable Account Overdraft Limit",
+      "longDescription": "A DB2 host variable storing the overdraft limit for the newly created bank account. Populated from the communication area field COMM-OVERDR-LIM and inserted into the ACCOUNT_OVERDRAFT_LIMIT column of the DB2 ACCOUNT table.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "HV-ACCOUNT-AVAIL-BAL",
+      "type": "variable",
+      "shortDescription": "Host Variable Account Available Balance",
+      "longDescription": "A DB2 host variable storing the available balance of the newly created bank account. Populated from the communication area field COMM-AVAIL-BAL and inserted into the ACCOUNT_AVAILABLE_BALANCE column of the DB2 ACCOUNT table.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "HV-ACCOUNT-ACTUAL-BAL",
+      "type": "variable",
+      "shortDescription": "Host Variable Account Actual Balance",
+      "longDescription": "A DB2 host variable storing the actual (ledger) balance of the newly created bank account. Populated from the communication area field COMM-ACT-BAL and inserted into the ACCOUNT_ACTUAL_BALANCE column of the DB2 ACCOUNT table.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "NUMBER-OF-ACCOUNTS",
+      "type": "variable",
+      "shortDescription": "Number Of Accounts",
+      "longDescription": "Stores the total count of existing accounts held by the customer, retrieved via a link to the INQACCCU program. Used to enforce a business rule that prevents a customer from holding more than 9 accounts simultaneously; if the count exceeds 9, account creation is rejected with failure code '8'.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        },
+        {
+          "programName": "INQACCCU"
+        }
+      ]
+    },
+    {
+      "name": "SORTCODE",
+      "type": "variable",
+      "shortDescription": "Sort Code",
+      "longDescription": "Stores the bank's sort code used as a key component in constructing account keys, the Named Counter Service resource name, DB2 CONTROL table lookup keys (e.g., 'SORTCODE-ACCOUNT-LAST', 'SORTCODE-ACCOUNT-COUNT'), and populating the ACCOUNT and PROCTRAN DB2 table records.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "WS-FUTURE-DATE",
+      "type": "variable",
+      "shortDescription": "Working-Storage Future Date",
+      "longDescription": "Stores a calculated future date (today's date plus 30 days) used as the next statement date for the newly created account. Computed using the COBOL DATE-OF-INTEGER function and subsequently broken down into year, month, and day components to populate the HV-ACCOUNT-NEXT-STMT host variable group for DB2 insert and the COMM-NEXT-STMT-DT communication area field.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        }
+      ]
+    },
+    {
+      "name": "INQCUST-COMMAREA",
+      "type": "variable",
+      "shortDescription": "Inquiry Customer Communication Area",
+      "longDescription": "The communication area structure passed to the INQCUST program via a CICS LINK call to validate that the customer specified in COMM-CUSTNO exists. The success indicator INQCUST-INQ-SUCCESS within this structure is checked upon return; a non-successful response causes account creation to be rejected with failure code '1'.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "CREACC"
+        },
+        {
+          "programName": "INQCUST"
+        }
+      ]
+    }
+  ]
+}

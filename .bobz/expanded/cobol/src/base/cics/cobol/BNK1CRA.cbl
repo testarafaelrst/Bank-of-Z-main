@@ -44,8 +44,6 @@
        01 SWITCHES.
           03 VALID-DATA-SW             PIC X         VALUE 'Y'.
              88 VALID-DATA                           VALUE 'Y'.
-          03 WS-TERM-ERROR-SW          PIC X         VALUE 'N'.
-             88 WS-TERM-ERROR                        VALUE 'Y'.
 
        01 FLAGS.
           03 SEND-FLAG                 PIC X.
@@ -379,64 +377,61 @@
 
            IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
       *
-      *       Check first if the terminal session was lost (TERMERR).
-      *       In that case there is nothing to send back — just return.
+      *       Preserve the RESP and RESP2, then set up the
+      *       standard ABEND info before getting the applid,
+      *       date/time etc. and linking to the Abend Handler
+      *       program.
       *
-               PERFORM CHECK-TERM-ERROR
-               IF WS-TERM-ERROR
-                  EXEC CICS RETURN END-EXEC
-               END-IF
+              INITIALIZE ABNDINFO-REC
+              MOVE EIBRESP    TO ABND-RESPCODE
+              MOVE EIBRESP2   TO ABND-RESP2CODE
       *
-      *       Any other error: preserve RESP/RESP2 and ABEND the task.
+      *       Get supplemental information
       *
-               INITIALIZE ABNDINFO-REC
-               MOVE EIBRESP    TO ABND-RESPCODE
-               MOVE EIBRESP2   TO ABND-RESP2CODE
+              EXEC CICS ASSIGN APPLID(ABND-APPLID)
+              END-EXEC
 
-               EXEC CICS ASSIGN APPLID(ABND-APPLID)
-               END-EXEC
+              MOVE EIBTASKN   TO ABND-TASKNO-KEY
+              MOVE EIBTRNID   TO ABND-TRANID
 
-               MOVE EIBTASKN   TO ABND-TASKNO-KEY
-               MOVE EIBTRNID   TO ABND-TRANID
+              PERFORM POPULATE-TIME-DATE
 
-               PERFORM POPULATE-TIME-DATE
-
-               MOVE WS-ORIG-DATE TO ABND-DATE
-               STRING WS-TIME-NOW-GRP-HH DELIMITED BY SIZE,
+              MOVE WS-ORIG-DATE TO ABND-DATE
+              STRING WS-TIME-NOW-GRP-HH DELIMITED BY SIZE,
+                    ':' DELIMITED BY SIZE,
+                     WS-TIME-NOW-GRP-MM DELIMITED BY SIZE,
                      ':' DELIMITED BY SIZE,
-                      WS-TIME-NOW-GRP-MM DELIMITED BY SIZE,
-                      ':' DELIMITED BY SIZE,
-                      WS-TIME-NOW-GRP-MM DELIMITED BY SIZE
-                      INTO ABND-TIME
-               END-STRING
+                     WS-TIME-NOW-GRP-MM DELIMITED BY SIZE
+                     INTO ABND-TIME
+              END-STRING
 
-               MOVE WS-U-TIME   TO ABND-UTIME-KEY
-               MOVE 'HBNK'      TO ABND-CODE
+              MOVE WS-U-TIME   TO ABND-UTIME-KEY
+              MOVE 'HBNK'      TO ABND-CODE
 
-               EXEC CICS ASSIGN PROGRAM(ABND-PROGRAM)
-               END-EXEC
+              EXEC CICS ASSIGN PROGRAM(ABND-PROGRAM)
+              END-EXEC
 
-               MOVE ZEROS      TO ABND-SQLCODE
+              MOVE ZEROS      TO ABND-SQLCODE
 
-               STRING 'RM010 - RECEIVE MAP FAIL.'
-                     DELIMITED BY SIZE,
-                     'EIBRESP=' DELIMITED BY SIZE,
-                     ABND-RESPCODE DELIMITED BY SIZE,
-                     ' RESP2=' DELIMITED BY SIZE,
-                     ABND-RESP2CODE DELIMITED BY SIZE
-                     INTO ABND-FREEFORM
-               END-STRING
+              STRING 'RM010 - RECEIVE MAP FAIL.'
+                    DELIMITED BY SIZE,
+                    'EIBRESP=' DELIMITED BY SIZE,
+                    ABND-RESPCODE DELIMITED BY SIZE,
+                    ' RESP2=' DELIMITED BY SIZE,
+                    ABND-RESP2CODE DELIMITED BY SIZE
+                    INTO ABND-FREEFORM
+              END-STRING
 
-               EXEC CICS LINK PROGRAM(WS-ABEND-PGM)
-                         COMMAREA(ABNDINFO-REC)
-               END-EXEC
+              EXEC CICS LINK PROGRAM(WS-ABEND-PGM)
+                        COMMAREA(ABNDINFO-REC)
+              END-EXEC
 
-               INITIALIZE WS-FAIL-INFO
-               MOVE 'BNK1CRA - RM010 - RECEIVE MAP FAIL ' TO
-                  WS-CICS-FAIL-MSG
-               MOVE WS-CICS-RESP  TO WS-CICS-RESP-DISP
-               MOVE WS-CICS-RESP2 TO WS-CICS-RESP2-DISP
-               PERFORM ABEND-THIS-TASK
+              INITIALIZE WS-FAIL-INFO
+              MOVE 'BNKMENU - RM010 - RECEIVE MAP FAIL ' TO
+                 WS-CICS-FAIL-MSG
+              MOVE WS-CICS-RESP  TO WS-CICS-RESP-DISP
+              MOVE WS-CICS-RESP2 TO WS-CICS-RESP2-DISP
+              PERFORM ABEND-THIS-TASK
            END-IF.
 
        RM999.
@@ -662,19 +657,17 @@
 
               IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
       *
-      *          Lost terminal session — return silently.
-      *
-                 PERFORM CHECK-TERM-ERROR
-                 IF WS-TERM-ERROR
-                    EXEC CICS RETURN END-EXEC
-                 END-IF
-      *
-      *          Any other error: ABEND the task.
+      *          Preserve the RESP and RESP2, then set up the
+      *          standard ABEND info before getting the applid,
+      *          date/time etc. and linking to the Abend Handler
+      *          program.
       *
                  INITIALIZE ABNDINFO-REC
                  MOVE EIBRESP    TO ABND-RESPCODE
                  MOVE EIBRESP2   TO ABND-RESP2CODE
-
+      *
+      *          Get supplemental information
+      *
                  EXEC CICS ASSIGN APPLID(ABND-APPLID)
                  END-EXEC
 
@@ -739,19 +732,17 @@
 
               IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
       *
-      *          Lost terminal session — return silently.
-      *
-                 PERFORM CHECK-TERM-ERROR
-                 IF WS-TERM-ERROR
-                    EXEC CICS RETURN END-EXEC
-                 END-IF
-      *
-      *          Any other error: ABEND the task.
+      *          Preserve the RESP and RESP2, then set up the
+      *          standard ABEND info before getting the applid,
+      *          date/time etc. and linking to the Abend Handler
+      *          program.
       *
                  INITIALIZE ABNDINFO-REC
                  MOVE EIBRESP    TO ABND-RESPCODE
                  MOVE EIBRESP2   TO ABND-RESP2CODE
-
+      *
+      *          Get supplemental information
+      *
                  EXEC CICS ASSIGN APPLID(ABND-APPLID)
                  END-EXEC
 
@@ -817,19 +808,17 @@
 
               IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
       *
-      *          Lost terminal session — return silently.
-      *
-                 PERFORM CHECK-TERM-ERROR
-                 IF WS-TERM-ERROR
-                    EXEC CICS RETURN END-EXEC
-                 END-IF
-      *
-      *          Any other error: ABEND the task.
+      *          Preserve the RESP and RESP2, then set up the
+      *          standard ABEND info before getting the applid,
+      *          date/time etc. and linking to the Abend Handler
+      *          program.
       *
                  INITIALIZE ABNDINFO-REC
                  MOVE EIBRESP    TO ABND-RESPCODE
                  MOVE EIBRESP2   TO ABND-RESP2CODE
-
+      *
+      *          Get supplemental information
+      *
                  EXEC CICS ASSIGN APPLID(ABND-APPLID)
                  END-EXEC
 
@@ -897,21 +886,19 @@
 
            IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
       *
-      *       Lost terminal session — return silently.
+      *       Preserve the RESP and RESP2, then set up the
+      *       standard ABEND info before getting the applid,
+      *       date/time etc. and linking to the Abend Handler
+      *       program.
       *
-               PERFORM CHECK-TERM-ERROR
-               IF WS-TERM-ERROR
-                  EXEC CICS RETURN END-EXEC
-               END-IF
+              INITIALIZE ABNDINFO-REC
+              MOVE EIBRESP    TO ABND-RESPCODE
+              MOVE EIBRESP2   TO ABND-RESP2CODE
       *
-      *       Any other error: ABEND the task.
+      *       Get supplemental information
       *
-               INITIALIZE ABNDINFO-REC
-               MOVE EIBRESP    TO ABND-RESPCODE
-               MOVE EIBRESP2   TO ABND-RESP2CODE
-
-               EXEC CICS ASSIGN APPLID(ABND-APPLID)
-               END-EXEC
+              EXEC CICS ASSIGN APPLID(ABND-APPLID)
+              END-EXEC
 
               MOVE EIBTASKN   TO ABND-TASKNO-KEY
               MOVE EIBTRNID   TO ABND-TRANID
@@ -969,25 +956,6 @@
            END-EXEC.
 
        ATT999.
-           EXIT.
-
-
-      *----------------------------------------------------------------*
-      *  CHECK-TERM-ERROR                                               *
-      *  Checks whether the last CICS RESP indicates a lost terminal    *
-      *  session (TERMERR = error code X'14', abend ASP3).              *
-      *  If so, sets WS-TERM-ERROR-SW to 'Y' so callers can return     *
-      *  cleanly instead of issuing an application ABEND.               *
-      *----------------------------------------------------------------*
-       CHECK-TERM-ERROR SECTION.
-       CTE010.
-           IF WS-CICS-RESP = DFHRESP(TERMERR)
-              MOVE 'Y' TO WS-TERM-ERROR-SW
-           ELSE
-              MOVE 'N' TO WS-TERM-ERROR-SW
-           END-IF.
-
-       CTE999.
            EXIT.
 
 

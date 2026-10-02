@@ -1,0 +1,128 @@
+{
+    "$schema": "./zowe.schema.json",
+    "profiles": {
+        "zosmf": {
+            "type": "zosmf",
+            "properties": {
+                "port": 443,
+                "host": "ESYSMVS.wsclab.washington.ibm.com"
+            },
+            "secure": []
+        },
+        "tso": {
+            "type": "tso",
+            "properties": {
+                "account": "",
+                "codePage": "1047",
+                "logonProcedure": "IZUFPROC"
+            },
+            "secure": []
+        },
+        "ssh": {
+            "type": "ssh",
+            "properties": {
+                "port": 22,
+                "host": "9.46.244.220"
+            },
+            "secure": []
+        },
+        "cics": {
+            "type": "cics",
+            "properties": {},
+            "secure": []
+        },
+        "apa": {
+            "type": "apa",
+            "properties": {},
+            "secure": []
+        },
+        "rse": {
+            "type": "rse",
+            "properties": {
+                "port": 6800,
+                "basePath": "rseapi",
+                "protocol": "https"
+            },
+            "secure": []
+        },
+        "zOpenDebug": {
+            "type": "zOpenDebug",
+            "properties": {
+                "dpsPort": 8143,
+                "dpsContextRoot": "api/v1",
+                "dpsSecured": true,
+                "authenticationType": "token",
+                "host": "ESYSMVS.wsclab.washington.ibm.com",
+                "uuid": "7c83ed86-7d1e-443d-a3fc-77b1fe8a57aa"
+            },
+            "secure": [
+                "user",
+                "password"
+            ]
+        },
+        "zftp": {
+            "type": "zftp",
+            "properties": {
+                "port": 21,
+                "secureFtp": true
+            },
+            "secure": []
+        },
+        "global_base": {
+            "type": "base",
+            "properties": {
+                "host": "",
+                "rejectUnauthorized": true
+            },
+            "secure": [
+                "user",
+                "password"
+            ]
+        },
+        "cicsia": {
+            "type": "cicsia",
+            "properties": {},
+            "secure": []
+        },
+        "cicsiacollector": {
+            "type": "cicsiacollector",
+            "properties": {},
+            "secure": []
+        },
+        "zOpenDebug_1": {
+            "type": "zOpenDebug",
+            "properties": {
+                "dpsPort": 8143,
+                "dpsContextRoot": "api/v1",
+                "dpsSecured": true,
+                "authenticationType": "token",
+                "uuid": "a3619d96-a21f-41dc-8e42-b90489924184"
+            },
+            "secure": []
+        },
+        "apa_sw_CS#SW161": {
+            "type": "apa",
+            "properties": {
+                "port": 2800,
+                "rejectUnauthorized": false
+            },
+            "secure": []
+        }
+    },
+    "defaults": {
+        "zosmf": "zosmf",
+        "tso": "tso",
+        "ssh": "ssh",
+        "cics": "cics",
+        "apa": "apa",
+        "rse": "rse",
+        "zOpenDebug": "zOpenDebug",
+        "zftp": "zftp",
+        "base": "global_base",
+        "cicsia": "cicsia",
+        "cicsiacollector": "cicsiacollector",
+        "endevor": "endevor",
+        "endevor-location": "endevor-location"
+    },
+    "autoStore": true
+}

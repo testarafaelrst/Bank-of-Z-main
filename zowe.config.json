@@ -33,8 +33,13 @@
                 "cics": {
                     "type": "cics",
                     "properties": {
-                        "protocol": "http"
-                    }
+                        "host": "ESYSMVS.wsclab.washington.ibm.com",
+                        "port": 3044,
+                        "protocol": "https",
+                        "rejectUnauthorized": false,
+                        "regionName": "CICSAOR1"
+                    },
+                    "secure": []
                 },
                 "zOpenDebug": {
                     "type": "zOpenDebug",

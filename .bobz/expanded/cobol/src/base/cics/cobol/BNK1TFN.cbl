@@ -8,12 +8,12 @@
 
 
       ******************************************************************
-      * This is the Credit/Debit program in the BANKING application
-      * BMS suite.
+      * This is the Transfer Funds between accounts program (in the
+      * same bank) in the BANKING application BMS suite.
       *
       ******************************************************************
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. BNK1CRA.
+       PROGRAM-ID. BNK1TFN.
        AUTHOR. Jon Collett.
 
        ENVIRONMENT DIVISION.
@@ -28,165 +28,160 @@
        WORKING-STORAGE SECTION.
 
        01 WS-CICS-WORK-AREA.
-          03 WS-CICS-RESP              PIC S9(8) COMP
-                                                     VALUE 0.
-          03 WS-CICS-RESP2             PIC S9(8) COMP
-                                                     VALUE 0.
+          03 WS-CICS-RESP               PIC S9(8) COMP
+                                                      VALUE 0.
+          03 WS-CICS-RESP2              PIC S9(8) COMP
+                                                      VALUE 0.
+
        01 WS-FAIL-INFO.
-          03 FILLER                    PIC X(9)      VALUE 'BNK1CRA  '.
-          03 WS-CICS-FAIL-MSG          PIC X(70)     VALUE ' '.
-          03 FILLER                    PIC X(6)      VALUE ' RESP='.
-          03 WS-CICS-RESP-DISP         PIC 9(10)     VALUE 0.
-          03 FILLER                    PIC X(7)      VALUE ' RESP2='.
-          03 WS-CICS-RESP2-DISP        PIC 9(10)     VALUE 0.
-          03 FILLER                    PIC X(15)     VALUE
+          03 FILLER                     PIC X(9)      VALUE 'BNK1TFN  '.
+          03 WS-CICS-FAIL-MSG           PIC X(70)     VALUE ' '.
+          03 FILLER                     PIC X(6)      VALUE ' RESP='.
+          03 WS-CICS-RESP-DISP          PIC 9(10)     VALUE 0.
+          03 FILLER                     PIC X(7)      VALUE ' RESP2='.
+          03 WS-CICS-RESP2-DISP         PIC 9(10)     VALUE 0.
+          03 FILLER                     PIC X(15)     VALUE
                                                       ' ABENDING TASK.'.
        01 SWITCHES.
-          03 VALID-DATA-SW             PIC X         VALUE 'Y'.
-             88 VALID-DATA                           VALUE 'Y'.
-          03 WS-TERM-ERROR-SW          PIC X         VALUE 'N'.
-             88 WS-TERM-ERROR                        VALUE 'Y'.
+          03 VALID-DATA-SW              PIC X         VALUE 'Y'.
+             88 VALID-DATA                            VALUE 'Y'.
 
        01 FLAGS.
-          03 SEND-FLAG                 PIC X.
-             88 SEND-ERASE                           VALUE '1'.
-             88 SEND-DATAONLY                        VALUE '2'.
-             88 SEND-DATAONLY-ALARM                  VALUE '3'.
+          03 SEND-FLAG                  PIC X.
+             88 SEND-ERASE                            VALUE '1'.
+             88 SEND-DATAONLY                         VALUE '2'.
+             88 SEND-DATAONLY-ALARM                   VALUE '3'.
 
        01 ACTION-ALPHA.
-          03 ACTION-NUM                PIC 9.
+          03 ACTION-NUM                 PIC 9.
 
       *
       * The end of session message
       *
-       01 END-OF-SESSION-MESSAGE       PIC X(13)     VALUE
+       01 END-OF-SESSION-MESSAGE        PIC X(13)     VALUE
                                                         'Session Ended'.
-       01 RESPONSE-CODE                PIC S9(8) COMP.
 
-       01 COMMUNICATION-AREA           PIC X.
+       01 RESPONSE-CODE                 PIC S9(8) COMP.
 
-       COPY BNK1CDM.
+       01 COMMUNICATION-AREA            PIC X.
+
+       COPY BNK1TFM.
 
        COPY DFHAID.
 
-       01 AMTI9                        PIC 9(12).
-
        01 WS-AMOUNT-AS-FLOAT COMP-2.
-       01 WS-NUM-COUNT-TOTAL           PIC S9(8) BINARY.
-       01 WS-NUM-COUNT-POINT           PIC S9(8) BINARY.
-       01 WS-NUM-COUNT-SPACE           PIC S9(8) BINARY.
 
-       01 WS-AMOUNT-UNSTR              PIC X(13).
-       01 WS-AMOUNT-UNSTR-L            PIC S9(8) BINARY.
-       01 WS-AMOUNT-UNSTR-REVERSE      PIC X(13).
+       01 WS-NUM-COUNT-TOTAL            PIC S9(8) BINARY.
+       01 WS-NUM-COUNT-POINT            PIC S9(8) BINARY.
+       01 WS-NUM-COUNT-SPACE            PIC S9(8) BINARY.
+       01 WS-NUM-COUNT-MINUS            PIC S9(8) BINARY.
 
-       01 WS-STUFF1.
-          03 WS-COMM-ACT-BAL-UNSIGN    PIC 9(12).
-       01 WS-STUFF2 REDEFINES WS-STUFF1.
-          03 WS-COMM-ACT-BAL-X         PIC X(12).
+       01 WS-AMOUNT-UNSTR               PIC X(13).
+       01 WS-AMOUNT-UNSTR-L             PIC S9(8) BINARY.
+       01 WS-AMOUNT-UNSTR-REVERSE       PIC X(13).
 
-       01 WS-STUFF3.
-          03 WS-COMM-AMT-UNSIGN        PIC 9(12).
-       01 WS-STUFF4 REDEFINES WS-STUFF3.
-          03 WS-COMM-AMT-X             PIC X(12).
+       01 COMM-DOB-SPLIT.
+          03 COMM-DOB-SPLIT-DD          PIC 99.
+          03 COMM-DOB-SPLIT-MM          PIC 99.
+          03 COMM-DOB-SPLIT-YYYY        PIC 9999.
 
-       01 WS-STUFF5.
-          03 WS-COMM-AV-BAL-UNSIGN     PIC 9(12).
-       01 WS-STUFF6 REDEFINES WS-STUFF5.
-          03 WS-COMM-AV-BAL-X          PIC X(12).
-
-       01 WS-COMM-AREA.
-          03 WS-COMM-ACCNO             PIC X(8).
-          03 WS-COMM-SIGN              PIC X.
-          03 WS-COMM-AMT               PIC 9(12).
+       01 COMM-ADDR-SPLIT.
+          03 COMM-ADDR-SPLIT1           PIC X(60).
+          03 COMM-ADDR-SPLIT2           PIC X(60).
+          03 COMM-ADDR-SPLIT3           PIC X(40).
 
        01 WS-CONVERSIONA.
-          03 WS-CONVERT-PIC1           PIC X(13).
+          03 WS-CONVERT-PIC1            PIC X(13).
           03 WS-CONVERT-PIC1SP REDEFINES WS-CONVERT-PIC1.
-             05 WS-CONVERT-PIC1-1ST    PIC X(10).
-             05 WS-CONVERT-PIC1-POINT  PIC X.
-             05 WS-CONVERT-PIC1-2ND    PIC XX.
+             05 WS-CONVERT-PIC1-1ST     PIC X(10).
+             05 WS-CONVERT-PIC1-POINT   PIC X.
+             05 WS-CONVERT-PIC1-2ND     PIC XX.
 
        01 WS-CONVERSIONB.
-          03 WS-CONVERT-PICX           PIC X(13).
+          03 WS-CONVERT-PICX            PIC X(13).
           03 WS-CONVERT-SPLIT REDEFINES WS-CONVERT-PICX.
-             05 WS-CONVERT-DEC         PIC 9(10).
-             05 WS-CONVERT-POINT       PIC X.
-             05 WS-CONVERT-REMAIN      PIC 99.
+             05 WS-CONVERT-DEC          PIC 9(10).
+             05 WS-CONVERT-POINT        PIC X.
+             05 WS-CONVERT-REMAIN       PIC 99.
 
-       01 WS-CONVERTED-VAL1            PIC S9(10)V99 VALUE 0.
-       01 WS-CONVERTED-VAL2            PIC S9(10)V99 VALUE 0.
-       01 WS-CONVERTED-VAL3            PIC S9(10)V99 VALUE 0.
-       01 WS-CONVERTED-VAL4            PIC S9(10)V99 VALUE 0.
+       01 WS-CONVERTED-VAL1             PIC S9(10)V99 VALUE 0.
+       01 WS-CONVERTED-VAL2             PIC S9(10)V99 VALUE 0.
+       01 WS-CONVERTED-VAL3             PIC S9(10)V99 VALUE 0.
+       01 WS-CONVERTED-VAL4             PIC S9(10)V99 VALUE 0.
 
        01 SUBPGM-PARMS.
-          03 SUBPGM-ACCNO              PIC X(8).
-          03 SUBPGM-AMT                PIC S9(10)V99.
-          03 SUBPGM-SORTC              PIC 9(6).
-          03 SUBPGM-AV-BAL             PIC S9(10)V99.
-          03 SUBPGM-ACT-BAL            PIC S9(10)V99.
-          03 SUBPGM-ORIGIN.
-               05 SUBPGM-APPLID           PIC X(8).
-               05 SUBPGM-USERID           PIC X(8).
-               05 SUBPGM-FACILITY-NAME    PIC X(8).
-               05 SUBPGM-NETWRK-ID        PIC X(8).
-               05 SUBPGM-FACILTYPE        PIC S9(8) COMP.
-               05 FILLER                  PIC X(4) VALUE SPACES.
-          03 SUBPGM-SUCCESS            PIC X.
-          03 SUBPGM-FAIL-CODE          PIC X.
+          03 SUBPGM-FACCNO              PIC 9(8).
+          03 SUBPGM-FSCODE              PIC 9(6).
+          03 SUBPGM-TACCNO              PIC 9(8).
+          03 SUBPGM-TSCODE              PIC 9(6).
+          03 SUBPGM-AMT                 PIC S9(10)V99.
+          03 SUBPGM-FAVBAL              PIC S9(10)V99.
+          03 SUBPGM-FACTBAL             PIC S9(10)V99.
+          03 SUBPGM-TAVBAL              PIC S9(10)V99.
+          03 SUBPGM-TACTBAL             PIC S9(10)V99.
+          03 SUBPGM-FAIL-CODE           PIC X.
+          03 SUBPGM-SUCCESS             PIC X.
 
-       01 COMPANY-NAME-FULL            PIC X(32).
+       01 WS-COMMAREA.
+          03 WS-COMMAREA-FACCNO         PIC 9(8).
+          03 WS-COMMAREA-TACCNO         PIC 9(8).
+          03 WS-COMMAREA-AMT            PIC 9(12).
 
-       01 AVAILABLE-BALANCE-DISPLAY    PIC +9(10).99.
-       01 ACTUAL-BALANCE-DISPLAY       PIC +9(10).99.
+       01 COMPANY-NAME-FULL             PIC X(32).
+       01 FROM-AVAILABLE-BALANCE-DISPLAY
+                                        PIC +9(10).99.
+       01 FROM-ACTUAL-BALANCE-DISPLAY   PIC +9(10).99.
+       01 TO-AVAILABLE-BALANCE-DISPLAY  PIC +9(10).99.
+       01 TO-ACTUAL-BALANCE-DISPLAY     PIC +9(10).99.
 
-       01 WS-U-TIME                    PIC S9(15) COMP-3.
-       01 WS-ORIG-DATE                 PIC X(10).
+       01 WS-U-TIME                     PIC S9(15) COMP-3.
+       01 WS-ORIG-DATE                  PIC X(10).
        01 WS-ORIG-DATE-GRP REDEFINES WS-ORIG-DATE.
-          03 WS-ORIG-DATE-DD           PIC 99.
-          03 FILLER                    PIC X.
-          03 WS-ORIG-DATE-MM           PIC 99.
-          03 FILLER                    PIC X.
-          03 WS-ORIG-DATE-YYYY         PIC 9999.
+          03 WS-ORIG-DATE-DD            PIC 99.
+          03 FILLER                     PIC X.
+          03 WS-ORIG-DATE-MM            PIC 99.
+          03 FILLER                     PIC X.
+          03 WS-ORIG-DATE-YYYY          PIC 9999.
 
        01 WS-ORIG-DATE-GRP-X.
-          03 WS-ORIG-DATE-DD-X         PIC XX.
-          03 FILLER                    PIC X         VALUE '.'.
-          03 WS-ORIG-DATE-MM-X         PIC XX.
-          03 FILLER                    PIC X         VALUE '.'.
-          03 WS-ORIG-DATE-YYYY-X       PIC X(4).
+          03 WS-ORIG-DATE-DD-X          PIC XX.
+          03 FILLER                     PIC X         VALUE '.'.
+          03 WS-ORIG-DATE-MM-X          PIC XX.
+          03 FILLER                     PIC X         VALUE '.'.
+          03 WS-ORIG-DATE-YYYY-X        PIC X(4).
 
        01 WS-TIME-DATA.
-          03 WS-TIME-NOW               PIC 9(6).
+          03 WS-TIME-NOW                PIC 9(6).
           03 WS-TIME-NOW-GRP REDEFINES WS-TIME-NOW.
-             05 WS-TIME-NOW-GRP-HH     PIC 99.
-             05 WS-TIME-NOW-GRP-MM     PIC 99.
-             05 WS-TIME-NOW-GRP-SS     PIC 99.
+             05 WS-TIME-NOW-GRP-HH      PIC 99.
+             05 WS-TIME-NOW-GRP-MM      PIC 99.
+             05 WS-TIME-NOW-GRP-SS      PIC 99.
 
-       01 WS-ABEND-PGM                 PIC X(8)      VALUE 'ABNDPROC'.
+       01 WS-ABEND-PGM                  PIC X(8)      VALUE 'ABNDPROC'.
 
        01 ABNDINFO-REC.
            COPY ABNDINFO.
 
        LINKAGE SECTION.
+
        01 DFHCOMMAREA.
-          03 COMM-ACCNO                PIC X(8).
-          03 COMM-SIGN                 PIC X.
-          03 COMM-AMT                  PIC 9(12).
+          03 COMMAREA-FACCNO            PIC 9(8).
+          03 COMMAREA-TACCNO            PIC 9(8).
+          03 COMMAREA-AMT               PIC 9(12).
 
 
-       PROCEDURE DIVISION USING DFHCOMMAREA.
+       PROCEDURE DIVISION.
        PREMIERE SECTION.
        A010.
 
            EVALUATE TRUE
+
       *
       *       Is it the first time through? If so, send the map
       *       with erased (empty) data fields.
       *
               WHEN EIBCALEN = ZERO
-                 MOVE LOW-VALUE TO BNK1CDO
-                 MOVE -1 TO ACCNOL
+                 MOVE LOW-VALUE TO BNK1TFO
                  SET SEND-ERASE TO TRUE
                  PERFORM SEND-MAP
 
@@ -213,7 +208,6 @@
       *
               WHEN EIBAID = DFHAID OR DFHPF12
                  PERFORM SEND-TERMINATION-MSG
-
                  EXEC CICS
                     RETURN
                  END-EXEC
@@ -226,7 +220,6 @@
                           ERASE
                           FREEKB
                 END-EXEC
-
                 EXEC CICS RETURN
                 END-EXEC
 
@@ -240,32 +233,130 @@
       *       When anything else happens, send the invalid key message
       *
               WHEN OTHER
-                 MOVE LOW-VALUES TO BNK1CDO
+                 MOVE LOW-VALUES TO BNK1TFO
                  MOVE 'Invalid key pressed.' TO MESSAGEO
-                 MOVE 8 TO ACCNOL
+      *           MOVE 10 TO CUSTNOL
                  SET SEND-DATAONLY-ALARM TO TRUE
                  PERFORM SEND-MAP
 
            END-EVALUATE.
 
       *
-      *    Provided that we have been around this way before
-      *    (i.e. it is NOT the first time through, put the data
-      *    returned from the sub program into the area that we use
-      *    as the COMMAREA on the RETURN.
+      *     Now RETURN
       *
-           IF EIBCALEN NOT = ZERO
+            EXEC CICS
+               RETURN TRANSID('OTFN')
+               COMMAREA(WS-COMMAREA)
+               LENGTH(29)
+               RESP(WS-CICS-RESP)
+               RESP2(WS-CICS-RESP2)
+            END-EXEC.
 
-              MOVE COMM-ACCNO  TO WS-COMM-ACCNO
-              MOVE COMM-SIGN   TO  WS-COMM-SIGN
-              MOVE COMM-AMT    TO WS-COMM-AMT
+           IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
+      *
+      *       Preserve the RESP and RESP2, then set up the
+      *       standard ABEND info before getting the applid,
+      *       date/time etc. and linking to the Abend Handler
+      *       program.
+      *
+              INITIALIZE ABNDINFO-REC
+              MOVE EIBRESP    TO ABND-RESPCODE
+              MOVE EIBRESP2   TO ABND-RESP2CODE
+      *
+      *       Get supplemental information
+      *
+              EXEC CICS ASSIGN APPLID(ABND-APPLID)
+              END-EXEC
 
+              MOVE EIBTASKN   TO ABND-TASKNO-KEY
+              MOVE EIBTRNID   TO ABND-TRANID
+
+              PERFORM POPULATE-TIME-DATE
+
+              MOVE WS-ORIG-DATE TO ABND-DATE
+              STRING WS-TIME-NOW-GRP-HH DELIMITED BY SIZE,
+                    ':' DELIMITED BY SIZE,
+                     WS-TIME-NOW-GRP-MM DELIMITED BY SIZE,
+                     ':' DELIMITED BY SIZE,
+                     WS-TIME-NOW-GRP-MM DELIMITED BY SIZE
+                     INTO ABND-TIME
+              END-STRING
+
+              MOVE WS-U-TIME   TO ABND-UTIME-KEY
+              MOVE 'HBNK'      TO ABND-CODE
+
+              EXEC CICS ASSIGN PROGRAM(ABND-PROGRAM)
+              END-EXEC
+
+              MOVE ZEROS      TO ABND-SQLCODE
+
+              STRING 'A010 - RETURN TRANSID(OCCS) FAIL.'
+                    DELIMITED BY SIZE,
+                    ' EIBRESP=' DELIMITED BY SIZE,
+                    ABND-RESPCODE DELIMITED BY SIZE,
+                    ' RESP2=' DELIMITED BY SIZE,
+                    ABND-RESP2CODE DELIMITED BY SIZE
+                    INTO ABND-FREEFORM
+              END-STRING
+
+              EXEC CICS LINK PROGRAM(WS-ABEND-PGM)
+                        COMMAREA(ABNDINFO-REC)
+              END-EXEC
+
+
+              INITIALIZE WS-FAIL-INFO
+              MOVE 'BNK1TFN - A010 - RETURN TRANSID(OCCS) FAIL' TO
+                 WS-CICS-FAIL-MSG
+              MOVE WS-CICS-RESP  TO WS-CICS-RESP-DISP
+              MOVE WS-CICS-RESP2 TO WS-CICS-RESP2-DISP
+              PERFORM ABEND-THIS-TASK
            END-IF.
 
+       A999.
+           EXIT.
+
+
+       PROCESS-MAP SECTION.
+       PM010.
+      *
+      *    Retrieve the data from the map
+      *
+
+           PERFORM RECEIVE-MAP.
+
+      *
+      *    Validate the received data
+      *
+           PERFORM EDIT-DATA.
+
+      *
+      *    If the data passes validation go on to
+      *    get an account
+      *
+           IF VALID-DATA
+              PERFORM GET-ACC-DATA
+           END-IF.
+
+           SET SEND-DATAONLY-ALARM TO TRUE.
+
+      *
+      *    Output the data to the screen
+      *
+           PERFORM SEND-MAP.
+
+       PM999.
+           EXIT.
+
+
+       RECEIVE-MAP SECTION.
+       RM010.
+      *
+      *    Retrieve the data
+      *
            EXEC CICS
-              RETURN TRANSID('OCRA')
-              COMMAREA(WS-COMM-AREA)
-              LENGTH(21)
+              RECEIVE MAP('BNK1TF')
+              MAPSET('BNK1TFM')
+              INTO(BNK1TFI)
               RESP(WS-CICS-RESP)
               RESP2(WS-CICS-RESP2)
            END-EXEC.
@@ -308,9 +399,9 @@
 
               MOVE ZEROS      TO ABND-SQLCODE
 
-              STRING 'A010 - RETURN TRANSID(OCRA) FAIL.'
+              STRING 'RM010 - RECEIVE MAP FAIL.'
                     DELIMITED BY SIZE,
-                    'EIBRESP=' DELIMITED BY SIZE,
+                    ' EIBRESP=' DELIMITED BY SIZE,
                     ABND-RESPCODE DELIMITED BY SIZE,
                     ' RESP2=' DELIMITED BY SIZE,
                     ABND-RESP2CODE DELIMITED BY SIZE
@@ -321,122 +412,13 @@
                         COMMAREA(ABNDINFO-REC)
               END-EXEC
 
+
               INITIALIZE WS-FAIL-INFO
-              MOVE 'BNK1CRA - A010 - RETURN TRANSID(OCRA) FAIL' TO
+              MOVE 'BNK1TFN - RM010 - RECEIVE MAP FAIL ' TO
                  WS-CICS-FAIL-MSG
               MOVE WS-CICS-RESP  TO WS-CICS-RESP-DISP
               MOVE WS-CICS-RESP2 TO WS-CICS-RESP2-DISP
               PERFORM ABEND-THIS-TASK
-           END-IF.
-
-       A999.
-           EXIT.
-
-
-       PROCESS-MAP SECTION.
-       PM010.
-      *
-      *    Retrieve the data from the map
-      *
-           PERFORM RECEIVE-MAP.
-
-      *
-      *    Validate the received data
-      *
-           PERFORM EDIT-DATA.
-
-      *
-      *    If the data passes validation go on to apply the debit or
-      *    credit.
-      *
-           IF VALID-DATA
-              PERFORM UPD-CRED-DATA
-           END-IF.
-
-           SET SEND-DATAONLY-ALARM TO TRUE.
-
-      *
-      *    Output the data to the screen
-      *
-           PERFORM SEND-MAP.
-
-       PM999.
-           EXIT.
-
-
-       RECEIVE-MAP SECTION.
-       RM010.
-      *
-      *    Retrieve the data
-      *
-           EXEC CICS
-              RECEIVE MAP('BNK1CD')
-              MAPSET('BNK1CDM')
-              INTO(BNK1CDI)
-              RESP(WS-CICS-RESP)
-              RESP2(WS-CICS-RESP2)
-           END-EXEC.
-
-           IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
-      *
-      *       Check first if the terminal session was lost (TERMERR).
-      *       In that case there is nothing to send back — just return.
-      *
-               PERFORM CHECK-TERM-ERROR
-               IF WS-TERM-ERROR
-                  EXEC CICS RETURN END-EXEC
-               END-IF
-      *
-      *       Any other error: preserve RESP/RESP2 and ABEND the task.
-      *
-               INITIALIZE ABNDINFO-REC
-               MOVE EIBRESP    TO ABND-RESPCODE
-               MOVE EIBRESP2   TO ABND-RESP2CODE
-
-               EXEC CICS ASSIGN APPLID(ABND-APPLID)
-               END-EXEC
-
-               MOVE EIBTASKN   TO ABND-TASKNO-KEY
-               MOVE EIBTRNID   TO ABND-TRANID
-
-               PERFORM POPULATE-TIME-DATE
-
-               MOVE WS-ORIG-DATE TO ABND-DATE
-               STRING WS-TIME-NOW-GRP-HH DELIMITED BY SIZE,
-                     ':' DELIMITED BY SIZE,
-                      WS-TIME-NOW-GRP-MM DELIMITED BY SIZE,
-                      ':' DELIMITED BY SIZE,
-                      WS-TIME-NOW-GRP-MM DELIMITED BY SIZE
-                      INTO ABND-TIME
-               END-STRING
-
-               MOVE WS-U-TIME   TO ABND-UTIME-KEY
-               MOVE 'HBNK'      TO ABND-CODE
-
-               EXEC CICS ASSIGN PROGRAM(ABND-PROGRAM)
-               END-EXEC
-
-               MOVE ZEROS      TO ABND-SQLCODE
-
-               STRING 'RM010 - RECEIVE MAP FAIL.'
-                     DELIMITED BY SIZE,
-                     'EIBRESP=' DELIMITED BY SIZE,
-                     ABND-RESPCODE DELIMITED BY SIZE,
-                     ' RESP2=' DELIMITED BY SIZE,
-                     ABND-RESP2CODE DELIMITED BY SIZE
-                     INTO ABND-FREEFORM
-               END-STRING
-
-               EXEC CICS LINK PROGRAM(WS-ABEND-PGM)
-                         COMMAREA(ABNDINFO-REC)
-               END-EXEC
-
-               INITIALIZE WS-FAIL-INFO
-               MOVE 'BNK1CRA - RM010 - RECEIVE MAP FAIL ' TO
-                  WS-CICS-FAIL-MSG
-               MOVE WS-CICS-RESP  TO WS-CICS-RESP-DISP
-               MOVE WS-CICS-RESP2 TO WS-CICS-RESP2-DISP
-               PERFORM ABEND-THIS-TASK
            END-IF.
 
        RM999.
@@ -448,26 +430,37 @@
       *
       *    Perform validation on the incoming fields
       *
-           EXEC CICS BIF
-              DEEDIT FIELD(ACCNOI)
+           EXEC CICS BIF DEEDIT
+              FIELD(FACCNOI)
            END-EXEC.
 
-           IF ACCNOI NOT NUMERIC
-              MOVE 'Please enter an account number.  ' TO
+           IF FACCNOI NOT NUMERIC
+              MOVE 'Please enter a FROM account no  ' TO
                  MESSAGEO
               MOVE 'N' TO VALID-DATA-SW
               GO TO ED999
            END-IF.
 
-           IF ACCNOI = ZERO
-              MOVE 'Please enter a non zero account number.   ' TO
+           EXEC CICS BIF DEEDIT
+              FIELD(TACCNOI)
+           END-EXEC.
+
+           IF TACCNOI NOT NUMERIC
+              MOVE 'Please enter a TO account no    ' TO
                  MESSAGEO
               MOVE 'N' TO VALID-DATA-SW
               GO TO ED999
            END-IF.
 
-           IF SIGNI NOT = '+' AND SIGNI NOT = '-' AND SIGNL = 1
-              MOVE 'Please enter + or - preceding the amount ' TO
+           IF FACCNOI = TACCNOI
+              MOVE 'The FROM & TO account should be different ' TO
+                 MESSAGEO
+              MOVE 'N' TO VALID-DATA-SW
+              GO TO ED999
+           END-IF.
+
+           IF FACCNOI = '00000000' OR TACCNOI = '00000000'
+              MOVE 'Account no 00000000 is not valid          ' TO
                  MESSAGEO
               MOVE 'N' TO VALID-DATA-SW
               GO TO ED999
@@ -482,39 +475,26 @@
            EXIT.
 
 
-       UPD-CRED-DATA SECTION.
-       UCD010.
+       GET-ACC-DATA SECTION.
+       GCD010.
       *
-      *    Set up the COMMAREA fields required by DBCRFUN and then
-      *    link to it.
+      *    Set up the fields required by XFRFUN then link to it to
+      *    get account information and perform the transfer, then
+      *    check what gets returned.
       *
            INITIALIZE SUBPGM-PARMS.
 
-           MOVE ACCNOI TO SUBPGM-ACCNO.
-           MOVE 0 TO SUBPGM-AMT.
+           MOVE FACCNOI TO  SUBPGM-FACCNO.
+           MOVE TACCNOI TO  SUBPGM-TACCNO.
+           MOVE 'N'     TO  SUBPGM-SUCCESS.
 
       *
-      *    Provide the correct Amount
+      * Provide the correct Amount
       *
-           IF SIGNI = '-'
-              COMPUTE WS-AMOUNT-AS-FLOAT = WS-AMOUNT-AS-FLOAT * -1
-           END-IF.
-
            MOVE WS-AMOUNT-AS-FLOAT TO SUBPGM-AMT.
 
-      *
-      *    Get the ORIGIN data
-      *
-           EXEC CICS INQUIRE ASSOCIATION(EIBTASKN)
-               ODAPPLID(SUBPGM-APPLID)
-               ODUSERID(SUBPGM-USERID)
-               ODFACILNAME(SUBPGM-FACILITY-NAME)
-               ODNETWORKID(SUBPGM-NETWRK-ID)
-               ODFACILTYPE(SUBPGM-FACILTYPE)
-           END-EXEC.
-
            EXEC CICS LINK
-              PROGRAM('DBCRFUN')
+              PROGRAM('XFRFUN')
               COMMAREA(SUBPGM-PARMS)
               RESP(WS-CICS-RESP)
               RESP2(WS-CICS-RESP2)
@@ -559,9 +539,9 @@
 
               MOVE ZEROS      TO ABND-SQLCODE
 
-              STRING 'UCD010 - LINK DBCRFUN FAIL.'
+              STRING 'GCD010 - LINK XFRFUN FAIL.'
                     DELIMITED BY SIZE,
-                    'EIBRESP=' DELIMITED BY SIZE,
+                    ' EIBRESP=' DELIMITED BY SIZE,
                     ABND-RESPCODE DELIMITED BY SIZE,
                     ' RESP2=' DELIMITED BY SIZE,
                     ABND-RESP2CODE DELIMITED BY SIZE
@@ -573,7 +553,7 @@
               END-EXEC
 
               INITIALIZE WS-FAIL-INFO
-              MOVE 'BNK1CRA - UCD010 - LINK DBCRFUN  FAIL      '
+              MOVE 'BNK1TFN - GCD010 - LINK XFRFUN  FAIL      '
                  TO WS-CICS-FAIL-MSG
               MOVE WS-CICS-RESP  TO WS-CICS-RESP-DISP
               MOVE WS-CICS-RESP2 TO WS-CICS-RESP2-DISP
@@ -581,8 +561,24 @@
            END-IF.
 
       *
-      *    Check to see if the debit or credit was successful
+      *    Map the returned data to the screen output fields
       *
+           MOVE SUBPGM-FACCNO    TO FACCNO2O
+           MOVE SUBPGM-FSCODE    TO FSORTCO
+           MOVE SUBPGM-TACCNO    TO TACCNO2O
+           MOVE SUBPGM-TSCODE    TO TSORTCO
+           MOVE ZERO             TO FROM-ACTUAL-BALANCE-DISPLAY
+           MOVE ZERO             TO FROM-AVAILABLE-BALANCE-DISPLAY
+           MOVE ZERO             TO TO-ACTUAL-BALANCE-DISPLAY
+           MOVE ZERO             TO TO-AVAILABLE-BALANCE-DISPLAY
+           MOVE FROM-ACTUAL-BALANCE-DISPLAY TO FACTBALO
+           MOVE FROM-AVAILABLE-BALANCE-DISPLAY TO FAVBALO
+           MOVE TO-ACTUAL-BALANCE-DISPLAY    TO TACTBALO
+           MOVE TO-AVAILABLE-BALANCE-DISPLAY TO TAVBALO
+
+      *
+      *    If an error was flagged by XFRFUN then set up an appropriate
+      *    error message.
            IF SUBPGM-SUCCESS = 'N'
 
               MOVE 'N' TO VALID-DATA-SW
@@ -590,70 +586,92 @@
               EVALUATE SUBPGM-FAIL-CODE
                  WHEN '1'
                     MOVE SPACES TO MESSAGEO
-                    STRING 'Sorry but the ACCOUNT no was not found'
-                           ' for SORTCODE '
-                           SUBPGM-SORTC
-                           ' . Amount not applied. '
+                    STRING 'Sorry the FROM ACCOUNT no was not found'
+                           '. Transfer not applied. '
                            DELIMITED BY SIZE
                            INTO MESSAGEO
-                    GO TO UCD999
+                    GO TO GCD999
 
                  WHEN '2'
                     MOVE SPACES TO MESSAGEO
-                    STRING 'Sorry but the AMOUNT could not be applied'
-                           ' due to an unexpected error.'
+                    STRING 'Sorry the TO ACCOUNT no was not found'
+                           '. Transfer not applied. '
                            DELIMITED BY SIZE
                            INTO MESSAGEO
-                    GO TO UCD999
+                    GO TO GCD999
 
                  WHEN '3'
                     MOVE SPACES TO MESSAGEO
-                    STRING 'Sorry insufficient funds available to pro'
-                           'cess the request.           '
+                    STRING 'Sorry but the transfer could not be applied'
+                           ' due to an unexpected error.'
                            DELIMITED BY SIZE
                            INTO MESSAGEO
-                    GO TO UCD999
+
+                 WHEN '4'
+                    MOVE SPACES TO MESSAGEO
+                    STRING 'Please supply an amount greater than zero.'
+                           DELIMITED BY SIZE
+                           INTO MESSAGEO
+                    GO TO GCD999
 
                  WHEN OTHER
                     MOVE SPACES TO MESSAGEO
-                    STRING 'Sorry but the AMOUNT could not be applied'
-                           ' due to an unexpected error. '
-                           SUBPGM-FAIL-CODE
+                    STRING 'Sorry but the transfer could not be applied'
+                           ' due to an error.'
                            DELIMITED BY SIZE
                            INTO MESSAGEO
-                    GO TO UCD999
+                    GO TO GCD999
+
               END-EVALUATE
 
+           END-IF.
+
+           IF SUBPGM-SUCCESS NOT = 'Y'
+              MOVE SPACES TO MESSAGEO
+              STRING 'Sorry but the transfer could not be applied'
+                     ' unable to determine success.'
+                     DELIMITED BY SIZE
+                     INTO MESSAGEO
+              GO TO GCD999
            ELSE
               MOVE SPACES TO MESSAGEO
-              MOVE 'Amount successfully applied to the account.' TO
+              MOVE 'Transfer successfully applied.             ' TO
                  MESSAGEO
            END-IF.
 
       *
-      *    Set up the values on the map
+      *    Map the remaining fields
       *
-           MOVE SUBPGM-ACCNO       TO ACCNOO.
-           MOVE SUBPGM-SORTC       TO SORTCO.
+           MOVE SUBPGM-FACCNO    TO FACCNO2O.
+           MOVE SUBPGM-FSCODE    TO FSORTCO.
+           MOVE SUBPGM-TACCNO    TO TACCNO2O.
+           MOVE SUBPGM-TSCODE    TO TSORTCO.
+           MOVE SUBPGM-FACTBAL   TO FROM-ACTUAL-BALANCE-DISPLAY.
+           MOVE SUBPGM-FAVBAL    TO FROM-AVAILABLE-BALANCE-DISPLAY.
+           MOVE SUBPGM-TACTBAL   TO TO-ACTUAL-BALANCE-DISPLAY.
+           MOVE SUBPGM-TAVBAL    TO TO-AVAILABLE-BALANCE-DISPLAY.
+           MOVE FROM-ACTUAL-BALANCE-DISPLAY TO FACTBALO.
+           MOVE FROM-AVAILABLE-BALANCE-DISPLAY TO FAVBALO.
+           MOVE TO-ACTUAL-BALANCE-DISPLAY    TO TACTBALO.
+           MOVE TO-AVAILABLE-BALANCE-DISPLAY TO TAVBALO.
 
-           MOVE SUBPGM-ACT-BAL    TO ACTUAL-BALANCE-DISPLAY.
-           MOVE SUBPGM-AV-BAL     TO AVAILABLE-BALANCE-DISPLAY.
-           MOVE ACTUAL-BALANCE-DISPLAY      TO ACTBALO.
-           MOVE AVAILABLE-BALANCE-DISPLAY   TO AVBALO.
-
-       UCD999.
+       GCD999.
            EXIT.
 
 
        SEND-MAP SECTION.
        SM010.
       *
+      *    Send/show the MAP
+      *
+
+      *
       *    If the map needs to have its data erased
       *
            IF SEND-ERASE
-              EXEC CICS SEND MAP('BNK1CD')
-                 MAPSET('BNK1CDM')
-                 FROM(BNK1CDO)
+              EXEC CICS SEND MAP('BNK1TF')
+                 MAPSET('BNK1TFM')
+                 FROM(BNK1TFO)
                  ERASE
                  FREEKB
                  RESP(WS-CICS-RESP)
@@ -662,19 +680,17 @@
 
               IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
       *
-      *          Lost terminal session — return silently.
-      *
-                 PERFORM CHECK-TERM-ERROR
-                 IF WS-TERM-ERROR
-                    EXEC CICS RETURN END-EXEC
-                 END-IF
-      *
-      *          Any other error: ABEND the task.
+      *          Preserve the RESP and RESP2, then set up the
+      *          standard ABEND info before getting the applid,
+      *          date/time etc. and linking to the Abend Handler
+      *          program.
       *
                  INITIALIZE ABNDINFO-REC
                  MOVE EIBRESP    TO ABND-RESPCODE
                  MOVE EIBRESP2   TO ABND-RESP2CODE
-
+      *
+      *          Get supplemental information
+      *
                  EXEC CICS ASSIGN APPLID(ABND-APPLID)
                  END-EXEC
 
@@ -702,7 +718,7 @@
 
                  STRING 'SM010 - SEND MAP ERASE FAIL.'
                        DELIMITED BY SIZE,
-                       'EIBRESP=' DELIMITED BY SIZE,
+                       ' EIBRESP=' DELIMITED BY SIZE,
                        ABND-RESPCODE DELIMITED BY SIZE,
                        ' RESP2=' DELIMITED BY SIZE,
                        ABND-RESP2CODE DELIMITED BY SIZE
@@ -714,7 +730,7 @@
                  END-EXEC
 
                  INITIALIZE WS-FAIL-INFO
-                 MOVE 'BNK1CRA - SM010 - SEND MAP ERASE FAIL '
+                 MOVE 'BNK1TFN - SM010 - SEND MAP ERASE FAIL '
                     TO WS-CICS-FAIL-MSG
                  MOVE WS-CICS-RESP  TO WS-CICS-RESP-DISP
                  MOVE WS-CICS-RESP2 TO WS-CICS-RESP2-DISP
@@ -728,9 +744,9 @@
       *    If the map just needs a resend of only the data
       *
            IF SEND-DATAONLY
-              EXEC CICS SEND MAP('BNK1CD')
-                 MAPSET('BNK1CDM')
-                 FROM(BNK1CDO)
+              EXEC CICS SEND MAP('BNK1TF')
+                 MAPSET('BNK1TFM')
+                 FROM(BNK1TFO)
                  DATAONLY
                  FREEKB
                  RESP(WS-CICS-RESP)
@@ -739,19 +755,17 @@
 
               IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
       *
-      *          Lost terminal session — return silently.
-      *
-                 PERFORM CHECK-TERM-ERROR
-                 IF WS-TERM-ERROR
-                    EXEC CICS RETURN END-EXEC
-                 END-IF
-      *
-      *          Any other error: ABEND the task.
+      *          Preserve the RESP and RESP2, then set up the
+      *          standard ABEND info before getting the applid,
+      *          date/time etc. and linking to the Abend Handler
+      *          program.
       *
                  INITIALIZE ABNDINFO-REC
                  MOVE EIBRESP    TO ABND-RESPCODE
                  MOVE EIBRESP2   TO ABND-RESP2CODE
-
+      *
+      *          Get supplemental information
+      *
                  EXEC CICS ASSIGN APPLID(ABND-APPLID)
                  END-EXEC
 
@@ -779,7 +793,7 @@
 
                  STRING 'SM010 - SEND MAP DATAONLY FAIL.'
                        DELIMITED BY SIZE,
-                       'EIBRESP=' DELIMITED BY SIZE,
+                       ' EIBRESP=' DELIMITED BY SIZE,
                        ABND-RESPCODE DELIMITED BY SIZE,
                        ' RESP2=' DELIMITED BY SIZE,
                        ABND-RESP2CODE DELIMITED BY SIZE
@@ -791,7 +805,7 @@
                  END-EXEC
 
                  INITIALIZE WS-FAIL-INFO
-                 MOVE 'BNK1CRA - SM010 - SEND MAP DATAONLY FAIL '
+                 MOVE 'BNK1TFN - SM010 - SEND MAP DATAONLY FAIL '
                     TO WS-CICS-FAIL-MSG
                  MOVE WS-CICS-RESP  TO WS-CICS-RESP-DISP
                  MOVE WS-CICS-RESP2 TO WS-CICS-RESP2-DISP
@@ -805,9 +819,9 @@
       *    If we have elected to send the map and a beep
       *
            IF SEND-DATAONLY-ALARM
-              EXEC CICS SEND MAP('BNK1CD')
-                 MAPSET('BNK1CDM')
-                 FROM(BNK1CDO)
+              EXEC CICS SEND MAP('BNK1TF')
+                 MAPSET('BNK1TFM')
+                 FROM(BNK1TFO)
                  DATAONLY
                  ALARM
                  FREEKB
@@ -817,19 +831,17 @@
 
               IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
       *
-      *          Lost terminal session — return silently.
-      *
-                 PERFORM CHECK-TERM-ERROR
-                 IF WS-TERM-ERROR
-                    EXEC CICS RETURN END-EXEC
-                 END-IF
-      *
-      *          Any other error: ABEND the task.
+      *          Preserve the RESP and RESP2, then set up the
+      *          standard ABEND info before getting the applid,
+      *          date/time etc. and linking to the Abend Handler
+      *          program.
       *
                  INITIALIZE ABNDINFO-REC
                  MOVE EIBRESP    TO ABND-RESPCODE
                  MOVE EIBRESP2   TO ABND-RESP2CODE
-
+      *
+      *          Get supplemental information
+      *
                  EXEC CICS ASSIGN APPLID(ABND-APPLID)
                  END-EXEC
 
@@ -857,7 +869,7 @@
 
                  STRING 'SM010 - SEND MAP DATAONLY ALARM FAIL.'
                        DELIMITED BY SIZE,
-                       'EIBRESP=' DELIMITED BY SIZE,
+                       ' EIBRESP=' DELIMITED BY SIZE,
                        ABND-RESPCODE DELIMITED BY SIZE,
                        ' RESP2=' DELIMITED BY SIZE,
                        ABND-RESP2CODE DELIMITED BY SIZE
@@ -869,7 +881,7 @@
                  END-EXEC
 
                  INITIALIZE WS-FAIL-INFO
-                 MOVE 'BNK1CRA - SM010 - SEND MAP DATAONLY ALARM FAIL '
+                 MOVE 'BNK1TFN - SM010 - SEND MAP DATAONLY ALARM FAIL '
                     TO WS-CICS-FAIL-MSG
                  MOVE WS-CICS-RESP  TO WS-CICS-RESP-DISP
                  MOVE WS-CICS-RESP2 TO WS-CICS-RESP2-DISP
@@ -897,21 +909,19 @@
 
            IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
       *
-      *       Lost terminal session — return silently.
+      *       Preserve the RESP and RESP2, then set up the
+      *       standard ABEND info before getting the applid,
+      *       date/time etc. and linking to the Abend Handler
+      *       program.
       *
-               PERFORM CHECK-TERM-ERROR
-               IF WS-TERM-ERROR
-                  EXEC CICS RETURN END-EXEC
-               END-IF
+              INITIALIZE ABNDINFO-REC
+              MOVE EIBRESP    TO ABND-RESPCODE
+              MOVE EIBRESP2   TO ABND-RESP2CODE
       *
-      *       Any other error: ABEND the task.
+      *       Get supplemental information
       *
-               INITIALIZE ABNDINFO-REC
-               MOVE EIBRESP    TO ABND-RESPCODE
-               MOVE EIBRESP2   TO ABND-RESP2CODE
-
-               EXEC CICS ASSIGN APPLID(ABND-APPLID)
-               END-EXEC
+              EXEC CICS ASSIGN APPLID(ABND-APPLID)
+              END-EXEC
 
               MOVE EIBTASKN   TO ABND-TASKNO-KEY
               MOVE EIBTRNID   TO ABND-TRANID
@@ -937,7 +947,7 @@
 
               STRING 'STM010 - SEND TEXT FAIL.'
                     DELIMITED BY SIZE,
-                    'EIBRESP=' DELIMITED BY SIZE,
+                    ' EIBRESP=' DELIMITED BY SIZE,
                     ABND-RESPCODE DELIMITED BY SIZE,
                     ' RESP2=' DELIMITED BY SIZE,
                     ABND-RESP2CODE DELIMITED BY SIZE
@@ -949,7 +959,7 @@
               END-EXEC
 
               INITIALIZE WS-FAIL-INFO
-              MOVE 'BNK1CRA - STM010 - SEND TEXT FAIL'
+              MOVE 'BNK1TFN - STM010 - SEND TEXT FAIL'
                  TO WS-CICS-FAIL-MSG
               MOVE WS-CICS-RESP  TO WS-CICS-RESP-DISP
               MOVE WS-CICS-RESP2 TO WS-CICS-RESP2-DISP
@@ -962,6 +972,9 @@
 
        ABEND-THIS-TASK SECTION.
        ATT010.
+      *
+      *    Issue an abend
+      *
            DISPLAY WS-FAIL-INFO.
            EXEC CICS ABEND
               ABCODE('HBNK')
@@ -972,43 +985,36 @@
            EXIT.
 
 
-      *----------------------------------------------------------------*
-      *  CHECK-TERM-ERROR                                               *
-      *  Checks whether the last CICS RESP indicates a lost terminal    *
-      *  session (TERMERR = error code X'14', abend ASP3).              *
-      *  If so, sets WS-TERM-ERROR-SW to 'Y' so callers can return     *
-      *  cleanly instead of issuing an application ABEND.               *
-      *----------------------------------------------------------------*
-       CHECK-TERM-ERROR SECTION.
-       CTE010.
-           IF WS-CICS-RESP = DFHRESP(TERMERR)
-              MOVE 'Y' TO WS-TERM-ERROR-SW
-           ELSE
-              MOVE 'N' TO WS-TERM-ERROR-SW
-           END-IF.
-
-       CTE999.
-           EXIT.
-
-
        VALIDATE-AMOUNT SECTION.
        VA010.
-
-           MOVE 0 TO WS-AMOUNT-AS-FLOAT.
-
+      *
+      *    Validate the amount entered.
+      *    Is it greater than 0?
+      *
            IF AMTL = ZERO
               MOVE 'The Amount entered must be numeric.' TO
                  MESSAGEO
               MOVE 'N' TO VALID-DATA-SW
               MOVE -1 TO AMTL
               GO TO VA999
-           END-IF.
-
+           END-IF
 
            IF AMTI(1:AMTL) IS NUMERIC
+      *
+      *       Is it a positive amount?
+      *
               COMPUTE WS-AMOUNT-AS-FLOAT =
                  FUNCTION NUMVAL(AMTI(1:AMTL))
 
+              IF WS-AMOUNT-AS-FLOAT <= 0
+                 MOVE SPACES TO MESSAGEO
+                 STRING 'Please supply a positive amount.'
+                    DELIMITED BY SIZE,
+                 INTO MESSAGEO
+                 MOVE 'N' TO VALID-DATA-SW
+                 MOVE -1 TO AMTL
+                 GO TO VA999
+              END-IF
               MOVE 'Y' TO VALID-DATA-SW
               GO TO VA999
            END-IF.
@@ -1018,7 +1024,7 @@
               FOR LEADING SPACES.
 
       *
-      *    It is entirely spaces
+      *    Check if it is numeric
       *
            IF WS-NUM-COUNT-TOTAL = AMTL
               MOVE 'The Amount entered must be numeric.' TO
@@ -1030,6 +1036,7 @@
 
            COMPUTE WS-AMOUNT-UNSTR-L = AMTL - WS-NUM-COUNT-TOTAL.
 
+      D    DISPLAY 'There are ' ws-num-count-total ' leading spaces'
            IF WS-NUM-COUNT-TOTAL = ZERO
               MOVE SPACES TO WS-AMOUNT-UNSTR
               UNSTRING AMTI(1:AMTL)
@@ -1044,7 +1051,7 @@
            MOVE ZERO TO WS-NUM-COUNT-TOTAL.
 
            MOVE FUNCTION REVERSE(WS-AMOUNT-UNSTR(1:WS-AMOUNT-UNSTR-L))
-              TO WS-AMOUNT-UNSTR-REVERSE
+              TO WS-AMOUNT-UNSTR-REVERSE.
 
            INSPECT WS-AMOUNT-UNSTR-REVERSE
               TALLYING WS-NUM-COUNT-TOTAL
@@ -1053,7 +1060,9 @@
            SUBTRACT WS-NUM-COUNT-TOTAL FROM WS-AMOUNT-UNSTR-L
               GIVING WS-AMOUNT-UNSTR-L.
 
-           MOVE ZERO TO WS-NUM-COUNT-TOTAL WS-NUM-COUNT-SPACE.
+           MOVE ZERO TO WS-NUM-COUNT-TOTAL WS-NUM-COUNT-SPACE
+                        WS-NUM-COUNT-MINUS.
+
            INSPECT WS-AMOUNT-UNSTR(1:WS-AMOUNT-UNSTR-L)
               TALLYING
               WS-NUM-COUNT-TOTAL FOR ALL '0'
@@ -1067,25 +1076,40 @@
               WS-NUM-COUNT-TOTAL FOR ALL '8'
               WS-NUM-COUNT-TOTAL FOR ALL '9'
               WS-NUM-COUNT-TOTAL FOR ALL '.'
-              WS-NUM-COUNT-SPACE FOR ALL ' '.
+              WS-NUM-COUNT-SPACE FOR ALL ' '
+              WS-NUM-COUNT-MINUS FOR ALL '-'.
 
       *
-      *       If there is a decimal point, the field is not numeric.
-      *       But if it is 1.1 then it is valid. So first of all
-      *       we check to see that only the above chars are
-      *       valid.
-      *       We DO NOT tolerate embedded spaces too
+      *    We no longer support transferring negative amounts. Any -
+      *    sign is a deal breaker!
+      *
+           IF WS-NUM-COUNT-MINUS > 0
+              MOVE SPACES TO MESSAGEO
+              STRING 'Please supply a positive amount.'
+                 DELIMITED BY SIZE,
+                 INTO MESSAGEO
+              MOVE 'N' TO VALID-DATA-SW
+              MOVE -1 TO AMTL
+              GO TO VA999
+           END-IF.
+
+      *
+      *    The idea here is that if there is a decimal point,
+      *    the field is not numeric. But if it is 1.1 then it is valid.
+      *    So first of all we check to see that only the above chars are
+      *    OK.
+      *    We DO NOT tolerate embedded spaces too.
       *
            IF WS-NUM-COUNT-SPACE > 0
               MOVE SPACES TO MESSAGEO
               STRING
                  'Please supply a numeric amount without embedded'
-                  DELIMITED BY SIZE,
-                  ' spaces.' DELIMITED BY SPACES
-              INTO MESSAGEO
-              MOVE 'N' TO VALID-DATA-SW
-              MOVE -1 TO AMTL
-              GO TO VA999
+                 DELIMITED BY SIZE,
+                 '  spaces.' DELIMITED BY SIZE
+               INTO MESSAGEO
+               MOVE 'N' TO VALID-DATA-SW
+               MOVE -1 TO AMTL
+               GO TO VA999
            END-IF.
 
            IF WS-NUM-COUNT-TOTAL < WS-AMOUNT-UNSTR-L
@@ -1099,42 +1123,43 @@
            END-IF.
 
       *
-      *    Check that we have no or just one decimal point
+      *    Check to make sure we only have 0 to 1 decimal points
       *
-           MOVE ZERO TO WS-NUM-COUNT-POINT
+           MOVE ZERO TO WS-NUM-COUNT-POINT.
            INSPECT WS-AMOUNT-UNSTR(1:WS-AMOUNT-UNSTR-L)
-             TALLYING
-             WS-NUM-COUNT-POINT FOR ALL '.'.
+              TALLYING
+              WS-NUM-COUNT-POINT FOR ALL '.'.
 
            IF WS-NUM-COUNT-POINT > 1
               MOVE SPACES TO MESSAGEO
               STRING 'Use one decimal point for amount only.'
                  DELIMITED BY SIZE,
-              INTO MESSAGEO
-
+                 INTO MESSAGEO
               MOVE 'N' TO VALID-DATA-SW
               MOVE -1 TO AMTL
               GO TO VA999
            END-IF.
-
       *
-      *    Have we got too many decimals?
+      *    Check to see if we have too many decimals!
       *
            IF WS-NUM-COUNT-POINT = 1
               MOVE ZERO TO WS-NUM-COUNT-TOTAL
               INSPECT WS-AMOUNT-UNSTR(1:WS-AMOUNT-UNSTR-L)
-                 TALLYING WS-NUM-COUNT-TOTAL FOR CHARACTERS AFTER '.'
+                 TALLYING
+                 WS-NUM-COUNT-TOTAL FOR CHARACTERS AFTER '.'
 
               IF WS-NUM-COUNT-TOTAL > 2
+      D          DISPLAY 'WS-NUM-COUNT-TOTAL IS ' WS-NUM-COUNT-TOTAL
                  MOVE ZERO TO WS-NUM-COUNT-TOTAL WS-NUM-COUNT-POINT
                  INSPECT WS-AMOUNT-UNSTR(1:WS-AMOUNT-UNSTR-L)
-                 TALLYING
-                    WS-NUM-COUNT-POINT FOR CHARACTERS BEFORE '.'
-                 ADD 2 TO WS-NUM-COUNT-POINT GIVING WS-NUM-COUNT-POINT
+                    TALLYING WS-NUM-COUNT-POINT
+                    FOR CHARACTERS BEFORE '.'
 
-                 INSPECT
-                 WS-AMOUNT-UNSTR(WS-NUM-COUNT-POINT:WS-AMOUNT-UNSTR-L)
-                    TALLYING WS-NUM-COUNT-TOTAL FOR ALL '0'
+                 ADD 2 TO WS-NUM-COUNT-POINT GIVING WS-NUM-COUNT-POINT
+                 INSPECT WS-AMOUNT-UNSTR
+                    (WS-NUM-COUNT-POINT:WS-AMOUNT-UNSTR-L)
+                    TALLYING
+                    WS-NUM-COUNT-TOTAL FOR ALL '0'
                     WS-NUM-COUNT-TOTAL FOR ALL '1'
                     WS-NUM-COUNT-TOTAL FOR ALL '2'
                     WS-NUM-COUNT-TOTAL FOR ALL '3'
@@ -1148,7 +1173,7 @@
 
                  IF WS-NUM-COUNT-TOTAL > 2
       *
-      *             There are two numerics
+      *             More than two of them are numeric
       *
                     MOVE SPACES TO MESSAGEO
                     STRING
@@ -1167,13 +1192,12 @@
 
            IF WS-AMOUNT-AS-FLOAT = ZERO
               MOVE SPACES TO MESSAGEO
-              STRING
-                 'Please supply a non-zero amount.'
+              STRING 'Please supply a non-zero amount.'
                  DELIMITED BY SIZE,
-              INTO MESSAGEO
-              MOVE 'N' TO VALID-DATA-SW
-              MOVE -1 TO AMTL
-              GO TO VA999
+                 INTO MESSAGEO
+                 MOVE 'N' TO VALID-DATA-SW
+                 MOVE -1 TO AMTL
+                 GO TO VA999
            END-IF.
 
            MOVE SPACES TO MESSAGEO.
@@ -1185,7 +1209,9 @@
 
        POPULATE-TIME-DATE SECTION.
        PTD010.
-
+      *
+      *    Fomate the date and time
+      *
            EXEC CICS ASKTIME
               ABSTIME(WS-U-TIME)
            END-EXEC.
