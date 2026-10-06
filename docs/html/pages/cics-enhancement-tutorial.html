@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: CICS Enhancement Scenario - Bank of Z - IBM Z Enterprise Banking Application</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../assets/prism-tomorrow.css">
+    <script src="../assets/prism-core.js"></script>
+    <script src="../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../index.html" style="color: inherit; text-decoration: none;">Bank of Z - IBM Z Enterprise Banking Application</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">About Bank of Z</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="what-is-bank-of-z.html" class="nav-link" data-page-id="what-is-bank-of-z">What is Bank of Z?</a>
+                <a href="key-capabilities.html" class="nav-link" data-page-id="key-capabilities">Key Capabilities</a>
+                <a href="architecture-overview.html" class="nav-link" data-page-id="architecture-overview">Architecture Overview</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="application-components.html" class="nav-link" data-page-id="application-components">Application Components</a>
+                <a href="application-flow.html" class="nav-link" data-page-id="application-flow">Application Flow</a>
+                <a href="build-and-deployment-architecture.html" class="nav-link" data-page-id="build-and-deployment-architecture">Build &amp; Deployment Architecture</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Installation &amp; Setup</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="prerequisites-and-environment.html" class="nav-link" data-page-id="prerequisites-and-environment">Prerequisites &amp; Environment Configuration</a>
+                <a href="local-tools-setup.html" class="nav-link" data-page-id="local-tools-setup">Local Tools Setup</a>
+                <a href="deploying-bank-of-z.html" class="nav-link" data-page-id="deploying-bank-of-z">Deploying Bank of Z</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Development Workflows</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="workflow-overview.html" class="nav-link" data-page-id="workflow-overview">Development Workflow Overview</a>
+                <a href="zowe-cli-workflow.html" class="nav-link" data-page-id="zowe-cli-workflow">Zowe CLI Workflow</a>
+                <a href="grub-workflow.html" class="nav-link" data-page-id="grub-workflow">Grub Workflow</a>
+                <a href="development-best-practices.html" class="nav-link" data-page-id="development-best-practices">Development Best Practices</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">Tutorials</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="deploy-tutorial.html" class="nav-link" data-page-id="deploy-tutorial">Tutorial: Deploy Bank of Z</a>
+                <a href="incremental-build-tutorial.html" class="nav-link" data-page-id="incremental-build-tutorial">Tutorial: Incremental Build</a>
+                <a href="cics-enhancement-tutorial.html" class="nav-link active" data-page-id="cics-enhancement-tutorial">Tutorial: CICS Enhancement Scenario</a>
+                <a href="debug-cics-tutorial.html" class="nav-link" data-page-id="debug-cics-tutorial">Tutorial: Debug a CICS Transaction</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Reference</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="glossary.html" class="nav-link" data-page-id="glossary">Glossary</a>
+                <a href="commands-reference.html" class="nav-link" data-page-id="commands-reference">Commands Reference</a>
+                <a href="configuration-reference.html" class="nav-link" data-page-id="configuration-reference">Configuration Reference</a>
+                <a href="repository-structure.html" class="nav-link" data-page-id="repository-structure">Repository Structure</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Program Internals</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="creacc-program.html" class="nav-link" data-page-id="creacc-program">CREACC - Create Account Program</a>
+                <a href="crdtagy4-program.html" class="nav-link" data-page-id="crdtagy4-program">CRDTAGY4 - Simulated Credit Agency Program</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">docs</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">about-bank-of-z</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../sources/docs/about-bank-of-z/index.html" class="nav-link">index</a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">src</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+            <div class="nav-section">
+                <button class="nav-section-toggle" type="button">
+                    <span class="nav-toggle-text">base</span>
+                    <span class="nav-section-chevron">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </button>
+                <div class="nav-section-items">
+                <div class="nav-section">
+                    <button class="nav-section-toggle" type="button">
+                        <span class="nav-toggle-text">cics</span>
+                        <span class="nav-section-chevron">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="nav-section-items">
+                    <div class="nav-section">
+                        <button class="nav-section-toggle" type="button">
+                            <span class="nav-toggle-text">cobol</span>
+                            <span class="nav-section-chevron">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="nav-section-items">
+                            <a href="../sources/program/src/base/cics/cobol/CRDTAGY4.html" class="nav-link">CRDTAGY4</a>
+                            <a href="../sources/program/src/base/cics/cobol/CREACC.html" class="nav-link">CREACC</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="page-container">
+                <div class="content-layout">
+                    <div class="prose">
+                        <details class="source-files-disclosure">
+            <summary>
+                <svg class="sf-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Source Files
+                <span style="margin-left:4px;font-size:11px;color:var(--fg-subtle)">(1)</span>
+            </summary>
+            <div class="source-files-body">
+                <ul class="source-files-list">
+            <li><a href="../sources/docs/about-bank-of-z/index.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                index
+            </a></li>
+                </ul>
+            </div>
+        </details>
+                        <h1 id="tutorial-cics-enhancement-scenario" tabindex="-1">Tutorial: CICS Enhancement Scenario</h1>
+<h2 id="1-overview" tabindex="-1">1. Overview</h2>
+<p>This tutorial walks you through an end-to-end scenario of enhancing a CICS-based transaction in the <strong>Bank of Z</strong> application. Specifically, you will add a new <strong>customer email field</strong> to the existing CICS implementation — a representative example of a real-world IBM Z application enhancement.</p>
+<p>The tutorial is divided into two parts:</p>
+<ul>
+<li><strong>Part 1</strong> focuses on understanding the existing application architecture and planning the enhancement using IBM Z tools.</li>
+<li><strong>Part 2</strong> covers implementing the planned changes, deploying the updated application, and validating the results.</li>
+</ul>
+<p>By the end of this tutorial, you will have hands-on experience with a complete IBM Z development lifecycle — from codebase exploration and impact analysis through to deployment and verification.</p>
+<h3 id="11-what-you-will-learn" tabindex="-1">1.1 What You Will Learn</h3>
+<p>By completing this tutorial, you will learn how to:</p>
+<ul>
+<li>Understand the CICS application architecture and request flow</li>
+<li>Analyze the impact of an application enhancement</li>
+<li>Plan application changes using <strong>Bob AI</strong> and <strong>Z Understand</strong></li>
+<li>Modify application artifacts, including database definitions and COBOL programs</li>
+<li>Use <strong>IBM Z Open Editor</strong> features to navigate and review application code</li>
+<li>Build and deploy updated CICS application components</li>
+<li>Verify the enhancement using the Bank of Z web application</li>
+</ul>
+<h3 id="12-prerequisites" tabindex="-1">1.2 Prerequisites</h3>
+<p>Before starting this tutorial, ensure that you have:</p>
+<ul>
+<li>Completed the <a href="../quick-start.html">Quick Start</a></li>
+<li>Successfully built and deployed Bank of Z</li>
+<li>A working Bank of Z development environment</li>
+</ul>
+<hr>
+<h2 id="2-system-architecture" tabindex="-1">2. System Architecture</h2>
+<p>The Bank of Z CICS application follows a layered architecture, where a web front-end communicates with CICS transactions running on IBM Z. These transactions interact with underlying data stores and are built, packaged, and deployed through a structured pipeline.</p>
+<p>The diagram below illustrates the high-level system architecture and the key components involved in this tutorial:</p>
+<div class="mermaid">
+graph TD
+    A[Bank of Z Web Application] -->|HTTP Request| B[CICS Transaction Gateway]
+    B -->|CICS Commands| C[CICS Region on IBM Z]
+    C -->|Read/Write| D[(Customer Database)]
+    C --> E[COBOL Application Programs]
+    E -->|Data Access| D
+
+    F[Developer Workstation] -->|Code Changes| G[IBM Z Open Editor / VS Code]
+    G -->|Source Updates| H[Source Code Repository]
+    H -->|Trigger| I[Bank of Z Build Pipeline]
+    I -->|Deploy Artifacts| C
+
+    J[Bob AI] -.->|Implementation Guidance| G
+    K[Z Understand] -.->|Impact Analysis & Navigation| G
+</div>
+<p>The core components involved in this enhancement scenario are:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bank of Z Web Application</strong></td>
+<td>Front-end interface used to verify the enhancement</td>
+</tr>
+<tr>
+<td><strong>CICS Region</strong></td>
+<td>Hosts the transactions and COBOL programs on IBM Z</td>
+</tr>
+<tr>
+<td><strong>COBOL Application Programs</strong></td>
+<td>Business logic implementing customer data operations</td>
+</tr>
+<tr>
+<td><strong>Customer Database</strong></td>
+<td>Stores customer records, including the new email field</td>
+</tr>
+<tr>
+<td><strong>IBM Z Open Editor</strong></td>
+<td>IDE used to navigate and modify COBOL source code</td>
+</tr>
+<tr>
+<td><strong>Bob AI</strong></td>
+<td>AI assistant that helps plan and implement changes</td>
+</tr>
+<tr>
+<td><strong>Z Understand</strong></td>
+<td>Tool used for codebase exploration and impact analysis</td>
+</tr>
+<tr>
+<td><strong>Bank of Z Build Pipeline</strong></td>
+<td>Automates building and deploying updated components</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-part-1--understand-and-plan-the-enhancement" tabindex="-1">3. Part 1 — Understand and Plan the Enhancement</h2>
+<p>Before writing a single line of code, it is essential to understand the existing application structure, identify all components that will be affected, and produce a clear implementation plan. This part of the tutorial uses <strong>Z Understand</strong> and <strong>Bob AI</strong> to perform that analysis.</p>
+<h3 id="31-exploration-and-impact-analysis-workflow" tabindex="-1">3.1 Exploration and Impact Analysis Workflow</h3>
+<p>The diagram below shows the sequence of activities carried out during the planning phase:</p>
+<div class="mermaid">
+sequenceDiagram
+    participant Dev as Developer
+    participant ZU as Z Understand
+    participant BobAI as Bob AI
+    participant Editor as IBM Z Open Editor
+
+    Dev->>ZU: Explore Bank of Z codebase
+    ZU-->>Dev: Application structure and component map
+    Dev->>ZU: Trace data flow for customer record
+    ZU-->>Dev: Affected programs, copybooks, and DB definitions
+    Dev->>BobAI: Request impact analysis for new email field
+    BobAI-->>Dev: List of artifacts requiring changes
+    Dev->>BobAI: Generate implementation plan and checklist
+    BobAI-->>Dev: Step-by-step implementation checklist
+    Dev->>Editor: Open identified source files for review
+    Editor-->>Dev: Source navigation and code insights
+</div>
+<p>This workflow ensures that no impacted component is overlooked before implementation begins.</p>
+<h3 id="32-activities-covered-in-part-1" tabindex="-1">3.2 Activities Covered in Part 1</h3>
+<p>The Part 1 demonstration covers the following activities:</p>
+<ul>
+<li><strong>Exploring the Bank of Z codebase</strong> using Z Understand to map the application’s structure and understand how components relate to one another</li>
+<li><strong>Understanding the CICS application architecture</strong> — identifying transactions, programs, maps, and data definitions</li>
+<li><strong>Performing impact analysis</strong> — determining which programs, copybooks, and database schemas need to be updated to accommodate the new email field</li>
+<li><strong>Tracing the application data flow</strong> — following how a customer record moves through the system from the web request to the database</li>
+<li><strong>Generating an implementation plan</strong> — using Bob AI to produce a structured, step-by-step guide for the enhancement</li>
+<li><strong>Creating an implementation checklist</strong> — a concrete list of artifacts and changes to be made</li>
+</ul>
+<h3 id="33-video-demonstration--part-1" tabindex="-1">3.3 Video Demonstration — Part 1</h3>
+<p>Watch the following demonstration to see these activities performed end to end:</p>
+<blockquote>
+<p><strong>Video:</strong> <a href="https://github.com/IBM/Bank-of-Z/releases/download/v1/cics_functional_enhancement_understand.mp4">CICS Functional Enhancement — Understand</a></p>
+</blockquote>
+<hr>
+<h2 id="4-part-2--implement-and-validate-the-enhancement" tabindex="-1">4. Part 2 — Implement and Validate the Enhancement</h2>
+<p>With a clear implementation plan in hand from Part 1, this section covers the actual development work: updating source artifacts, modifying COBOL programs, running the build and deployment pipeline, and verifying the results.</p>
+<h3 id="41-implementation-and-deployment-workflow" tabindex="-1">4.1 Implementation and Deployment Workflow</h3>
+<p>The diagram below illustrates the end-to-end flow from source code changes through to validation:</p>
+<div class="mermaid">
+graph TD
+    A[Implementation Plan from Part 1] --> B[Update DB Schema / Copybooks]
+    B --> C[Modify COBOL Programs]
+    C --> D[Review Changes in IBM Z Open Editor]
+    D --> E{Changes Correct?}
+    E -- No --> C
+    E -- Yes --> F[Commit to Source Repository]
+    F --> G[Trigger Bank of Z Build Pipeline]
+    G --> H[Build COBOL Programs and DB Definitions]
+    H --> I[Deploy to CICS Region on IBM Z]
+    I --> J[Validate Database Updates]
+    J --> K[Verify via Bank of Z Web Application]
+    K --> L{Enhancement Verified?}
+    L -- No --> C
+    L -- Yes --> M[Enhancement Complete ✓]
+</div>
+<p>This iterative loop ensures that any issues found during validation can be addressed before the enhancement is considered complete.</p>
+<h3 id="42-updating-application-artifacts" tabindex="-1">4.2 Updating Application Artifacts</h3>
+<p>The enhancement requires changes across several layers of the application. The typical artifacts updated when adding a new field to a CICS application include:</p>
+<ul>
+<li><strong>Database definitions</strong> — adding the <code>EMAIL</code> column to the customer table</li>
+<li><strong>COBOL copybooks</strong> — extending the customer data structure to include the new field</li>
+<li><strong>CICS maps</strong> — updating BMS map definitions if the field appears on a screen</li>
+<li><strong>COBOL application programs</strong> — adding logic to read, write, and process the new email field</li>
+</ul>
+<p>A typical COBOL copybook change to add an email field would look like:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">01 CUSTOMER-RECORD.
+   05 CUST-ID            PIC 9(8).
+   05 CUST-FIRST-NAME    PIC X(20).
+   05 CUST-LAST-NAME     PIC X(30).
+   05 CUST-ADDRESS       PIC X(50).
+   05 CUST-PHONE         PIC X(15).
+   05 CUST-EMAIL         PIC X(50).   *&gt; NEW FIELD ADDED</code></pre>
+</div>
+<p>And a corresponding program update to handle the new field:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">* Move email from input to customer record
+MOVE WS-INPUT-EMAIL TO CUST-EMAIL
+
+* Write updated customer record
+EXEC CICS WRITE
+    FILE(&#039;CUSTFILE&#039;)
+    FROM(CUSTOMER-RECORD)
+    RIDFLD(CUST-ID)
+END-EXEC</code></pre>
+</div>
+<h3 id="43-using-ibm-z-open-editor" tabindex="-1">4.3 Using IBM Z Open Editor</h3>
+<p>IBM Z Open Editor provides rich IDE features for working with COBOL and CICS applications directly in VS Code. During implementation, the editor assists with:</p>
+<ul>
+<li><strong>Code navigation</strong> — jumping between programs, copybooks, and data definitions</li>
+<li><strong>Syntax highlighting and error detection</strong> — catching COBOL syntax issues before compilation</li>
+<li><strong>Hover documentation</strong> — viewing data structure definitions inline</li>
+<li><strong>Integration with Z Understand</strong> — linking editor navigation to the broader application map</li>
+</ul>
+<h3 id="44-using-bob-ai-for-implementation-assistance" tabindex="-1">4.4 Using Bob AI for Implementation Assistance</h3>
+<p>Bob AI acts as an intelligent coding assistant throughout the implementation. It can:</p>
+<ul>
+<li>Suggest the correct COBOL syntax for adding new data fields</li>
+<li>Identify which programs need to be updated based on the impact analysis</li>
+<li>Generate boilerplate code for common CICS patterns</li>
+<li>Review proposed changes and flag potential issues</li>
+</ul>
+<h3 id="45-activities-covered-in-part-2" tabindex="-1">4.5 Activities Covered in Part 2</h3>
+<p>The Part 2 demonstration covers the following activities:</p>
+<ul>
+<li><strong>Updating application artifacts</strong> — modifying copybooks, database definitions, and program source files</li>
+<li><strong>Reviewing and implementing code changes</strong> — using the implementation checklist from Part 1 to guide development</li>
+<li><strong>Using IBM Z Open Editor</strong> to navigate the codebase and apply COBOL modifications</li>
+<li><strong>Using Bob AI</strong> to assist with code generation and review</li>
+<li><strong>Running the Bank of Z build and deployment pipeline</strong> — compiling and linking updated programs and deploying to the CICS region</li>
+<li><strong>Validating database updates</strong> — confirming the new email field exists and is populated correctly in the customer database</li>
+<li><strong>Verifying the enhancement</strong> through the Bank of Z web application — confirming the email field appears and behaves correctly in the user interface</li>
+</ul>
+<h3 id="46-video-demonstration--part-2" tabindex="-1">4.6 Video Demonstration — Part 2</h3>
+<p>Watch the following demonstration to see the full implementation, deployment, and validation workflow:</p>
+<blockquote>
+<p><strong>Video:</strong> <a href="https://github.com/IBM/Bank-of-Z/releases/download/v1/cics_functional_enhancement_implement.mp4">CICS Functional Enhancement — Implement</a></p>
+</blockquote>
+<hr>
+<h2 id="5-outcome" tabindex="-1">5. Outcome</h2>
+<p>After completing this tutorial, you will have successfully:</p>
+<ul>
+<li><strong>Planned</strong> a CICS application enhancement using Z Understand and Bob AI</li>
+<li><strong>Implemented</strong> changes across COBOL programs, copybooks, and database definitions</li>
+<li><strong>Deployed</strong> the updated application using the Bank of Z build and deployment pipeline</li>
+<li><strong>Verified</strong> the enhancement end-to-end through the Bank of Z web application</li>
+</ul>
+<p>You will also have gained practical experience using modern IBM Z development tools to understand an existing enterprise codebase, implement meaningful changes, and validate results — skills directly applicable to real-world IBM Z application development and modernization projects.</p>
+<hr>
+<h2 id="6-related-tutorials" tabindex="-1">6. Related Tutorials</h2>
+<p>The tutorials in the Bank of Z series build on one another. After completing this tutorial, explore the following:</p>
+<table>
+<thead>
+<tr>
+<th>Tutorial</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="deploy-bank-of-z.html"><strong>Deploy Bank of Z</strong></a></td>
+<td>Watch a complete first-time deployment of Bank of Z.</td>
+</tr>
+<tr>
+<td><a href="debug-cics-transaction.html"><strong>CICS Debugging Scenario</strong></a></td>
+<td>Debug a CICS transaction in VS Code IDE.</td>
+</tr>
+</tbody>
+</table>
+
+                        <div class="related-pages">
+                            <p class="related-pages-title">Related Pages</p>
+                            <div class="card-grid">
+                                
+            <a href="debug-cics-tutorial.html" class="card">
+                <span class="card-title">Tutorial: Debug a CICS Transaction</span>
+                <span class="card-description">Walkthrough of debugging a CICS transaction in the Bank of Z environment using available tooling.</span>
+            </a>
+            <a href="incremental-build-tutorial.html" class="card">
+                <span class="card-title">Tutorial: Incremental Build</span>
+                <span class="card-description">Step-by-step tutorial demonstrating how to perform an incremental build after making code changes.</span>
+            </a>
+            <a href="application-flow.html" class="card">
+                <span class="card-title">Application Flow</span>
+                <span class="card-description">End-to-end transaction and data flow through the Bank of Z application layers.</span>
+            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-overview">1. Overview</a>
+<ul>
+<li class="toc-level-3"><a href="#11-what-you-will-learn">1.1 What You Will Learn</a></li>
+<li class="toc-level-3"><a href="#12-prerequisites">1.2 Prerequisites</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#2-system-architecture">2. System Architecture</a></li>
+<li class="toc-level-2"><a href="#3-part-1--understand-and-plan-the-enhancement">3. Part 1 — Understand and Plan the Enhancement</a>
+<ul>
+<li class="toc-level-3"><a href="#31-exploration-and-impact-analysis-workflow">3.1 Exploration and Impact Analysis Workflow</a></li>
+<li class="toc-level-3"><a href="#32-activities-covered-in-part-1">3.2 Activities Covered in Part 1</a></li>
+<li class="toc-level-3"><a href="#33-video-demonstration--part-1">3.3 Video Demonstration — Part 1</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-part-2--implement-and-validate-the-enhancement">4. Part 2 — Implement and Validate the Enhancement</a>
+<ul>
+<li class="toc-level-3"><a href="#41-implementation-and-deployment-workflow">4.1 Implementation and Deployment Workflow</a></li>
+<li class="toc-level-3"><a href="#42-updating-application-artifacts">4.2 Updating Application Artifacts</a></li>
+<li class="toc-level-3"><a href="#43-using-ibm-z-open-editor">4.3 Using IBM Z Open Editor</a></li>
+<li class="toc-level-3"><a href="#44-using-bob-ai-for-implementation-assistance">4.4 Using Bob AI for Implementation Assistance</a></li>
+<li class="toc-level-3"><a href="#45-activities-covered-in-part-2">4.5 Activities Covered in Part 2</a></li>
+<li class="toc-level-3"><a href="#46-video-demonstration--part-2">4.6 Video Demonstration — Part 2</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-outcome">5. Outcome</a></li>
+<li class="toc-level-2"><a href="#6-related-tutorials">6. Related Tutorials</a></li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* sidebar-toggle.js — persists open/closed state across navigation */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — only stamps sessionStorage when clicking a source-file link
+       that lives inside the "Source Files" disclosure section, not from sidebar or cards. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('sources/') === -1) return;
+        /* Only set referrer when the click originates from inside the Source Files
+           disclosure (.source-files-disclosure). Any other path — sidebar, cards,
+           direct navigation — must not set a referrer. */
+        if (!link.closest('.source-files-disclosure')) return;
+        try {
+          sessionStorage.setItem('wiki_referrer', JSON.stringify({
+            href: location.href,
+            title: document.title,
+            file: location.pathname.split('/').pop()
+          }));
+        } catch (_e) {}
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>

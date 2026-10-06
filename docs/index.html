@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank of Z - IBM Z Enterprise Banking Application</title>
+    <link rel="stylesheet" href="html/assets/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name">Bank of Z - IBM Z Enterprise Banking Application</span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="index.html" class="nav-home active">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">About Bank of Z</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/what-is-bank-of-z.html" class="nav-link" data-page-id="what-is-bank-of-z">What is Bank of Z?</a>
+                <a href="html/pages/key-capabilities.html" class="nav-link" data-page-id="key-capabilities">Key Capabilities</a>
+                <a href="html/pages/architecture-overview.html" class="nav-link" data-page-id="architecture-overview">Architecture Overview</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/application-components.html" class="nav-link" data-page-id="application-components">Application Components</a>
+                <a href="html/pages/application-flow.html" class="nav-link" data-page-id="application-flow">Application Flow</a>
+                <a href="html/pages/build-and-deployment-architecture.html" class="nav-link" data-page-id="build-and-deployment-architecture">Build &amp; Deployment Architecture</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Installation &amp; Setup</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/prerequisites-and-environment.html" class="nav-link" data-page-id="prerequisites-and-environment">Prerequisites &amp; Environment Configuration</a>
+                <a href="html/pages/local-tools-setup.html" class="nav-link" data-page-id="local-tools-setup">Local Tools Setup</a>
+                <a href="html/pages/deploying-bank-of-z.html" class="nav-link" data-page-id="deploying-bank-of-z">Deploying Bank of Z</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Development Workflows</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/workflow-overview.html" class="nav-link" data-page-id="workflow-overview">Development Workflow Overview</a>
+                <a href="html/pages/zowe-cli-workflow.html" class="nav-link" data-page-id="zowe-cli-workflow">Zowe CLI Workflow</a>
+                <a href="html/pages/grub-workflow.html" class="nav-link" data-page-id="grub-workflow">Grub Workflow</a>
+                <a href="html/pages/development-best-practices.html" class="nav-link" data-page-id="development-best-practices">Development Best Practices</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Tutorials</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/deploy-tutorial.html" class="nav-link" data-page-id="deploy-tutorial">Tutorial: Deploy Bank of Z</a>
+                <a href="html/pages/incremental-build-tutorial.html" class="nav-link" data-page-id="incremental-build-tutorial">Tutorial: Incremental Build</a>
+                <a href="html/pages/cics-enhancement-tutorial.html" class="nav-link" data-page-id="cics-enhancement-tutorial">Tutorial: CICS Enhancement Scenario</a>
+                <a href="html/pages/debug-cics-tutorial.html" class="nav-link" data-page-id="debug-cics-tutorial">Tutorial: Debug a CICS Transaction</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Reference</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/glossary.html" class="nav-link" data-page-id="glossary">Glossary</a>
+                <a href="html/pages/commands-reference.html" class="nav-link" data-page-id="commands-reference">Commands Reference</a>
+                <a href="html/pages/configuration-reference.html" class="nav-link" data-page-id="configuration-reference">Configuration Reference</a>
+                <a href="html/pages/repository-structure.html" class="nav-link" data-page-id="repository-structure">Repository Structure</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Program Internals</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/creacc-program.html" class="nav-link" data-page-id="creacc-program">CREACC - Create Account Program</a>
+                <a href="html/pages/crdtagy4-program.html" class="nav-link" data-page-id="crdtagy4-program">CRDTAGY4 - Simulated Credit Agency Program</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">docs</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">about-bank-of-z</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/sources/docs/about-bank-of-z/index.html" class="nav-link">index</a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">src</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+            <div class="nav-section">
+                <button class="nav-section-toggle" type="button">
+                    <span class="nav-toggle-text">base</span>
+                    <span class="nav-section-chevron">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </button>
+                <div class="nav-section-items">
+                <div class="nav-section">
+                    <button class="nav-section-toggle" type="button">
+                        <span class="nav-toggle-text">cics</span>
+                        <span class="nav-section-chevron">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="nav-section-items">
+                    <div class="nav-section">
+                        <button class="nav-section-toggle" type="button">
+                            <span class="nav-toggle-text">cobol</span>
+                            <span class="nav-section-chevron">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="nav-section-items">
+                            <a href="html/sources/program/src/base/cics/cobol/CRDTAGY4.html" class="nav-link">CRDTAGY4</a>
+                            <a href="html/sources/program/src/base/cics/cobol/CREACC.html" class="nav-link">CREACC</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="ov-page">
+                <div class="page-header">
+                    <h1 class="page-title">Bank of Z - IBM Z Enterprise Banking Application</h1>
+                    <p class="page-desc">A sample banking application demonstrating modern development practices, build automation, and deployment workflows on IBM Z using CICS, COBOL, and DB2.</p>
+                </div>
+                <div class="ov-group-heading ov-group-heading--first">Application Documentation</div>
+        <div class="ov-section">
+            <span class="ov-section-title">About Bank of Z</span>
+            <div class="card-grid">
+                <a href="html/pages/what-is-bank-of-z.html" class="card">
+                    <span class="card-title">What is Bank of Z?</span>
+                    <span class="card-description">Introduction to the Bank of Z project, its purpose, intended audiences, and use cases.</span>
+                </a>
+                <a href="html/pages/key-capabilities.html" class="card">
+                    <span class="card-title">Key Capabilities</span>
+                    <span class="card-description">Core features and capabilities of the Bank of Z sample application.</span>
+                </a>
+                <a href="html/pages/architecture-overview.html" class="card">
+                    <span class="card-title">Architecture Overview</span>
+                    <span class="card-description">High-level overview of the Bank of Z architecture, including IBM Z components, CICS, COBOL, and DB2 interactions.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Architecture</span>
+            <div class="card-grid">
+                <a href="html/pages/application-components.html" class="card">
+                    <span class="card-title">Application Components</span>
+                    <span class="card-description">Detailed breakdown of the application&#039;s components, programs, and their responsibilities.</span>
+                </a>
+                <a href="html/pages/application-flow.html" class="card">
+                    <span class="card-title">Application Flow</span>
+                    <span class="card-description">End-to-end transaction and data flow through the Bank of Z application layers.</span>
+                </a>
+                <a href="html/pages/build-and-deployment-architecture.html" class="card">
+                    <span class="card-title">Build &amp; Deployment Architecture</span>
+                    <span class="card-description">How Bank of Z is built and deployed, including pipeline design and automation strategies.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Installation &amp; Setup</span>
+            <div class="card-grid">
+                <a href="html/pages/prerequisites-and-environment.html" class="card">
+                    <span class="card-title">Prerequisites &amp; Environment Configuration</span>
+                    <span class="card-description">System requirements, prerequisites, and environment configuration needed before installing Bank of Z.</span>
+                </a>
+                <a href="html/pages/local-tools-setup.html" class="card">
+                    <span class="card-title">Local Tools Setup</span>
+                    <span class="card-description">How to set up local development tools including IDE, Zowe CLI, and Grub, along with Zowe profile configuration.</span>
+                </a>
+                <a href="html/pages/deploying-bank-of-z.html" class="card">
+                    <span class="card-title">Deploying Bank of Z</span>
+                    <span class="card-description">Step-by-step instructions for deploying Bank of Z using different methods: direct deployment, Zowe CLI, and Grub.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Development Workflows</span>
+            <div class="card-grid">
+                <a href="html/pages/workflow-overview.html" class="card">
+                    <span class="card-title">Development Workflow Overview</span>
+                    <span class="card-description">Overview of available development workflows and guidance on choosing the right approach.</span>
+                </a>
+                <a href="html/pages/zowe-cli-workflow.html" class="card">
+                    <span class="card-title">Zowe CLI Workflow</span>
+                    <span class="card-description">How to use the Zowe CLI to develop, build, and deploy Bank of Z changes from a local workstation.</span>
+                </a>
+                <a href="html/pages/grub-workflow.html" class="card">
+                    <span class="card-title">Grub Workflow</span>
+                    <span class="card-description">How to use Grub to streamline the Bank of Z development and build workflow.</span>
+                </a>
+                <a href="html/pages/development-best-practices.html" class="card">
+                    <span class="card-title">Development Best Practices</span>
+                    <span class="card-description">Recommended practices for developing, testing, and maintaining IBM Z applications within the Bank of Z project.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Tutorials</span>
+            <div class="card-grid">
+                <a href="html/pages/deploy-tutorial.html" class="card">
+                    <span class="card-title">Tutorial: Deploy Bank of Z</span>
+                    <span class="card-description">Hands-on tutorial walking through the full deployment of the Bank of Z application.</span>
+                </a>
+                <a href="html/pages/incremental-build-tutorial.html" class="card">
+                    <span class="card-title">Tutorial: Incremental Build</span>
+                    <span class="card-description">Step-by-step tutorial demonstrating how to perform an incremental build after making code changes.</span>
+                </a>
+                <a href="html/pages/cics-enhancement-tutorial.html" class="card">
+                    <span class="card-title">Tutorial: CICS Enhancement Scenario</span>
+                    <span class="card-description">Tutorial covering an end-to-end scenario of enhancing a CICS transaction in Bank of Z.</span>
+                </a>
+                <a href="html/pages/debug-cics-tutorial.html" class="card">
+                    <span class="card-title">Tutorial: Debug a CICS Transaction</span>
+                    <span class="card-description">Walkthrough of debugging a CICS transaction in the Bank of Z environment using available tooling.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Reference</span>
+            <div class="card-grid">
+                <a href="html/pages/glossary.html" class="card">
+                    <span class="card-title">Glossary</span>
+                    <span class="card-description">Definitions of key terms, acronyms, and concepts used throughout the Bank of Z documentation.</span>
+                </a>
+                <a href="html/pages/commands-reference.html" class="card">
+                    <span class="card-title">Commands Reference</span>
+                    <span class="card-description">Comprehensive reference for all CLI commands, scripts, and utilities used in Bank of Z workflows.</span>
+                </a>
+                <a href="html/pages/configuration-reference.html" class="card">
+                    <span class="card-title">Configuration Reference</span>
+                    <span class="card-description">Reference for all configuration files, parameters, and settings used to customize Bank of Z deployments.</span>
+                </a>
+                <a href="html/pages/repository-structure.html" class="card">
+                    <span class="card-title">Repository Structure</span>
+                    <span class="card-description">Overview of the Bank of Z repository layout, directory organization, and file conventions.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Program Internals</span>
+            <div class="card-grid">
+                <a href="html/pages/creacc-program.html" class="card">
+                    <span class="card-title">CREACC - Create Account Program</span>
+                    <span class="card-description">Technical deep-dive into the CREACC COBOL program responsible for creating new bank accounts in the CICS/DB2 environment.</span>
+                </a>
+                <a href="html/pages/crdtagy4-program.html" class="card">
+                    <span class="card-title">CRDTAGY4 - Simulated Credit Agency Program</span>
+                    <span class="card-description">Technical reference for the CRDTAGY4 COBOL program, a simulated credit agency within the CICS Asynchronous API framework.</span>
+                </a>
+            </div>
+        </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — index page never sets a referrer; breadcrumb only shows
+       when arriving from the Source Files section of a wiki page. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        /* Clear any stale referrer so direct navigation never shows a breadcrumb. */
+        if (link.getAttribute('href') && link.getAttribute('href').indexOf('sources/') === -1) {
+          try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+        }
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>

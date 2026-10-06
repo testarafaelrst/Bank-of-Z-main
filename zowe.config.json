@@ -3,6 +3,7 @@
     "profiles": {
         "bank-of-z": {
             "properties": {
+                "host": "ESYSMVS.wsclab.washington.ibm.com",
                 "protocol": "https",
                 "rejectUnauthorized": false
             },
@@ -33,7 +34,6 @@
                 "cics": {
                     "type": "cics",
                     "properties": {
-                        "host": "ESYSMVS.wsclab.washington.ibm.com",
                         "port": 3044,
                         "protocol": "https",
                         "rejectUnauthorized": false,

@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploying Bank of Z - Bank of Z - IBM Z Enterprise Banking Application</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../assets/prism-tomorrow.css">
+    <script src="../assets/prism-core.js"></script>
+    <script src="../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../index.html" style="color: inherit; text-decoration: none;">Bank of Z - IBM Z Enterprise Banking Application</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">About Bank of Z</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="what-is-bank-of-z.html" class="nav-link" data-page-id="what-is-bank-of-z">What is Bank of Z?</a>
+                <a href="key-capabilities.html" class="nav-link" data-page-id="key-capabilities">Key Capabilities</a>
+                <a href="architecture-overview.html" class="nav-link" data-page-id="architecture-overview">Architecture Overview</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="application-components.html" class="nav-link" data-page-id="application-components">Application Components</a>
+                <a href="application-flow.html" class="nav-link" data-page-id="application-flow">Application Flow</a>
+                <a href="build-and-deployment-architecture.html" class="nav-link" data-page-id="build-and-deployment-architecture">Build &amp; Deployment Architecture</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">Installation &amp; Setup</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="prerequisites-and-environment.html" class="nav-link" data-page-id="prerequisites-and-environment">Prerequisites &amp; Environment Configuration</a>
+                <a href="local-tools-setup.html" class="nav-link" data-page-id="local-tools-setup">Local Tools Setup</a>
+                <a href="deploying-bank-of-z.html" class="nav-link active" data-page-id="deploying-bank-of-z">Deploying Bank of Z</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Development Workflows</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="workflow-overview.html" class="nav-link" data-page-id="workflow-overview">Development Workflow Overview</a>
+                <a href="zowe-cli-workflow.html" class="nav-link" data-page-id="zowe-cli-workflow">Zowe CLI Workflow</a>
+                <a href="grub-workflow.html" class="nav-link" data-page-id="grub-workflow">Grub Workflow</a>
+                <a href="development-best-practices.html" class="nav-link" data-page-id="development-best-practices">Development Best Practices</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Tutorials</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="deploy-tutorial.html" class="nav-link" data-page-id="deploy-tutorial">Tutorial: Deploy Bank of Z</a>
+                <a href="incremental-build-tutorial.html" class="nav-link" data-page-id="incremental-build-tutorial">Tutorial: Incremental Build</a>
+                <a href="cics-enhancement-tutorial.html" class="nav-link" data-page-id="cics-enhancement-tutorial">Tutorial: CICS Enhancement Scenario</a>
+                <a href="debug-cics-tutorial.html" class="nav-link" data-page-id="debug-cics-tutorial">Tutorial: Debug a CICS Transaction</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Reference</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="glossary.html" class="nav-link" data-page-id="glossary">Glossary</a>
+                <a href="commands-reference.html" class="nav-link" data-page-id="commands-reference">Commands Reference</a>
+                <a href="configuration-reference.html" class="nav-link" data-page-id="configuration-reference">Configuration Reference</a>
+                <a href="repository-structure.html" class="nav-link" data-page-id="repository-structure">Repository Structure</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Program Internals</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="creacc-program.html" class="nav-link" data-page-id="creacc-program">CREACC - Create Account Program</a>
+                <a href="crdtagy4-program.html" class="nav-link" data-page-id="crdtagy4-program">CRDTAGY4 - Simulated Credit Agency Program</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">docs</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">about-bank-of-z</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../sources/docs/about-bank-of-z/index.html" class="nav-link">index</a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">src</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+            <div class="nav-section">
+                <button class="nav-section-toggle" type="button">
+                    <span class="nav-toggle-text">base</span>
+                    <span class="nav-section-chevron">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </button>
+                <div class="nav-section-items">
+                <div class="nav-section">
+                    <button class="nav-section-toggle" type="button">
+                        <span class="nav-toggle-text">cics</span>
+                        <span class="nav-section-chevron">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="nav-section-items">
+                    <div class="nav-section">
+                        <button class="nav-section-toggle" type="button">
+                            <span class="nav-toggle-text">cobol</span>
+                            <span class="nav-section-chevron">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="nav-section-items">
+                            <a href="../sources/program/src/base/cics/cobol/CRDTAGY4.html" class="nav-link">CRDTAGY4</a>
+                            <a href="../sources/program/src/base/cics/cobol/CREACC.html" class="nav-link">CREACC</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="page-container">
+                <div class="content-layout">
+                    <div class="prose">
+                        
+                        <h1 id="deploying-bank-of-z" tabindex="-1">Deploying Bank of Z</h1>
+<p>Bank of Z provisions a complete application environment on z/OS, including CICS, IMS, z/OS Connect, a Liberty frontend server, and all application data. The deployment process is fully automated once you have cloned the repository and configured it for your environment. Three deployment workflows are supported, all of which run the same underlying stages and produce the same deployed environment.</p>
+<hr>
+<h2 id="1-overview" tabindex="-1">1. Overview</h2>
+<p>Deploying Bank of Z sets up the full application stack on z/OS from source. The process is divided into three sequential stages that are consistent across all deployment methods:</p>
+<ol>
+<li><strong>Validate prerequisites</strong> — Confirms required tools and connectivity are available on z/OS USS.</li>
+<li><strong>Provision middleware</strong> — Stops any existing instances, cleans up datasets, and provisions CICS, IMS, z/OS Connect, Db2 tables, and the Liberty frontend server.</li>
+<li><strong>Build and deploy</strong> — Compiles all application sources using DBB, packages the outputs, deploys via Wazi Deploy, and loads test data into Db2 and IMS.</li>
+</ol>
+<p>The initial build and deployment typically takes <strong>15 to 20 minutes</strong>. After the initial deployment is complete, incremental builds can be used for day-to-day development, rebuilding and redeploying only the components affected by source changes.</p>
+<p>All three workflows invoke the same script entry points:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">.setup/setup-common.sh validate-prereqs
+.setup/setup-common.sh environment
+.setup/setup-common.sh install-bank-of-z</code></pre>
+</div>
+<hr>
+<h2 id="2-system-architecture" tabindex="-1">2. System Architecture</h2>
+<p>The diagram below illustrates the high-level components provisioned by a Bank of Z deployment and how they relate to each other at runtime.</p>
+<div class="mermaid">
+graph TD
+    User["👤 User / Browser"]
+    FE["Liberty Frontend Server\n(HTTP :9080 / HTTPS :9444)"]
+    ZC["z/OS Connect\nEnterprise Edition"]
+    CICS["CICS Region\n(COBOL / PL/I / Assembler / BMS)"]
+    IMS["IMS Region\n(IMS TM + IMS DB)"]
+    DB2["Db2 for z/OS\n(DBD1 subsystem)"]
+    MQ["IBM MQ"]
+
+    User -->|HTTP/HTTPS| FE
+    FE -->|REST API| ZC
+    ZC -->|CICS Link| CICS
+    ZC -->|IMS Connect| IMS
+    CICS -->|SQL| DB2
+    IMS -->|DL/I| DB2
+    CICS -->|MQ| MQ
+    IMS -->|MQ| MQ
+</div>
+<blockquote>
+<p>The Liberty frontend server acts as the entry point for browser traffic. It delegates business logic calls to z/OS Connect, which routes them to the appropriate CICS or IMS backend region. Both CICS and IMS interact with Db2 for persistent data storage, and IBM MQ is used for asynchronous messaging between components.</p>
+</blockquote>
+<hr>
+<h2 id="3-deployment-workflows" tabindex="-1">3. Deployment Workflows</h2>
+<p>Bank of Z supports three deployment workflows. Each workflow runs the same three stages and produces an identical deployed environment. Choose the workflow that best fits your tooling and access model.</p>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Where you run scripts</th>
+<th>Requires SSH to USS</th>
+<th>Requires push to remote</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct USS</td>
+<td>On z/OS USS directly</td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td>Zowe CLI</td>
+<td>On your local machine</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>GRUB</td>
+<td>On your local machine</td>
+<td>❌ No</td>
+<td>❌ No</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="4-deploy-using-direct-uss-access" tabindex="-1">4. Deploy Using Direct USS Access</h2>
+<p>Use this method to connect directly to z/OS via SSH and run each deployment stage manually. This is the most transparent option because you can observe every step of the process in real time.</p>
+<p><strong>Before you begin, ensure that you have:</strong></p>
+<ul>
+<li>SSH access to your z/OS system</li>
+<li>Git installed on z/OS USS</li>
+<li>A z/OS environment that meets the prerequisites</li>
+</ul>
+<p>The following sequence diagram shows the flow of operations for the direct USS deployment:</p>
+<div class="mermaid">
+sequenceDiagram
+    actor Dev as Developer
+    participant USS as z/OS USS
+    participant DB2 as Db2
+    participant CICS as CICS Region
+    participant IMS as IMS Region
+    participant ZC as z/OS Connect
+    participant FE as Liberty Frontend
+
+    Dev->>USS: SSH login
+    Dev->>USS: git clone repository
+    Dev->>USS: vi .setup/config/config.yaml
+    Dev->>USS: setup-common.sh validate-prereqs
+    USS-->>Dev: Prereqs validated ✅
+    Dev->>USS: setup-common.sh environment
+    USS->>DB2: Create Db2 tables
+    USS->>CICS: Provision CICS region (zconfig)
+    USS->>IMS: Provision IMS region + DB (zconfig)
+    USS->>ZC: Create and start z/OS Connect server
+    USS->>FE: Create and start Liberty frontend
+    USS-->>Dev: Middleware provisioned ✅
+    Dev->>USS: setup-common.sh install-bank-of-z
+    USS->>USS: DBB full build (COBOL, PL/I, ASM, BMS, Java)
+    USS->>USS: Package build outputs
+    USS->>CICS: Wazi Deploy → CICS
+    USS->>IMS: Wazi Deploy → IMS
+    USS->>DB2: Populate test data
+    USS->>IMS: Populate IMS test data
+    USS-->>Dev: Deployment complete ✅
+    Dev->>FE: Open browser → verify
+</div>
+<h3 id="41-ssh-to-zos" tabindex="-1">4.1 SSH to z/OS</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">ssh user@your-zos-host</code></pre>
+</div>
+<h3 id="42-clone-the-repository" tabindex="-1">4.2 Clone the Repository</h3>
+<p>Choose a working directory on USS. You will reference this path in the configuration file.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">export BANK_OF_Z_WORK_DIR=/usr/local/sandboxes/bank-of-z
+mkdir -p $BANK_OF_Z_WORK_DIR
+cd $BANK_OF_Z_WORK_DIR
+git clone https://github.com/IBM/Bank-of-Z.git
+cd Bank-of-Z</code></pre>
+</div>
+<h3 id="43-edit-the-configuration-file" tabindex="-1">4.3 Edit the Configuration File</h3>
+<p>Open the configuration file in your USS editor and update it for your environment:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">vi .setup/config/config.yaml</code></pre>
+</div>
+<p>For information about each configuration field, see the Environment Configuration documentation.</p>
+<h3 id="44-validate-prerequisites" tabindex="-1">4.4 Validate Prerequisites</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">.setup/setup-common.sh validate-prereqs</code></pre>
+</div>
+<p>Verifies that all required tools are installed at the required versions. Resolve any failures before continuing.</p>
+<h3 id="45-provision-middleware" tabindex="-1">4.5 Provision Middleware</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">.setup/setup-common.sh environment</code></pre>
+</div>
+<p>Provisions the complete application runtime, including Db2 tables, a CICS region, an IMS region and database, a z/OS Connect server, and the Liberty frontend server. This stage performs the following in sequence:</p>
+<ol>
+<li>Stops any existing Bank of Z tasks (CICS, IMS, z/OS Connect, frontend)</li>
+<li>Cleans up existing application datasets</li>
+<li>Clones the IBM DBB accelerators repository from GitHub</li>
+<li>Copies the zBuilder build framework</li>
+<li>Creates Db2 database tables</li>
+<li>Provisions a CICS region using zconfig</li>
+<li>Provisions an IMS region using zconfig</li>
+<li>Creates IMS database objects</li>
+<li>Starts IMS Bank of Z message processing regions</li>
+<li>Creates and starts a z/OS Connect server</li>
+<li>Creates and starts a frontend Liberty server</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> This stage requires a pre-existing Db2 subsystem (<code>DBD1</code>). All other middleware is provisioned automatically.</p>
+</blockquote>
+<h3 id="46-build-and-deploy" tabindex="-1">4.6 Build and Deploy</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">.setup/setup-common.sh install-bank-of-z</code></pre>
+</div>
+<p>Runs a complete DBB build, packages the outputs, deploys via Wazi Deploy, and populates Db2 and IMS with test data. The initial build and deployment typically takes 15 to 20 minutes.</p>
+<blockquote>
+<p><strong>Note:</strong> Warnings related to the YAML scanner and <code>chown</code> failures are expected and do not indicate a problem.</p>
+</blockquote>
+<h3 id="47-verify-the-deployment" tabindex="-1">4.7 Verify the Deployment</h3>
+<p>Open the Bank of Z frontend in a browser:</p>
+<p><strong>HTTP</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>http://&lt;your-zos-host&gt;:9081/admin.html</code></pre>
+</div>
+<p><strong>HTTPS</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>https://&lt;your-zos-host&gt;:9445/admin.html</code></pre>
+</div>
+<h3 id="48-run-post-install-verification-tests" tabindex="-1">4.8 Run Post-Install Verification Tests</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">.setup/setup-common.sh verify-installation</code></pre>
+</div>
+<p>Runs the integration test suite in <code>tests/</code> against the deployed application. The tests exercise the CICS and IMS API paths and report a pass/fail result for each. All tests must pass before the installation is considered complete.</p>
+<hr>
+<h2 id="5-deploy-using-zowe-cli" tabindex="-1">5. Deploy Using Zowe CLI</h2>
+<p>Use this method to deploy Bank of Z from your local machine using Zowe CLI. The script clones your current branch from GitHub onto z/OS USS and runs all three setup stages automatically — no SSH access to USS is required.</p>
+<p><strong>Before you begin, ensure that:</strong></p>
+<ul>
+<li>Your z/OS environment meets the prerequisites</li>
+<li>Zowe CLI is installed on your local machine</li>
+<li>The RSE API plug-in is installed and your Zowe profile is configured</li>
+</ul>
+<p>The diagram below shows how the Zowe CLI workflow orchestrates the deployment from a local machine to z/OS:</p>
+<div class="mermaid">
+graph TD
+    A["👤 Developer\n(Local Machine)"] -->|"git clone"| B["Local Repository"]
+    B -->|"Edit config.yaml"| C["Configured Local Repo"]
+    C -->|"git push to remote"| D["GitHub Remote Branch"]
+    C -->|"bash .setup/setup-local.sh"| E["Zowe CLI Script"]
+    E -->|"RSE API: Create USS workspace"| F["z/OS USS Workspace"]
+    D -->|"git clone from GitHub"| F
+    F -->|"setup-remote.sh"| G["validate-prereqs"]
+    G --> H["environment\n(Provision Middleware)"]
+    H --> I["install-bank-of-z\n(Build + Deploy)"]
+    I --> J["✅ Bank of Z Running"]
+</div>
+<blockquote>
+<p>Because the Zowe CLI script clones from the GitHub remote, your branch must be pushed before running the script. Any local commits that have not been pushed will not be included in the deployed environment.</p>
+</blockquote>
+<h3 id="51-clone-the-repository-locally" tabindex="-1">5.1 Clone the Repository Locally</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">git clone https://github.com/IBM/Bank-of-Z.git
+cd Bank-of-Z</code></pre>
+</div>
+<h3 id="52-edit-the-configuration-file" tabindex="-1">5.2 Edit the Configuration File</h3>
+<p>Open <code>.setup/config/config.yaml</code> in your local editor and update it for your environment.</p>
+<h3 id="53-push-your-branch" tabindex="-1">5.3 Push Your Branch</h3>
+<p>The script detects your current local branch and clones it from GitHub to z/OS USS. Your branch must be pushed to the remote before running the script.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">git add .setup/config/config.yaml
+git commit -m &quot;Configure for my environment&quot;
+git push</code></pre>
+</div>
+<h3 id="54-run-the-setup-script" tabindex="-1">5.4 Run the Setup Script</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">bash .setup/setup-local.sh</code></pre>
+</div>
+<p>Alternatively, in Visual Studio Code, select <strong>Command Palette → Tasks: Run Task → Setup Bank of Z Environment</strong>.</p>
+<h3 id="55-what-runs-automatically" tabindex="-1">5.5 What Runs Automatically</h3>
+<p>The script runs the following stages:</p>
+<ol>
+<li>Creates the USS workspace directory using the Zowe RSE API.</li>
+<li>Clones your current branch from GitHub to z/OS USS.</li>
+<li>Invokes <code>setup-remote.sh</code> on USS, which runs the following stages:
+<ul>
+<li><code>validate-prereqs</code> — Verifies that all required tools are installed on USS.</li>
+<li><code>environment</code> — Provisions Db2, CICS, IMS, z/OS Connect, and the frontend server.</li>
+<li><code>install-bank-of-z</code> — Builds the application, deploys it using Wazi Deploy, and populates test data.</li>
+</ul>
+</li>
+</ol>
+<p>The initial deployment typically takes 15 to 20 minutes. Logs are written to <code>/tmp/remote-setup.log</code> on your local machine.</p>
+<blockquote>
+<p><strong>Note:</strong> Warnings related to the YAML scanner and <code>chown</code> failures are expected and do not indicate a problem.</p>
+</blockquote>
+<h3 id="56-verify-the-deployment" tabindex="-1">5.6 Verify the Deployment</h3>
+<p>Open the Bank of Z frontend in a browser:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>http://&lt;your-zos-host&gt;:9080/bank-frontend-vanilla</code></pre>
+</div>
+<hr>
+<h2 id="6-deploy-using-grub" tabindex="-1">6. Deploy Using GRUB</h2>
+<p>Use this method to deploy Bank of Z using GRUB. GRUB syncs your local file changes directly to z/OS USS and triggers the setup scripts automatically via a post-sync hook. You do not need to commit or push your changes before deploying.</p>
+<p><strong>Before you begin, ensure that:</strong></p>
+<ul>
+<li>Your z/OS environment meets the prerequisites</li>
+<li>GRUB is installed and configured with the Bank of Z remote path and post-sync hook</li>
+</ul>
+<p>The diagram below shows how GRUB transfers files and triggers the deployment pipeline:</p>
+<div class="mermaid">
+sequenceDiagram
+    actor Dev as Developer
+    participant Local as Local Machine
+    participant GRUB as GRUB Sync Engine
+    participant USS as z/OS USS
+    participant Scripts as setup-remote.sh
+
+    Dev->>Local: Edit config.yaml (no commit needed)
+    Dev->>GRUB: Trigger GRUB sync
+    GRUB->>USS: Transfer changed files to USS workspace
+    USS-->>GRUB: Sync complete
+    GRUB->>USS: Invoke post-sync hook
+    USS->>Scripts: Run setup-remote.sh
+    Scripts->>USS: validate-prereqs
+    Scripts->>USS: environment (provision middleware)
+    Scripts->>USS: install-bank-of-z (build + deploy)
+    USS-->>Dev: Deployment complete ✅
+</div>
+<blockquote>
+<p>GRUB only transfers files that have changed since the previous sync, making subsequent deployments faster. Because files are synced directly from your local workspace, there is no need to commit or push changes to a remote repository before deploying.</p>
+</blockquote>
+<h3 id="61-clone-the-repository-locally" tabindex="-1">6.1 Clone the Repository Locally</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">git clone https://github.com/IBM/Bank-of-Z.git
+cd Bank-of-Z</code></pre>
+</div>
+<h3 id="62-edit-the-configuration-file" tabindex="-1">6.2 Edit the Configuration File</h3>
+<p>Open <code>.setup/config/config.yaml</code> in your local editor and update it for your environment.</p>
+<p>You do not need to commit your changes after editing. GRUB syncs the file as-is directly to z/OS USS.</p>
+<h3 id="63-trigger-a-grub-sync" tabindex="-1">6.3 Trigger a GRUB Sync</h3>
+<p>Trigger a GRUB sync from your local machine. Refer to the GRUB documentation for the specific command or UI action for your installation.</p>
+<p>GRUB transfers your local changes to z/OS USS. Only files that have changed since the previous sync are transferred.</p>
+<h3 id="64-what-runs-automatically" tabindex="-1">6.4 What Runs Automatically</h3>
+<p>After the sync completes, the configured post-sync hook runs <code>setup-remote.sh</code> on z/OS USS. The script runs the following setup stages automatically:</p>
+<ul>
+<li><code>validate-prereqs</code> — Verifies that all required tools are installed on USS.</li>
+<li><code>environment</code> — Provisions Db2, CICS, IMS, z/OS Connect, and the frontend server.</li>
+<li><code>install-bank-of-z</code> — Builds the application, deploys it using Wazi Deploy, and populates test data.</li>
+</ul>
+<p>The initial deployment typically takes 15 to 20 minutes. Subsequent syncs are typically faster because only changed files are transferred.</p>
+<h3 id="65-verify-the-deployment" tabindex="-1">6.5 Verify the Deployment</h3>
+<p>Open the Bank of Z frontend in a browser:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>http://&lt;your-zos-host&gt;:9080/bank-frontend-vanilla</code></pre>
+</div>
+<hr>
+<h2 id="7-deployment-stages-reference" tabindex="-1">7. Deployment Stages Reference</h2>
+<p>All three workflows run the same three stages, each invoked as a subcommand of <code>.setup/setup-common.sh</code>. The following diagram illustrates the sequential relationship between the stages.</p>
+<div class="mermaid">
+graph LR
+    A["🔍 Stage 1\nvalidate-prereqs\n(.setup/setup-common.sh)"]
+    B["⚙️ Stage 2\nenvironment\n(.setup/setup-common.sh)"]
+    C["🚀 Stage 3\ninstall-bank-of-z\n(.setup/setup-common.sh)"]
+
+    A -->|"Prerequisites met"| B
+    B -->|"Middleware provisioned"| C
+    C -->|"Build + Deploy complete"| D["✅ Bank of Z\nDeployed"]
+</div>
+<h3 id="71-stage-1-validate-prerequisites" tabindex="-1">7.1 Stage 1: Validate Prerequisites</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">.setup/setup-common.sh validate-prereqs</code></pre>
+</div>
+<p>Verifies that all required tools are installed on z/OS USS at the versions specified in <code>config.yaml</code>. This includes:</p>
+<ul>
+<li>DBB</li>
+<li>ZOAU</li>
+<li>zconfig</li>
+<li>Wazi Deploy</li>
+<li>Java</li>
+<li>Git</li>
+<li>Network connectivity to GitHub</li>
+</ul>
+<p>Resolve any reported failures before proceeding to Stage 2.</p>
+<h3 id="72-stage-2-provision-middleware" tabindex="-1">7.2 Stage 2: Provision Middleware</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">.setup/setup-common.sh environment</code></pre>
+</div>
+<p>Provisions the complete application runtime from scratch. This stage is fully automated and performs the following in sequence:</p>
+<ol>
+<li>Stops any existing Bank of Z tasks (CICS, IMS, z/OS Connect, frontend)</li>
+<li>Cleans up existing application datasets</li>
+<li>Clones the IBM DBB accelerators repository from GitHub</li>
+<li>Copies the zBuilder build framework</li>
+<li>Creates Db2 database tables</li>
+<li>Provisions a CICS region using zconfig</li>
+<li>Provisions an IMS region using zconfig</li>
+<li>Creates IMS database objects</li>
+<li>Starts IMS Bank of Z message processing regions</li>
+<li>Creates and starts a z/OS Connect server</li>
+<li>Creates and starts a frontend Liberty server</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> This stage requires a pre-existing Db2 subsystem (<code>DBD1</code>). All other middleware, including CICS, IMS, z/OS Connect, and the frontend server, is provisioned automatically.</p>
+</blockquote>
+<h3 id="73-stage-3-build-and-deploy" tabindex="-1">7.3 Stage 3: Build and Deploy</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">.setup/setup-common.sh install-bank-of-z</code></pre>
+</div>
+<p>Builds the application from source and deploys the generated artifacts to the provisioned runtime:</p>
+<ol>
+<li>Runs a full DBB build for all application sources, including COBOL, PL/I, Assembler, BMS, Java, and z/OS Connect APIs</li>
+<li>Packages the build outputs into a deployment archive</li>
+<li>Runs Wazi Deploy to deploy the archive to the CICS and IMS environments</li>
+<li>Populates Db2 with application test data</li>
+<li>Populates the IMS database with application test data</li>
+</ol>
+<hr>
+<h2 id="8-verification" tabindex="-1">8. Verification</h2>
+<p>After any deployment method completes, verify the environment before proceeding with development activities.</p>
+<h3 id="81-verification-checklist" tabindex="-1">8.1 Verification Checklist</h3>
+<p>Confirm the following components before proceeding:</p>
+<ul>
+<li>[ ] Development tools are installed and accessible</li>
+<li>[ ] Connectivity to the target z/OS environment is established</li>
+<li>[ ] Required middleware components are available (CICS, IMS, Db2, z/OS Connect, IBM MQ)</li>
+<li>[ ] Application artifacts have been deployed successfully</li>
+<li>[ ] Runtime resources are active</li>
+<li>[ ] Bank of Z services and APIs are operational</li>
+</ul>
+<h3 id="82-verify-development-environment" tabindex="-1">8.2 Verify Development Environment</h3>
+<p>Confirm that the required development tools are installed and accessible on your local machine.</p>
+<p><strong>Verify Java:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">java --version</code></pre>
+</div>
+<p><strong>Verify Git:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">git --version</code></pre>
+</div>
+<p><strong>Verify Zowe CLI:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">zowe --version</code></pre>
+</div>
+<p><strong>Verify z/OS connectivity:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">zowe zosmf check status</code></pre>
+</div>
+<p>A successful response from <code>zosmf check status</code> confirms that the workstation can communicate with the target z/OS environment.</p>
+<h3 id="83-verify-application-deployment" tabindex="-1">8.3 Verify Application Deployment</h3>
+<p>Confirm that the following application resources have been deployed successfully:</p>
+<ul>
+<li>Application load modules are available</li>
+<li>Db2 tables and plans have been created</li>
+<li>IMS application resources are installed</li>
+<li>CICS resources are active</li>
+<li>z/OS Connect API artifacts have been deployed</li>
+<li>Required configuration resources are available</li>
+</ul>
+<h3 id="84-verify-application-access" tabindex="-1">8.4 Verify Application Access</h3>
+<p>Confirm that the application can process requests successfully by performing the following:</p>
+<ul>
+<li>Accessing the Bank of Z user interface in a browser</li>
+<li>Retrieving user information</li>
+<li>Viewing account details</li>
+<li>Executing account transactions</li>
+<li>Invoking deployed z/OS Connect APIs</li>
+</ul>
+<h3 id="85-run-post-install-verification-tests-direct-uss" tabindex="-1">8.5 Run Post-Install Verification Tests (Direct USS)</h3>
+<p>If you deployed using Direct USS access, run the automated integration test suite:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">.setup/setup-common.sh verify-installation</code></pre>
+</div>
+<p>This runs the tests in <code>tests/</code> against the deployed application, exercises the CICS and IMS API paths, and reports a pass/fail result for each test. All tests must pass before the installation is considered complete.</p>
+<hr>
+<h2 id="9-incremental-builds" tabindex="-1">9. Incremental Builds</h2>
+<p>After the initial deployment is complete, most day-to-day development can be performed using an incremental build and deploy instead of rebuilding the entire environment.</p>
+<p>The incremental workflow rebuilds and deploys only the application components affected by your source code changes, reducing build time significantly while preserving the existing runtime environment.</p>
+<div class="mermaid">
+graph TD
+    A["✏️ Edit Source Files\n(COBOL, PL/I, Java, etc.)"] --> B{"Deployment\nWorkflow"}
+    B -->|"Zowe CLI"| C["Run incremental\nZowe CLI workflow"]
+    B -->|"GRUB"| D["Trigger GRUB sync\n(changed files only)"]
+    C --> E["DBB Incremental Build\n(affected components only)"]
+    D --> E
+    E --> F["Package Changed Artifacts"]
+    F --> G["Wazi Deploy\n(targeted deployment)"]
+    G --> H["✅ Updated components\nlive in runtime"]
+</div>
+<blockquote>
+<p>Incremental builds are significantly faster than a full deployment because DBB only recompiles the sources that have changed and their dependents. The runtime environment (CICS, IMS, Db2, z/OS Connect) remains running throughout the process.</p>
+</blockquote>
+<p>For more information on day-to-day incremental development workflows, refer to the Zowe CLI Workflow and GRUB Workflow documentation.</p>
+
+                        <div class="related-pages">
+                            <p class="related-pages-title">Related Pages</p>
+                            <div class="card-grid">
+                                
+            <a href="prerequisites-and-environment.html" class="card">
+                <span class="card-title">Prerequisites &amp; Environment Configuration</span>
+                <span class="card-description">System requirements, prerequisites, and environment configuration needed before installing Bank of Z.</span>
+            </a>
+            <a href="local-tools-setup.html" class="card">
+                <span class="card-title">Local Tools Setup</span>
+                <span class="card-description">How to set up local development tools including IDE, Zowe CLI, and Grub, along with Zowe profile configuration.</span>
+            </a>
+            <a href="deploy-tutorial.html" class="card">
+                <span class="card-title">Tutorial: Deploy Bank of Z</span>
+                <span class="card-description">Hands-on tutorial walking through the full deployment of the Bank of Z application.</span>
+            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-overview">1. Overview</a></li>
+<li class="toc-level-2"><a href="#2-system-architecture">2. System Architecture</a></li>
+<li class="toc-level-2"><a href="#3-deployment-workflows">3. Deployment Workflows</a></li>
+<li class="toc-level-2"><a href="#4-deploy-using-direct-uss-access">4. Deploy Using Direct USS Access</a>
+<ul>
+<li class="toc-level-3"><a href="#41-ssh-to-zos">4.1 SSH to z/OS</a></li>
+<li class="toc-level-3"><a href="#42-clone-the-repository">4.2 Clone the Repository</a></li>
+<li class="toc-level-3"><a href="#43-edit-the-configuration-file">4.3 Edit the Configuration File</a></li>
+<li class="toc-level-3"><a href="#44-validate-prerequisites">4.4 Validate Prerequisites</a></li>
+<li class="toc-level-3"><a href="#45-provision-middleware">4.5 Provision Middleware</a></li>
+<li class="toc-level-3"><a href="#46-build-and-deploy">4.6 Build and Deploy</a></li>
+<li class="toc-level-3"><a href="#47-verify-the-deployment">4.7 Verify the Deployment</a></li>
+<li class="toc-level-3"><a href="#48-run-post-install-verification-tests">4.8 Run Post-Install Verification Tests</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-deploy-using-zowe-cli">5. Deploy Using Zowe CLI</a>
+<ul>
+<li class="toc-level-3"><a href="#51-clone-the-repository-locally">5.1 Clone the Repository Locally</a></li>
+<li class="toc-level-3"><a href="#52-edit-the-configuration-file">5.2 Edit the Configuration File</a></li>
+<li class="toc-level-3"><a href="#53-push-your-branch">5.3 Push Your Branch</a></li>
+<li class="toc-level-3"><a href="#54-run-the-setup-script">5.4 Run the Setup Script</a></li>
+<li class="toc-level-3"><a href="#55-what-runs-automatically">5.5 What Runs Automatically</a></li>
+<li class="toc-level-3"><a href="#56-verify-the-deployment">5.6 Verify the Deployment</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#6-deploy-using-grub">6. Deploy Using GRUB</a>
+<ul>
+<li class="toc-level-3"><a href="#61-clone-the-repository-locally">6.1 Clone the Repository Locally</a></li>
+<li class="toc-level-3"><a href="#62-edit-the-configuration-file">6.2 Edit the Configuration File</a></li>
+<li class="toc-level-3"><a href="#63-trigger-a-grub-sync">6.3 Trigger a GRUB Sync</a></li>
+<li class="toc-level-3"><a href="#64-what-runs-automatically">6.4 What Runs Automatically</a></li>
+<li class="toc-level-3"><a href="#65-verify-the-deployment">6.5 Verify the Deployment</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-deployment-stages-reference">7. Deployment Stages Reference</a>
+<ul>
+<li class="toc-level-3"><a href="#71-stage-1-validate-prerequisites">7.1 Stage 1: Validate Prerequisites</a></li>
+<li class="toc-level-3"><a href="#72-stage-2-provision-middleware">7.2 Stage 2: Provision Middleware</a></li>
+<li class="toc-level-3"><a href="#73-stage-3-build-and-deploy">7.3 Stage 3: Build and Deploy</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-verification">8. Verification</a>
+<ul>
+<li class="toc-level-3"><a href="#81-verification-checklist">8.1 Verification Checklist</a></li>
+<li class="toc-level-3"><a href="#82-verify-development-environment">8.2 Verify Development Environment</a></li>
+<li class="toc-level-3"><a href="#83-verify-application-deployment">8.3 Verify Application Deployment</a></li>
+<li class="toc-level-3"><a href="#84-verify-application-access">8.4 Verify Application Access</a></li>
+<li class="toc-level-3"><a href="#85-run-post-install-verification-tests-direct-uss">8.5 Run Post-Install Verification Tests (Direct USS)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-incremental-builds">9. Incremental Builds</a></li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* sidebar-toggle.js — persists open/closed state across navigation */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — only stamps sessionStorage when clicking a source-file link
+       that lives inside the "Source Files" disclosure section, not from sidebar or cards. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('sources/') === -1) return;
+        /* Only set referrer when the click originates from inside the Source Files
+           disclosure (.source-files-disclosure). Any other path — sidebar, cards,
+           direct navigation — must not set a referrer. */
+        if (!link.closest('.source-files-disclosure')) return;
+        try {
+          sessionStorage.setItem('wiki_referrer', JSON.stringify({
+            href: location.href,
+            title: document.title,
+            file: location.pathname.split('/').pop()
+          }));
+        } catch (_e) {}
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>

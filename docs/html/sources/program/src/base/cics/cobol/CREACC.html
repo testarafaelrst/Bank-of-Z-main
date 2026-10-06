@@ -1,0 +1,2394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREACC</title>
+    <link rel="stylesheet" href="../../../../../../assets/style.css">
+    <script src="../../../../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../../../../assets/prism-tomorrow.css">
+    <script src="../../../../../../assets/prism-core.js"></script>
+    <script src="../../../../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../../../../index.html" style="color: inherit; text-decoration: none;">Bank of Z - IBM Z Enterprise Banking Application</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">About Bank of Z</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../../../../pages/what-is-bank-of-z.html" class="nav-link" data-page-id="what-is-bank-of-z">What is Bank of Z?</a>
+                <a href="../../../../../../pages/key-capabilities.html" class="nav-link" data-page-id="key-capabilities">Key Capabilities</a>
+                <a href="../../../../../../pages/architecture-overview.html" class="nav-link" data-page-id="architecture-overview">Architecture Overview</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../../../../pages/application-components.html" class="nav-link" data-page-id="application-components">Application Components</a>
+                <a href="../../../../../../pages/application-flow.html" class="nav-link" data-page-id="application-flow">Application Flow</a>
+                <a href="../../../../../../pages/build-and-deployment-architecture.html" class="nav-link" data-page-id="build-and-deployment-architecture">Build &amp; Deployment Architecture</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Installation &amp; Setup</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../../../../pages/prerequisites-and-environment.html" class="nav-link" data-page-id="prerequisites-and-environment">Prerequisites &amp; Environment Configuration</a>
+                <a href="../../../../../../pages/local-tools-setup.html" class="nav-link" data-page-id="local-tools-setup">Local Tools Setup</a>
+                <a href="../../../../../../pages/deploying-bank-of-z.html" class="nav-link" data-page-id="deploying-bank-of-z">Deploying Bank of Z</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Development Workflows</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../../../../pages/workflow-overview.html" class="nav-link" data-page-id="workflow-overview">Development Workflow Overview</a>
+                <a href="../../../../../../pages/zowe-cli-workflow.html" class="nav-link" data-page-id="zowe-cli-workflow">Zowe CLI Workflow</a>
+                <a href="../../../../../../pages/grub-workflow.html" class="nav-link" data-page-id="grub-workflow">Grub Workflow</a>
+                <a href="../../../../../../pages/development-best-practices.html" class="nav-link" data-page-id="development-best-practices">Development Best Practices</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Tutorials</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../../../../pages/deploy-tutorial.html" class="nav-link" data-page-id="deploy-tutorial">Tutorial: Deploy Bank of Z</a>
+                <a href="../../../../../../pages/incremental-build-tutorial.html" class="nav-link" data-page-id="incremental-build-tutorial">Tutorial: Incremental Build</a>
+                <a href="../../../../../../pages/cics-enhancement-tutorial.html" class="nav-link" data-page-id="cics-enhancement-tutorial">Tutorial: CICS Enhancement Scenario</a>
+                <a href="../../../../../../pages/debug-cics-tutorial.html" class="nav-link" data-page-id="debug-cics-tutorial">Tutorial: Debug a CICS Transaction</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Reference</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../../../../pages/glossary.html" class="nav-link" data-page-id="glossary">Glossary</a>
+                <a href="../../../../../../pages/commands-reference.html" class="nav-link" data-page-id="commands-reference">Commands Reference</a>
+                <a href="../../../../../../pages/configuration-reference.html" class="nav-link" data-page-id="configuration-reference">Configuration Reference</a>
+                <a href="../../../../../../pages/repository-structure.html" class="nav-link" data-page-id="repository-structure">Repository Structure</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Program Internals</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../../../../pages/creacc-program.html" class="nav-link" data-page-id="creacc-program">CREACC - Create Account Program</a>
+                <a href="../../../../../../pages/crdtagy4-program.html" class="nav-link" data-page-id="crdtagy4-program">CRDTAGY4 - Simulated Credit Agency Program</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">docs</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">about-bank-of-z</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../../../../sources/docs/about-bank-of-z/index.html" class="nav-link">index</a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">src</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+            <div class="nav-section">
+                <button class="nav-section-toggle open" type="button">
+                    <span class="nav-toggle-text">base</span>
+                    <span class="nav-section-chevron">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </button>
+                <div class="nav-section-items open">
+                <div class="nav-section">
+                    <button class="nav-section-toggle open" type="button">
+                        <span class="nav-toggle-text">cics</span>
+                        <span class="nav-section-chevron">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="nav-section-items open">
+                    <div class="nav-section">
+                        <button class="nav-section-toggle open" type="button">
+                            <span class="nav-toggle-text">cobol</span>
+                            <span class="nav-section-chevron">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="nav-section-items open">
+                            <a href="../../../../../../sources/program/src/base/cics/cobol/CRDTAGY4.html" class="nav-link">CRDTAGY4</a>
+                            <a href="../../../../../../sources/program/src/base/cics/cobol/CREACC.html" class="nav-link active">CREACC</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p><code>CREACC</code> is a CICS-hosted COBOL program responsible for creating new bank accounts on behalf of existing customers within the Bank of Z core banking system. It receives account creation details — including customer number, account type, interest rate, overdraft limit, and opening balances — through the CICS COMMAREA, then validates the request by linking to the <code>INQCUST</code> program to confirm the customer exists and to the <code>INQACCCU</code> program to ensure the customer holds fewer than 10 accounts and that the requested account type is valid (e.g., ISA, MORTGAGE, SAVING, CURRENT, or LOAN). Upon passing all business rule checks, it serialises access to the account numbering sequence by enqueueing a CICS Named Counter Service (NCS) resource, retrieves and increments the last-used account number from the DB2 CONTROL table, inserts a fully populated new account record — including opening date, last statement date, and a next statement date calculated as today plus 30 days — into the DB2 ACCOUNT table, writes a corresponding processed-transaction audit record to the DB2 PROCTRAN table, and then releases the NCS enqueue before returning the newly assigned account number and a success indicator to the caller; any failure at any stage sets the COMMAREA success flag to <code>'N'</code> along with a specific single-character failure code and causes the program to return immediately, with the NCS resource dequeued where appropriate to preserve sequence integrity.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<h3 id="21-communication-area-dfhcommarea--caller-supplied-inputs" tabindex="-1">2.1 Communication Area (DFHCOMMAREA) — Caller-Supplied Inputs</h3>
+<ul>
+<li>
+<p><strong><code>COMM-CUSTNO</code></strong> <em>(CREACC copybook)</em>
+The customer number provided by the calling program. Used to validate customer existence via a CICS LINK to <code>INQCUST</code>, to pass the customer number to <code>INQACCCU</code> for account count retrieval, and to populate the <code>ACCOUNT_CUSTOMER_NUMBER</code> column on the DB2 <code>ACCOUNT</code> table insert.</p>
+</li>
+<li>
+<p><strong><code>COMM-ACC-TYPE</code></strong> <em>(CREACC copybook)</em>
+The requested account type (e.g., <code>ISA</code>, <code>MORTGAGE</code>, <code>SAVING</code>, <code>CURRENT</code>, <code>LOAN</code>) supplied by the caller. Validated by the <code>ACCOUNT-TYPE-CHECK</code> paragraph and mapped to the <code>ACCOUNT_TYPE</code> column of the DB2 <code>ACCOUNT</code> table on successful insert.</p>
+</li>
+<li>
+<p><strong><code>COMM-INT-RT</code></strong> <em>(CREACC copybook)</em>
+The interest rate for the new account, provided by the calling program. Moved to the host variable <code>HV-ACCOUNT-INT-RATE</code> and inserted into the <code>ACCOUNT_INTEREST_RATE</code> column of the DB2 <code>ACCOUNT</code> table.</p>
+</li>
+<li>
+<p><strong><code>COMM-OVERDR-LIM</code></strong> <em>(CREACC copybook)</em>
+The overdraft limit for the new account, supplied by the caller. Moved to the host variable <code>HV-ACCOUNT-OVERDRAFT-LIM</code> and inserted into the <code>ACCOUNT_OVERDRAFT_LIMIT</code> column of the DB2 <code>ACCOUNT</code> table.</p>
+</li>
+<li>
+<p><strong><code>COMM-AVAIL-BAL</code></strong> <em>(CREACC copybook)</em>
+The initial available balance for the new account, provided by the caller. Moved to the host variable <code>HV-ACCOUNT-AVAIL-BAL</code> and inserted into the <code>ACCOUNT_AVAILABLE_BALANCE</code> column of the DB2 <code>ACCOUNT</code> table.</p>
+</li>
+<li>
+<p><strong><code>COMM-ACT-BAL</code></strong> <em>(CREACC copybook)</em>
+The initial actual (ledger) balance for the new account, provided by the caller. Moved to the host variable <code>HV-ACCOUNT-ACTUAL-BAL</code> and inserted into the <code>ACCOUNT_ACTUAL_BALANCE</code> column of the DB2 <code>ACCOUNT</code> table.</p>
+</li>
+</ul>
+<h3 id="22-db2-external-data-sources" tabindex="-1">2.2 DB2 External Data Sources</h3>
+<ul>
+<li>
+<p><strong><code>CONTROL</code> table</strong>
+Queried twice during account number assignment (<code>FIND-NEXT-ACCOUNT</code>):</p>
+<ul>
+<li>Row keyed <code>&lt;SORTCODE&gt;-ACCOUNT-LAST</code> — supplies the current highest account number, which is incremented by one to produce the new account number, then written back via <code>UPDATE</code>.</li>
+<li>Row keyed <code>&lt;SORTCODE&gt;-ACCOUNT-COUNT</code> — supplies the current total account count, which is incremented and written back via <code>UPDATE</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>ACCOUNT</code> table</strong>
+The target of a DB2 <code>INSERT</code> in <code>WRITE-ACCOUNT-DB2</code>. All column values originate from COMMAREA fields and internally derived values (sort code, account number, dates).</p>
+</li>
+<li>
+<p><strong><code>PROCTRAN</code> table</strong>
+The target of a DB2 <code>INSERT</code> in <code>WRITE-PROCTRAN-DB2</code>. Records the successfully processed account-creation transaction. All values originate from previously computed or COMMAREA-derived fields.</p>
+</li>
+</ul>
+<h3 id="23-linked-programs-cics-link--external-program-inputs" tabindex="-1">2.3 Linked Programs (CICS LINK — External Program Inputs)</h3>
+<ul>
+<li>
+<p><strong><code>INQCUST</code> via <code>INQCUST-COMMAREA</code></strong> <em>(INQCUSTZ copybook)</em>
+CREACC passes <code>COMM-CUSTNO</code> to this program to verify the customer exists. On return, <code>INQCUST-INQ-SUCCESS</code> is examined; a non-<code>'Y'</code> response aborts account creation with fail code <code>'1'</code>.</p>
+</li>
+<li>
+<p><strong><code>INQACCCU</code> via <code>INQACCCU-COMMAREA</code></strong> <em>(INQACCCU copybook)</em>
+CREACC passes <code>COMM-CUSTNO</code> to this program to retrieve the count of existing accounts held by the customer (<code>NUMBER-OF-ACCOUNTS</code>). The count is used to enforce the business rule that a customer may hold no more than 9 accounts simultaneously.</p>
+</li>
+</ul>
+<h3 id="24-static--configuration-inputs" tabindex="-1">2.4 Static / Configuration Inputs</h3>
+<ul>
+<li><strong><code>SORTCODE</code></strong> <em>(SORTCODE copybook)</em>
+The bank’s sort code, injected into the program via the <code>COPY SORTCODE</code> copybook. Used to construct the Named Counter Service resource name (<code>NCS-ACC-NO-NAME</code> = <code>BANKZACCT</code> + sort code), to build the DB2 <code>CONTROL</code> table lookup keys, and to populate the sort code columns in the <code>ACCOUNT</code> and <code>PROCTRAN</code> table inserts.</li>
+</ul>
+<h3 id="25-cics-runtime-inputs" tabindex="-1">2.5 CICS Runtime Inputs</h3>
+<ul>
+<li><strong>CICS date/time</strong> <em>(via <code>ASKTIME</code> / <code>FORMATTIME</code>)</em>
+The current date and time obtained at runtime through <code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code>. The current date is used as the account-opened date and the last-statement date; adding 30 days to it produces the next-statement date (<code>WS-FUTURE-DATE</code>) written to both the DB2 <code>ACCOUNT</code> table and the COMMAREA return field <code>COMM-NEXT-STMT-DT</code>.</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<h3 id="31-communication-area-commarea--returned-to-caller" tabindex="-1">3.1 Communication Area (COMMAREA) — Returned to Caller</h3>
+<ul>
+<li><strong><code>COMM-SUCCESS</code></strong> — Primary success/failure flag returned to the calling program. Set to <code>'Y'</code> when the account is successfully created and inserted into the DB2 ACCOUNT table; set to <code>'N'</code> on any failure condition (invalid customer, invalid account type, too many accounts, enqueue/dequeue failure, or DB2 insert error).</li>
+<li><strong><code>COMM-FAIL-CODE</code></strong> — Single-character failure reason code, returned alongside <code>COMM-SUCCESS = 'N'</code>:
+<ul>
+<li><code>'1'</code> — Customer not found (INQCUST validation failed)</li>
+<li><code>'3'</code> — CICS ENQ (named counter enqueue) failed</li>
+<li><code>'5'</code> — CICS DEQ (named counter dequeue) failed</li>
+<li><code>'7'</code> — DB2 INSERT into ACCOUNT table failed</li>
+<li><code>'8'</code> — Customer already holds more than 9 accounts</li>
+<li><code>'9'</code> — Account count retrieval via INQACCCU failed</li>
+<li><code>'A'</code> — Account type is not one of the permitted values (ISA, MORTGAGE, SAVING, CURRENT, LOAN)</li>
+</ul>
+</li>
+<li><strong><code>COMM-NUMBER</code></strong> — The newly assigned account number, populated from <code>NCS-ACC-NO-VALUE</code> / <code>HV-ACCOUNT-ACC-NO</code> after a successful DB2 insert. Returned to the caller as the identifier of the created account.</li>
+<li><strong><code>COMM-SORTCODE</code></strong> — The bank sort code associated with the new account, copied from <code>HV-ACCOUNT-SORTCODE</code> after a successful insert.</li>
+<li><strong><code>COMM-EYECATCHER</code></strong> — Set to <code>'ACCT'</code> on successful account creation, serving as a record-type identifier in the returned COMMAREA.</li>
+<li><strong><code>COMM-OPENED</code></strong> — The account opening date (today’s date, in DDMMYYYY format), populated from the CICS <code>FORMATTIME</code> result and returned to the caller.</li>
+<li><strong><code>COMM-LAST-STMT-DT</code></strong> — The last statement date, set to today’s date and returned to the caller.</li>
+<li><strong><code>COMM-NEXT-STMT-DT</code></strong> — The next statement date, calculated as today’s date plus 30 days (leap-year-aware) and returned to the caller.</li>
+</ul>
+<hr>
+<h3 id="32-db2-account-table--inserted-record" tabindex="-1">3.2 DB2 ACCOUNT Table — Inserted Record</h3>
+<p>A new row is inserted into the DB2 <code>ACCOUNT</code> table on successful account creation. The columns written are:</p>
+<ul>
+<li><strong><code>ACCOUNT_EYECATCHER</code></strong> — Fixed value <code>'ACCT'</code>, used as a record-type marker.</li>
+<li><strong><code>ACCOUNT_CUSTOMER_NUMBER</code></strong> — The customer number from <code>COMM-CUSTNO</code>, linking the account to its owner.</li>
+<li><strong><code>ACCOUNT_SORTCODE</code></strong> — The bank sort code from <code>SORTCODE</code>.</li>
+<li><strong><code>ACCOUNT_NUMBER</code></strong> — The newly generated sequential account number derived from <code>NCS-ACC-NO-VALUE</code>.</li>
+<li><strong><code>ACCOUNT_TYPE</code></strong> — The account type from <code>COMM-ACC-TYPE</code> (e.g., ISA, MORTGAGE, SAVING, CURRENT, LOAN).</li>
+<li><strong><code>ACCOUNT_INTEREST_RATE</code></strong> — The interest rate from <code>COMM-INT-RT</code> (mapped to <code>HV-ACCOUNT-INT-RATE</code>).</li>
+<li><strong><code>ACCOUNT_OPENED</code></strong> — Today’s date, set during <code>CALCULATE-DATES</code>.</li>
+<li><strong><code>ACCOUNT_OVERDRAFT_LIMIT</code></strong> — The overdraft limit from <code>COMM-OVERDR-LIM</code> (mapped to <code>HV-ACCOUNT-OVERDRAFT-LIM</code>).</li>
+<li><strong><code>ACCOUNT_LAST_STATEMENT</code></strong> — Today’s date, set equal to the opened date during <code>CALCULATE-DATES</code>.</li>
+<li><strong><code>ACCOUNT_NEXT_STATEMENT</code></strong> — Today’s date plus 30 days, computed in <code>CALCULATE-DATES</code> and <code>WRITE-ACCOUNT-DB2</code>.</li>
+<li><strong><code>ACCOUNT_AVAILABLE_BALANCE</code></strong> — The available balance from <code>COMM-AVAIL-BAL</code> (mapped to <code>HV-ACCOUNT-AVAIL-BAL</code>).</li>
+<li><strong><code>ACCOUNT_ACTUAL_BALANCE</code></strong> — The actual (ledger) balance from <code>COMM-ACT-BAL</code> (mapped to <code>HV-ACCOUNT-ACTUAL-BAL</code>).</li>
+</ul>
+<hr>
+<h3 id="33-db2-control-table--updated-records" tabindex="-1">3.3 DB2 CONTROL Table — Updated Records</h3>
+<p>Two rows in the DB2 <code>CONTROL</code> table are updated as part of account number sequencing:</p>
+<ul>
+<li><strong><code>&lt;SORTCODE&gt;-ACCOUNT-LAST</code></strong> (<code>CONTROL_VALUE_NUM</code>) — Incremented by 1 to reflect the last assigned account number. This updated value becomes the new account number.</li>
+<li><strong><code>&lt;SORTCODE&gt;-ACCOUNT-COUNT</code></strong> (<code>CONTROL_VALUE_NUM</code>) — Incremented by 1 to track the total number of accounts held at the bank.</li>
+</ul>
+<hr>
+<h3 id="34-db2-proctran-table--inserted-record" tabindex="-1">3.4 DB2 PROCTRAN Table — Inserted Record</h3>
+<p>A processed-transaction audit record is inserted into the DB2 <code>PROCTRAN</code> table after a successful account insert. The columns written are:</p>
+<ul>
+<li><strong><code>PROCTRAN_EYECATCHER</code></strong> — Fixed value <code>'PRTR'</code>.</li>
+<li><strong><code>PROCTRAN_SORTCODE</code></strong> — The bank sort code.</li>
+<li><strong><code>PROCTRAN_NUMBER</code></strong> — The newly created account number (<code>STORED-ACCNO</code>).</li>
+<li><strong><code>PROCTRAN_DATE</code></strong> — The current date at the time of writing, from CICS <code>FORMATTIME</code>.</li>
+<li><strong><code>PROCTRAN_TIME</code></strong> — The current time at the time of writing, from CICS <code>FORMATTIME</code>.</li>
+<li><strong><code>PROCTRAN_REF</code></strong> — The CICS task number (<code>EIBTASKN</code>), used as the transaction reference.</li>
+<li><strong><code>PROCTRAN_TYPE</code></strong> — Fixed value <code>'OCA'</code> (Open Current Account), identifying the transaction type.</li>
+<li><strong><code>PROCTRAN_DESC</code></strong> — A 40-character composite field containing: customer number (1–10), account type (11–18), last statement date (19–26), and next statement date (27–34).</li>
+<li><strong><code>PROCTRAN_AMOUNT</code></strong> — Set to zero, as no monetary movement occurs on account opening.</li>
+</ul>
+<hr>
+<h3 id="35-cics-abend-handler-abndproc--linked-on-fatal-errors" tabindex="-1">3.5 CICS Abend Handler (ABNDPROC) — Linked on Fatal Errors</h3>
+<p>If a DB2 SELECT or UPDATE against the <code>CONTROL</code> table fails, or if the PROCTRAN INSERT fails, the program calls the <code>ABNDPROC</code> abend-handler program via <code>EXEC CICS LINK</code> before issuing <code>EXEC CICS ABEND</code>. The <code>ABNDINFO-REC</code> commarea passed to <code>ABNDPROC</code> contains:</p>
+<ul>
+<li><strong><code>ABND-CODE</code></strong> — Abend code identifying the failure point (<code>'HNCS'</code> for CONTROL table errors, <code>'HWPT'</code> for PROCTRAN errors).</li>
+<li><strong><code>ABND-FREEFORM</code></strong> — A descriptive free-form message identifying the failing paragraph and the nature of the DB2 error.</li>
+<li><strong><code>ABND-SQLCODE</code></strong> — The DB2 SQLCODE at the time of failure.</li>
+<li><strong><code>ABND-RESPCODE</code> / <code>ABND-RESP2CODE</code></strong> — The CICS EIBRESP and EIBRESP2 values at the time of failure.</li>
+<li><strong><code>ABND-APPLID</code>, <code>ABND-TASKNO-KEY</code>, <code>ABND-TRANID</code>, <code>ABND-DATE</code>, <code>ABND-TIME</code>, <code>ABND-UTIME-KEY</code>, <code>ABND-PROGRAM</code></strong> — Supplemental diagnostic context (application ID, task number, transaction ID, date/time, and program name).</li>
+</ul>
+<hr>
+<h3 id="36-console--cics-display-messages" tabindex="-1">3.6 Console / CICS DISPLAY Messages</h3>
+<p>Diagnostic messages written to the CICS console/log throughout execution:</p>
+<ul>
+<li><strong>Program start and input echo</strong> — <code>'CREACC: Starting account creation'</code> and the incoming customer number.</li>
+<li><strong>INQCUST linkage</strong> — Before and after the CICS LINK to INQCUST, including the returned RESP code and <code>INQCUST-INQ-SUCCESS</code> flag.</li>
+<li><strong>Account count</strong> — Before and after INQACCCU linkage, including the returned RESP code and number of accounts; also <code>'CREACC: Customer has too many accounts (&gt;9)'</code> when the limit is exceeded, and <code>'Error counting accounts'</code> on failure.</li>
+<li><strong>Account type check</strong> — Before and after <code>ACCOUNT-TYPE-CHECK</code>, including the resulting <code>COMM-SUCCESS</code> value.</li>
+<li><strong>Named counter operations</strong> — <code>'CREACC: Enqueuing named counter'</code> and <code>'CREACC: Named counter enqueued successfully'</code>.</li>
+<li><strong>CONTROL table access</strong> — SQL SELECT and UPDATE SQLCODE values for both <code>ACCOUNT-LAST</code> and <code>ACCOUNT-COUNT</code> control rows, as well as current and new counter values.</li>
+<li><strong>Account write</strong> — <code>'CREACC: Writing account to DB2'</code> and <code>'CREACC: Account creation completed successfully'</code>.</li>
+<li><strong>PROCTRAN write failure</strong> — <code>'In CREACC (WPD010) UNABLE TO WRITE TO PROCTRAN ROW DATASTORE'</code> including RESP codes and the full <code>HOST-PROCTRAN-ROW</code> contents.</li>
+<li><strong>Fatal abend messages</strong> — <code>'CREACC - ACCOUNT NCS &lt;name&gt; CANNOT BE ACCESSED AND DB2 SELECT/UPDATE FAILED. SQLCODE=&lt;code&gt;'</code> prior to issuing <code>EXEC CICS ABEND</code>.</li>
+</ul>
+<h2 id="4-business-rules" tabindex="-1">4. Business Rules</h2>
+<p><strong>Program:</strong> CREACC</p>
+<p><strong>Total Rules Extracted:</strong> 19</p>
+<h3 id="41-paragraph-premiere_p010" tabindex="-1">4.1 Paragraph: PREMIERE_P010</h3>
+<h4 id="411-customer-existence-validation-via-inqcust" tabindex="-1">4.1.1 Customer Existence Validation via INQCUST</h4>
+<p><strong>Purpose:</strong> Validates that the customer specified in the communication area actually exists by checking the result of the INQCUST link call. If the customer cannot be found or the link fails, the account creation is rejected with failure code ‘1’ and processing is terminated.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>If INQCUST link fails or customer is not found (INQCUST-INQ-SUCCESS ≠ ‘Y’), set COMM-SUCCESS to ‘N’ and COMM-FAIL-CODE to ‘1’</li>
+<li>Account creation is blocked for non-existent or unresolvable customers</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">IF EIBRESP IS NOT EQUAL TO DFHRESP(NORMAL)
+              OR INQCUST-INQ-SUCCESS IS NOT EQUAL TO &#039;Y&#039;
+
+              MOVE &#039;N&#039; TO COMM-SUCCESS IN DFHCOMMAREA
+              MOVE &#039;1&#039; TO COMM-FAIL-CODE IN DFHCOMMAREA
+
+              PERFORM GET-ME-OUT-OF-HERE
+
+           END-IF</code></pre>
+</div>
+<h4 id="412-account-count-error-handling--cics-response-failure" tabindex="-1">4.1.2 Account Count Error Handling — CICS Response Failure</h4>
+<p><strong>Purpose:</strong> Enforces that account creation cannot proceed if the CICS call to retrieve the customer’s existing account count fails at the infrastructure level. A failure code of ‘9’ is assigned and processing is terminated.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>If the CICS response from INQACCCU is not normal, set COMM-SUCCESS to ‘N’ and COMM-FAIL-CODE to ‘9’</li>
+<li>Account creation is blocked when the account count cannot be reliably determined</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">IF WS-CICS-RESP IS NOT EQUAL TO DFHRESP(NORMAL)
+              DISPLAY &#039;CREACC: Error counting accounts&#039;
+              MOVE &#039;N&#039; TO COMM-SUCCESS IN DFHCOMMAREA
+              MOVE &#039;N&#039; TO COMM-SUCCESS IN INQACCCU-COMMAREA
+              MOVE &#039;9&#039; TO COMM-FAIL-CODE IN DFHCOMMAREA
+
+              PERFORM GET-ME-OUT-OF-HERE
+           END-IF</code></pre>
+</div>
+<h4 id="413-account-count-error-handling--inqacccu-business-failure" tabindex="-1">4.1.3 Account Count Error Handling — INQACCCU Business Failure</h4>
+<p><strong>Purpose:</strong> Enforces that account creation cannot proceed if the INQACCCU program itself reports a business-level failure when retrieving the customer’s account count. A failure code of ‘9’ is assigned and processing is terminated.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>If INQACCCU returns COMM-SUCCESS = ‘N’, set COMM-SUCCESS to ‘N’ and COMM-FAIL-CODE to ‘9’</li>
+<li>Account creation is blocked when the downstream program cannot successfully return an account count</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">IF COMM-SUCCESS IN INQACCCU-COMMAREA = &#039;N&#039;
+              DISPLAY &#039;Error counting accounts&#039;
+              MOVE &#039;N&#039; TO COMM-SUCCESS IN DFHCOMMAREA
+              MOVE &#039;9&#039; TO COMM-FAIL-CODE IN DFHCOMMAREA
+
+              PERFORM GET-ME-OUT-OF-HERE
+           END-IF</code></pre>
+</div>
+<h4 id="414-maximum-account-limit-enforcement" tabindex="-1">4.1.4 Maximum Account Limit Enforcement</h4>
+<p><strong>Purpose:</strong> Enforces the business rule that a single customer may not hold more than 9 bank accounts simultaneously. If the customer already has more than 9 accounts, the new account creation is rejected with failure code ‘8’.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>A customer is not permitted to hold more than 9 accounts at any one time</li>
+<li>If NUMBER-OF-ACCOUNTS exceeds 9, set COMM-SUCCESS to ‘N’ and COMM-FAIL-CODE to ‘8’</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">IF NUMBER-OF-ACCOUNTS IN INQACCCU-COMMAREA &gt; 9
+              DISPLAY &#039;CREACC: Customer has too many accounts (&gt;9)&#039;
+              MOVE &#039;N&#039; TO COMM-SUCCESS IN DFHCOMMAREA
+              MOVE &#039;8&#039; TO COMM-FAIL-CODE IN DFHCOMMAREA
+
+              PERFORM GET-ME-OUT-OF-HERE
+           END-IF</code></pre>
+</div>
+<h4 id="415-account-type-validation-gate" tabindex="-1">4.1.5 Account Type Validation Gate</h4>
+<p><strong>Purpose:</strong> Validates that the requested account type (e.g., ISA, MORTGAGE, SAVING, CURRENT, LOAN) is a permitted value before allowing account creation to proceed. If the account type is invalid, processing is terminated.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>Only recognised account types are permitted for new account creation</li>
+<li>If ACCOUNT-TYPE-CHECK sets COMM-SUCCESS to ‘N’, account creation is blocked immediately</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">PERFORM ACCOUNT-TYPE-CHECK
+
+           DISPLAY &#039;CREACC: Account type check result=&#039;
+                   COMM-SUCCESS OF DFHCOMMAREA
+
+           IF COMM-SUCCESS OF DFHCOMMAREA = &#039;N&#039;
+              PERFORM GET-ME-OUT-OF-HERE
+           END-IF</code></pre>
+</div>
+<h3 id="42-paragraph-write-account-db2_wad010" tabindex="-1">4.2 Paragraph: WRITE-ACCOUNT-DB2_WAD010</h3>
+<h4 id="421-next-statement-date-calculation-today--30-days" tabindex="-1">4.2.1 Next Statement Date Calculation (Today + 30 Days)</h4>
+<p><strong>Purpose:</strong> Applies the business rule that the next statement date for a newly created account is set to exactly 30 days from today. The calculated future date is broken into year, month, and day components and stored in the account host variable for DB2 insert.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>The next statement date for a new account is always set to the account opening date plus 30 days</li>
+<li>The future date is decomposed into year, month, and day components for storage in the DB2 ACCOUNT record</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">*
+      *    Add 30 days to the date
+      *
+           COMPUTE WS-INTEGER = WS-INTEGER + 30.
+
+      *
+      *    Convert integer date back to a Gregorian date (YYYYMMDD)
+      *
+           COMPUTE WS-FUTURE-DATE =
+              FUNCTION DATE-OF-INTEGER(WS-INTEGER).
+
+      *
+      *    Store the answer back in the  Next Statement Date
+      *
+           MOVE WS-FUTURE-DATE TO WS-FUT-9.
+           MOVE WS-FUT-X-YY TO HV-ACCOUNT-NEXT-STMT-YEAR.
+           MOVE &#039;.&#039; TO HV-ACCOUNT-NEXT-STMT-DELIM2.
+           MOVE WS-FUT-X-MM TO HV-ACCOUNT-NEXT-STMT-MONTH.
+           MOVE &#039;.&#039; TO HV-ACCOUNT-NEXT-STMT-DELIM1.
+           MOVE WS-FUT-X-DD TO HV-ACCOUNT-NEXT-STMT-DAY.</code></pre>
+</div>
+<h4 id="422-new-account-db2-insert" tabindex="-1">4.2.2 New Account DB2 Insert</h4>
+<p><strong>Purpose:</strong> Creates a new bank account domain record in the DB2 ACCOUNT table, capturing all core account attributes including the customer number, sort code, account number, account type, interest rate, overdraft limit, opening date, statement dates, and balances. This is the primary business event of the account creation process.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>A new account record is permanently established in the ACCOUNT table with all financial and customer attributes</li>
+<li>Account type, interest rate, overdraft limit, and opening balances supplied via the communication area are written as the authoritative account terms</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">EXEC SQL
+              INSERT INTO ACCOUNT
+                     (ACCOUNT_EYECATCHER,
+                      ACCOUNT_CUSTOMER_NUMBER,
+                      ACCOUNT_SORTCODE,
+                      ACCOUNT_NUMBER,
+                      ACCOUNT_TYPE,
+                      ACCOUNT_INTEREST_RATE,
+                      ACCOUNT_OPENED,
+                      ACCOUNT_OVERDRAFT_LIMIT,
+                      ACCOUNT_LAST_STATEMENT,
+                      ACCOUNT_NEXT_STATEMENT,
+                      ACCOUNT_AVAILABLE_BALANCE,
+                      ACCOUNT_ACTUAL_BALANCE
+                      )
+              VALUES(:HV-ACCOUNT-EYECATCHER,
+                      :HV-ACCOUNT-CUST-NO,
+                      :HV-ACCOUNT-SORTCODE,
+                      :HV-ACCOUNT-ACC-NO,
+                      :HV-ACCOUNT-ACC-TYPE,
+                      :HV-ACCOUNT-INT-RATE,
+                      :HV-ACCOUNT-OPENED,
+                      :HV-ACCOUNT-OVERDRAFT-LIM,
+                      :HV-ACCOUNT-LAST-STMT,
+                      :HV-ACCOUNT-NEXT-STMT,
+                      :HV-ACCOUNT-AVAIL-BAL,
+                      :HV-ACCOUNT-ACTUAL-BAL
+                     )
+           END-EXEC.</code></pre>
+</div>
+<h4 id="423-db2-insert-failure--account-creation-rejection" tabindex="-1">4.2.3 DB2 Insert Failure — Account Creation Rejection</h4>
+<p><strong>Purpose:</strong> Enforces that if the DB2 INSERT into the ACCOUNT table fails, the account creation is immediately rejected with failure code ‘7’, the named counter enqueue lock is released, and processing is terminated. This prevents partial or inconsistent account state.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>A non-zero SQLCODE from the ACCOUNT INSERT results in account creation failure with COMM-FAIL-CODE ‘7’</li>
+<li>The named counter resource lock (ENQ) must be released (DEQ) even on INSERT failure to avoid deadlocks</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">IF SQLCODE NOT = 0
+              MOVE SQLCODE TO SQLCODE-DISPLAY
+              MOVE &#039;N&#039; TO COMM-SUCCESS IN DFHCOMMAREA
+              MOVE &#039;7&#039; TO COMM-FAIL-CODE IN DFHCOMMAREA
+              PERFORM DEQ-NAMED-COUNTER
+              MOVE SQLCODE TO SQLCODE-DISPLAY
+
+              PERFORM GET-ME-OUT-OF-HERE
+           END-IF.</code></pre>
+</div>
+<h4 id="424-processed-transaction-proctran-write-on-successful-account-creation" tabindex="-1">4.2.4 Processed Transaction (PROCTRAN) Write on Successful Account Creation</h4>
+<p><strong>Purpose:</strong> Records the account creation as a processed transaction (PROCTRAN) event by capturing the sort code, account number, customer number, account type, and statement dates, then writing the transaction record. This creates an auditable business trail of the account creation event.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>Every successfully created account must generate a corresponding PROCTRAN audit record</li>
+<li>Statement date fields are reformatted from DB2 format before being stored in the PROCTRAN record</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">MOVE HV-ACCOUNT-SORTCODE TO STORED-SORTCODE.
+           MOVE HV-ACCOUNT-ACC-NO TO STORED-ACCNO.
+           MOVE HV-ACCOUNT-CUST-NO TO STORED-CUSTNO.
+           MOVE HV-ACCOUNT-ACC-TYPE TO STORED-ACCTYPE.
+           MOVE HV-ACCOUNT-LAST-STMT(1:2) TO STORED-LST-STMT(1:2).
+           MOVE HV-ACCOUNT-LAST-STMT(4:2) TO STORED-LST-STMT(3:2).
+           MOVE HV-ACCOUNT-LAST-STMT(7:4) TO STORED-LST-STMT(5:4).
+           MOVE HV-ACCOUNT-NEXT-STMT(1:2) TO STORED-NXT-STMT(1:2).
+           MOVE HV-ACCOUNT-NEXT-STMT(4:2) TO STORED-NXT-STMT(3:2).
+           MOVE HV-ACCOUNT-NEXT-STMT(7:4) TO STORED-NXT-STMT(5:4).
+
+           PERFORM WRITE-PROCTRAN.</code></pre>
+</div>
+<h4 id="425-successful-account-creation--communication-area-population" tabindex="-1">4.2.5 Successful Account Creation — Communication Area Population</h4>
+<p><strong>Purpose:</strong> Upon successful account creation, populates the communication area with the newly assigned account number, sort code, account opening date, last statement date, and next statement date, and sets the success indicator to ‘Y’ with a blank failure code. This communicates the confirmed new account details back to the calling program.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>COMM-SUCCESS is set to ‘Y’ only after a fully successful account creation including DB2 insert and PROCTRAN write</li>
+<li>The assigned account number, sort code, and all date fields are returned to the caller via the communication area</li>
+<li>COMM-FAIL-CODE is cleared to blank on success to signal no error condition</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">MOVE HV-ACCOUNT-SORTCODE TO COMM-SORTCODE.
+           MOVE HV-ACCOUNT-ACC-NO TO COMM-NUMBER.
+
+           MOVE HV-ACCOUNT-OPENED-DAY(1:2)
+              TO COMM-OPENED IN DFHCOMMAREA(1:2).
+           MOVE HV-ACCOUNT-OPENED-MONTH(1:2)
+              TO COMM-OPENED IN DFHCOMMAREA(3:2).
+           MOVE HV-ACCOUNT-OPENED-YEAR(1:4)
+              TO COMM-OPENED IN DFHCOMMAREA(5:4).
+           MOVE HV-ACCOUNT-LAST-STMT-DAY(1:2)
+              TO COMM-LAST-STMT-DT IN DFHCOMMAREA(1:2).
+           MOVE HV-ACCOUNT-LAST-STMT-MONTH(1:2)
+              TO COMM-LAST-STMT-DT IN DFHCOMMAREA(3:2).
+           MOVE HV-ACCOUNT-LAST-STMT-YEAR(1:4)
+              TO COMM-LAST-STMT-DT IN DFHCOMMAREA(5:4).
+           MOVE HV-ACCOUNT-NEXT-STMT-DAY(1:2)
+              TO COMM-NEXT-STMT-DT IN DFHCOMMAREA(1:2).
+           MOVE HV-ACCOUNT-NEXT-STMT-MONTH(1:2)
+              TO COMM-NEXT-STMT-DT IN DFHCOMMAREA(3:2).
+           MOVE HV-ACCOUNT-NEXT-STMT-YEAR(1:4)
+              TO COMM-NEXT-STMT-DT IN DFHCOMMAREA(5:4).
+
+           MOVE &#039;ACCT&#039; TO COMM-EYECATCHER.
+           MOVE &#039;Y&#039; TO COMM-SUCCESS IN DFHCOMMAREA.
+           MOVE &#039; &#039; TO COMM-FAIL-CODE IN DFHCOMMAREA.</code></pre>
+</div>
+<h3 id="43-paragraph-enq-named-counter_enc010" tabindex="-1">4.3 Paragraph: ENQ-NAMED-COUNTER_ENC010</h3>
+<h4 id="431-named-counter-enqueue-failure--account-creation-rejection" tabindex="-1">4.3.1 Named Counter Enqueue Failure — Account Creation Rejection</h4>
+<p><strong>Purpose:</strong> Enforces that account creation cannot proceed if the CICS ENQ on the Named Counter Service resource (which serialises account number assignment) fails. The creation is rejected with failure code ‘3’ to prevent duplicate or corrupt account number generation.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>If the ENQ on the account number Named Counter resource fails, account creation is rejected with COMM-FAIL-CODE ‘3’</li>
+<li>Exclusive access to the account number counter must be obtained before any account number can be assigned</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
+              MOVE &#039;N&#039; TO COMM-SUCCESS IN DFHCOMMAREA
+              MOVE &#039;3&#039; TO COMM-FAIL-CODE IN DFHCOMMAREA
+              PERFORM GET-ME-OUT-OF-HERE
+           END-IF.</code></pre>
+</div>
+<h3 id="44-paragraph-deq-named-counter_dnc010" tabindex="-1">4.4 Paragraph: DEQ-NAMED-COUNTER_DNC010</h3>
+<h4 id="441-named-counter-dequeue-failure--account-creation-rejection" tabindex="-1">4.4.1 Named Counter Dequeue Failure — Account Creation Rejection</h4>
+<p><strong>Purpose:</strong> Enforces that if the CICS DEQ on the Named Counter Service resource fails after account processing, the account creation is marked as failed with failure code ‘5’ and processing is terminated. This ensures the counter lock status is accurately reported and does not silently remain held.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>If the DEQ on the account number Named Counter resource fails, COMM-SUCCESS is set to ‘N’ and COMM-FAIL-CODE to ‘5’</li>
+<li>Failure to release the named counter lock is treated as a business-level account creation failure</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">IF WS-CICS-RESP NOT = DFHRESP(NORMAL)
+              MOVE &#039;N&#039; TO COMM-SUCCESS IN DFHCOMMAREA
+              MOVE &#039;5&#039; TO COMM-FAIL-CODE IN DFHCOMMAREA
+              PERFORM GET-ME-OUT-OF-HERE
+           END-IF.</code></pre>
+</div>
+<h3 id="45-paragraph-find-next-account_fna010" tabindex="-1">4.5 Paragraph: FIND-NEXT-ACCOUNT_FNA010</h3>
+<h4 id="451-next-sequential-account-number-assignment-and-control-table-update" tabindex="-1">4.5.1 Next Sequential Account Number Assignment and CONTROL Table Update</h4>
+<p><strong>Purpose:</strong> Derives the next sequential bank account number by incrementing the last used account number retrieved from the DB2 CONTROL table by 1, then immediately updates the CONTROL table with the new last-used value to maintain the account number sequence for future assignments.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>Account numbers are assigned sequentially by incrementing the last known account number by 1</li>
+<li>The CONTROL table is updated immediately to reserve the new account number and prevent duplicate assignment</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">ELSE
+              DISPLAY &#039;CREACC: SELECT successful, current value=&#039;
+                      HV-CONTROL-VALUE-NUM
+              ADD 1 TO HV-CONTROL-VALUE-NUM GIVING
+                 COMM-NUMBER
+                 ACCOUNT-NUMBER
+                 REQUIRED-ACCT-NUMBER3
+                 NCS-ACC-NO-VALUE
+                 HV-CONTROL-VALUE-NUM
+
+              DISPLAY &#039;CREACC: New account number will be=&#039;
+                      ACCOUNT-NUMBER
+              DISPLAY &#039;CREACC: Updating CONTROL table&#039;
+
+             EXEC SQL
+               UPDATE CONTROL
+               SET CONTROL_VALUE_NUM = :HV-CONTROL-VALUE-NUM
+               WHERE (CONTROL_NAME = :HV-CONTROL-NAME)
+             END-EXEC</code></pre>
+</div>
+<h4 id="452-account-count-increment-in-control-table" tabindex="-1">4.5.2 Account Count Increment in CONTROL Table</h4>
+<p><strong>Purpose:</strong> Increments the bank-wide account count in the DB2 CONTROL table by 1 to reflect the addition of a new account, maintaining an accurate running total of all accounts held at the bank.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>The global account count maintained in the CONTROL table must be incremented by 1 for each successfully assigned account number</li>
+<li>The updated account count is persisted immediately to the CONTROL table</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">ELSE
+              DISPLAY &#039;CREACC: ACCOUNT-COUNT current value=&#039;
+                      HV-CONTROL-VALUE-NUM
+              ADD 1 TO HV-CONTROL-VALUE-NUM GIVING
+                 HV-CONTROL-VALUE-NUM
+
+              DISPLAY &#039;CREACC: Updating ACCOUNT-COUNT to=&#039;
+                      HV-CONTROL-VALUE-NUM
+
+             EXEC SQL
+               UPDATE CONTROL
+               SET CONTROL_VALUE_NUM = :HV-CONTROL-VALUE-NUM
+               WHERE (CONTROL_NAME = :HV-CONTROL-NAME)
+             END-EXEC</code></pre>
+</div>
+<h3 id="46-paragraph-write-proctran_wp010" tabindex="-1">4.6 Paragraph: WRITE-PROCTRAN_WP010</h3>
+<h4 id="461-trigger-processed-transaction-write" tabindex="-1">4.6.1 Trigger Processed Transaction Write</h4>
+<p><strong>Purpose:</strong> Initiates the writing of a successfully processed account creation transaction to the PROCTRAN audit table, ensuring a permanent domain record of the account opening event is created.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>Every successful account creation must produce a corresponding processed transaction record in PROCTRAN.</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">PERFORM WRITE-PROCTRAN-DB2.</code></pre>
+</div>
+<h3 id="47-paragraph-write-proctran-db2_wpd010" tabindex="-1">4.7 Paragraph: WRITE-PROCTRAN-DB2_WPD010</h3>
+<h4 id="471-insert-account-creation-transaction-into-proctran" tabindex="-1">4.7.1 Insert Account Creation Transaction into PROCTRAN</h4>
+<p><strong>Purpose:</strong> Records the successful account creation as a permanent auditable transaction in the PROCTRAN table. The record captures the bank sort code, newly created account number, customer number, account type, statement dates, transaction type (‘OCA’ — Open Current Account), a zero monetary amount, and the exact timestamp of the event, creating a full domain audit trail of the account opening.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>Every successfully created account must generate a corresponding PROCTRAN audit record.</li>
+<li>The transaction type is set to ‘OCA’ (Open Account) to classify the event in the processed transaction history.</li>
+<li>The transaction amount is recorded as zero, reflecting that account creation itself carries no monetary movement.</li>
+<li>The PROCTRAN description embeds customer number, account type, last statement date, and next statement date as contextual business data for the audit record.</li>
+<li>The sort code and account number are stamped onto the record to uniquely identify the domain entity associated with this event.</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">MOVE &#039;PRTR&#039; TO HV-PROCTRAN-EYECATCHER.
+           MOVE SORTCODE TO HV-PROCTRAN-SORT-CODE.
+           MOVE STORED-ACCNO TO HV-PROCTRAN-ACC-NUMBER.
+           MOVE EIBTASKN TO WS-EIBTASKN12.
+           MOVE WS-EIBTASKN12 TO HV-PROCTRAN-REF.
+
+      *
+      *    Populate the time and date
+      *
+           EXEC CICS ASKTIME
+                ABSTIME(WS-U-TIME)
+                END-EXEC.
+
+           EXEC CICS FORMATTIME
+                ABSTIME(WS-U-TIME)
+                DDMMYYYY(WS-ORIG-DATE)
+                TIME(HV-PROCTRAN-TIME)
+                DATESEP(&#039;.&#039;)
+                END-EXEC.
+
+           MOVE WS-ORIG-DATE TO WS-ORIG-DATE-GRP-X.
+           MOVE WS-ORIG-DATE-GRP-X TO HV-PROCTRAN-DATE.
+
+           MOVE STORED-CUSTNO TO HV-PROCTRAN-DESC(1:10).
+           MOVE STORED-ACCTYPE TO HV-PROCTRAN-DESC(11:8).
+           MOVE STORED-LST-STMT TO HV-PROCTRAN-DESC(19:8).
+           MOVE STORED-NXT-STMT TO HV-PROCTRAN-DESC(27:8).
+           MOVE SPACES TO HV-PROCTRAN-DESC(35:6).
+
+           MOVE &#039;OCA&#039; TO HV-PROCTRAN-TYPE.
+           MOVE 0 TO HV-PROCTRAN-AMOUNT.
+
+           EXEC SQL
+              INSERT INTO PROCTRAN
+                     (
+                      PROCTRAN_EYECATCHER,
+                      PROCTRAN_SORTCODE,
+                      PROCTRAN_NUMBER,
+                      PROCTRAN_DATE,
+                      PROCTRAN_TIME,
+                      PROCTRAN_REF,
+                      PROCTRAN_TYPE,
+                      PROCTRAN_DESC,
+                      PROCTRAN_AMOUNT
+                     )
+              VALUES
+                     (
+                      :HV-PROCTRAN-EYECATCHER,
+                      :HV-PROCTRAN-SORT-CODE,
+                      :HV-PROCTRAN-ACC-NUMBER,
+                      :HV-PROCTRAN-DATE,
+                      :HV-PROCTRAN-TIME,
+                      :HV-PROCTRAN-REF,
+                      :HV-PROCTRAN-TYPE,
+                      :HV-PROCTRAN-DESC,
+                      :HV-PROCTRAN-AMOUNT
+                     )
+           END-EXEC.</code></pre>
+</div>
+<h3 id="48-paragraph-customer-account-count_cac010" tabindex="-1">4.8 Paragraph: CUSTOMER-ACCOUNT-COUNT_CAC010</h3>
+<h4 id="481-retrieve-existing-account-count-for-customer" tabindex="-1">4.8.1 Retrieve Existing Account Count for Customer</h4>
+<p><strong>Purpose:</strong> Invokes the INQACCCU program to retrieve the current number of accounts held by the customer identified in COMM-CUSTNO. The result (NUMBER-OF-ACCOUNTS) is subsequently used to enforce the business rule that a customer may not hold more than 9 accounts. A maximum of 20 accounts is passed as the retrieval limit to the inquiry program.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>The customer’s existing account count must be retrieved before a new account can be created, to enforce the maximum account limit policy.</li>
+<li>Up to 20 accounts are requested from INQACCCU to ensure the full picture of the customer’s account portfolio is available for the limit check.</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">MOVE 20 TO NUMBER-OF-ACCOUNTS IN INQACCCU-COMMAREA.
+           MOVE COMM-CUSTNO IN DFHCOMMAREA
+              TO CUSTOMER-NUMBER IN INQACCCU-COMMAREA.
+
+           SET COMM-PCB-POINTER TO NULL
+
+           EXEC CICS LINK PROGRAM(&#039;INQACCCU&#039;)
+                COMMAREA(INQACCCU-COMMAREA)
+                RESP(WS-CICS-RESP)
+                SYNCONRETURN
+                END-EXEC.</code></pre>
+</div>
+<h3 id="49-paragraph-calculate-dates_cd010" tabindex="-1">4.9 Paragraph: CALCULATE-DATES_CD010</h3>
+<h4 id="491-calculate-account-opened-last-statement-and-next-statement-dates" tabindex="-1">4.9.1 Calculate Account Opened, Last Statement, and Next Statement Dates</h4>
+<p><strong>Purpose:</strong> Determines and assigns all three key account date fields for a newly created account. Today’s date becomes both the Account Opened date and the Last Statement Date. The Next Statement Date is calculated by adding 30 days to today (or 28/29 days in February with full leap year logic), producing the date of the first upcoming account statement. All dates are formatted and populated into the account record and DB2 host variables.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>The account opened date is set to today’s date at the time of account creation.</li>
+<li>The last statement date is set equal to the account opened date, reflecting no prior statements exist.</li>
+<li>The next statement date is calculated as today plus 30 days for all months except February.</li>
+<li>For February, the next statement date adds 28 days, with an extra day added if the year is a leap year (divisible by 4, except centuries unless divisible by 400).</li>
+<li>Full Gregorian leap year rules are applied: divisible by 4 is a leap year, except centuries, which must be divisible by 400.</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">EVALUATE WS-ORIG-DATE-MM
+           WHEN 1
+           WHEN 3
+           WHEN 5
+           WHEN 7
+           WHEN 8
+           WHEN 10
+           WHEN 12
+                COMPUTE WS-INTEGER = WS-INTEGER + 30
+           WHEN 9
+           WHEN 4
+           WHEN 6
+           WHEN 11
+                COMPUTE WS-INTEGER = WS-INTEGER + 30
+           WHEN 2
+                COMPUTE WS-INTEGER = WS-INTEGER + 28
+                DIVIDE WS-ORIG-DATE-YYYY BY 4 GIVING DONT-CARE
+                   REMAINDER LEAP-YEAR
+
+                IF LEAP-YEAR = ZERO
+                   DIVIDE WS-ORIG-DATE-YYYY BY 100 GIVING DONT-CARE
+                      REMAINDER LEAP-YEAR
+
+                   IF LEAP-YEAR &gt; 0
+                      ADD 1 TO WS-INTEGER GIVING WS-INTEGER
+                   ELSE
+                      DIVIDE WS-ORIG-DATE-YYYY BY 400 GIVING DONT-CARE
+                         REMAINDER LEAP-YEAR
+                      IF LEAP-YEAR = ZERO
+                         ADD 1 TO WS-INTEGER GIVING WS-INTEGER
+                      END-IF
+                   END-IF
+                END-IF
+
+           END-EVALUATE.
+
+
+      *
+      *    Convert integer date back to a Gregorian date (YYYYMMDD)
+      *
+           COMPUTE WS-FUTURE-DATE =
+              FUNCTION DATE-OF-INTEGER(WS-INTEGER).
+
+      *
+      *    Store the answer back in the Next Statement Date
+      *
+
+           MOVE WS-FUTURE-DATE(1:4) TO ACCOUNT-NEXT-STMT-DATE(5:4).
+           MOVE WS-FUTURE-DATE(5:2) TO ACCOUNT-NEXT-STMT-DATE(3:2).
+           MOVE WS-FUTURE-DATE(7:2) TO ACCOUNT-NEXT-STMT-DATE(1:2).
+
+           MOVE WS-ORIG-DATE-DD TO ACCOUNT-OPENED(1:2).
+           MOVE WS-ORIG-DATE-MM TO ACCOUNT-OPENED(3:2).
+           MOVE WS-ORIG-DATE-YYYY TO ACCOUNT-OPENED(5:4).
+           MOVE ACCOUNT-OPENED TO ACCOUNT-LAST-STMT-DATE.
+
+           MOVE WS-ORIG-DATE-DD TO HV-ACCOUNT-OPENED-DAY.
+           MOVE &#039;.&#039; TO HV-ACCOUNT-OPENED-DELIM1.
+           MOVE WS-ORIG-DATE-MM TO HV-ACCOUNT-OPENED-MONTH.
+           MOVE &#039;.&#039; TO HV-ACCOUNT-OPENED-DELIM2.
+           MOVE WS-ORIG-DATE-YYYY TO HV-ACCOUNT-OPENED-YEAR.
+
+           MOVE WS-ORIG-DATE-DD TO HV-ACCOUNT-LAST-STMT-DAY.
+           MOVE &#039;.&#039; TO HV-ACCOUNT-LAST-STMT-DELIM1.
+           MOVE WS-ORIG-DATE-MM TO HV-ACCOUNT-LAST-STMT-MONTH.
+           MOVE &#039;.&#039; TO HV-ACCOUNT-LAST-STMT-DELIM2.
+           MOVE WS-ORIG-DATE-YYYY TO HV-ACCOUNT-LAST-STMT-YEAR.</code></pre>
+</div>
+<h3 id="410-paragraph-account-type-check_atc010" tabindex="-1">4.10 Paragraph: ACCOUNT-TYPE-CHECK_ATC010</h3>
+<h4 id="4101-validate-account-type-against-permitted-values" tabindex="-1">4.10.1 Validate Account Type Against Permitted Values</h4>
+<p><strong>Purpose:</strong> Enforces the business rule that only the five permitted account types — ISA, MORTGAGE, SAVING, CURRENT, and LOAN — are valid for new account creation. If the requested account type matches one of these values, the success flag is set to ‘Y’. Any other account type is rejected by setting the success flag to ‘N’ and the failure code to ‘A’, preventing the account from being created.</p>
+<p><strong>Core Decision Logic:</strong></p>
+<ul>
+<li>Only ISA, MORTGAGE, SAVING, CURRENT, and LOAN are valid account types for account creation.</li>
+<li>Any account type not in the permitted list is rejected with failure code ‘A’.</li>
+<li>A valid account type sets COMM-SUCCESS to ‘Y’, enabling the account creation process to proceed.</li>
+<li>An invalid account type sets COMM-SUCCESS to ‘N’, halting the account creation process.</li>
+</ul>
+<p><strong>Code:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">COBOL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-cobol">EVALUATE TRUE
+           WHEN COMM-ACC-TYPE IN DFHCOMMAREA(1:3) = &#039;ISA&#039;
+           WHEN COMM-ACC-TYPE IN DFHCOMMAREA(1:8) = &#039;MORTGAGE&#039;
+           WHEN COMM-ACC-TYPE IN DFHCOMMAREA(1:6) = &#039;SAVING&#039;
+           WHEN COMM-ACC-TYPE IN DFHCOMMAREA(1:7) = &#039;CURRENT&#039;
+           WHEN COMM-ACC-TYPE IN DFHCOMMAREA(1:4) = &#039;LOAN&#039;
+                MOVE &#039;Y&#039; TO COMM-SUCCESS OF DFHCOMMAREA
+           WHEN OTHER
+                MOVE &#039;N&#039; TO COMM-SUCCESS OF DFHCOMMAREA
+                MOVE &#039;A&#039; TO COMM-FAIL-CODE IN DFHCOMMAREA
+           END-EVALUATE.</code></pre>
+</div>
+<h2 id="5-processing-logic" tabindex="-1">5. Processing logic</h2>
+<h3 id="51-mermaid-flow-diagram" tabindex="-1">5.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    classDef startEnd fill:#b5e8d5,stroke:#4caf8e,color:#000
+    classDef process fill:#d0e8fb,stroke:#5a9fd4,color:#000
+    classDef decision fill:#fff3c4,stroke:#d4a017,color:#000
+    classDef error fill:#ffd6d6,stroke:#d45a5a,color:#000
+    classDef db fill:#e8d5f5,stroke:#9b59b6,color:#000
+
+    A([Start - CREACC Invoked via COMMAREA]):::startEnd
+    B[Initialize sort codes<br>and account number]:::process
+    C[Link to INQCUST<br>Validate customer exists]:::process
+    D{{INQCUST response<br>successful and customer found}}:::decision
+    E[Set COMM-SUCCESS=N<br>COMM-FAIL-CODE=1<br>Customer not found]:::error
+    F[Link to INQACCCU<br>Count existing accounts]:::process
+    G{{CICS LINK response<br>normal}}:::decision
+    H[Set COMM-SUCCESS=N<br>COMM-FAIL-CODE=9<br>Account count error]:::error
+    I{{INQACCCU returned<br>COMM-SUCCESS=N}}:::decision
+    J[Set COMM-SUCCESS=N<br>COMM-FAIL-CODE=9]:::error
+    K{{Number of accounts<br>greater than 9}}:::decision
+    L[Set COMM-SUCCESS=N<br>COMM-FAIL-CODE=8<br>Too many accounts]:::error
+    M[Perform ACCOUNT-TYPE-CHECK<br>Validate ISA MORTGAGE SAVING<br>CURRENT or LOAN]:::process
+    N{{Account type<br>valid}}:::decision
+    O[Set COMM-SUCCESS=N<br>COMM-FAIL-CODE=A<br>Invalid account type]:::error
+    P[ENQ Named Counter<br>Serialize access to<br>account number sequence]:::process
+    Q{{ENQ<br>successful}}:::decision
+    R[Set COMM-SUCCESS=N<br>COMM-FAIL-CODE=3<br>Enqueue failed]:::error
+    S[FIND-NEXT-ACCOUNT<br>SELECT CONTROL table for<br>last account number]:::db
+    T{{DB2 SELECT<br>successful}}:::decision
+    U[ABEND HNCS<br>Link ABNDPROC and abend]:::error
+    V[Increment account number<br>UPDATE CONTROL table<br>ACCOUNT-LAST]:::db
+    W{{DB2 UPDATE<br>successful}}:::decision
+    X[ABEND HNCS<br>Link ABNDPROC and abend]:::error
+    Y[SELECT and UPDATE<br>ACCOUNT-COUNT in CONTROL]:::db
+    Z{{DB2 SELECT and UPDATE<br>successful}}:::decision
+    AA[ABEND HNCS<br>Link ABNDPROC and abend]:::error
+    AB[WRITE-ACCOUNT-DB2<br>Populate host variables<br>Calculate dates]:::process
+    AC[Compute ACCOUNT-OPENED<br>LAST-STMT-DATE as today<br>NEXT-STMT-DATE as today plus 30 days]:::process
+    AD[DB2 INSERT INTO ACCOUNT]:::db
+    AE{{INSERT<br>successful}}:::decision
+    AF[Set COMM-SUCCESS=N<br>COMM-FAIL-CODE=7<br>DEQ Named Counter]:::error
+    AG[WRITE-PROCTRAN-DB2<br>INSERT into PROCTRAN<br>type OCA amount 0]:::db
+    AH{{PROCTRAN INSERT<br>successful}}:::decision
+    AI[DEQ Named Counter<br>ABEND HWPT<br>Link ABNDPROC]:::error
+    AJ[DEQ Named Counter<br>Release serialized access]:::process
+    AK[Populate COMMAREA<br>Set COMM-SUCCESS=Y<br>Return account details]:::process
+    AL([CICS RETURN]):::startEnd
+
+    A --> B
+    B --> C
+    C --> D
+    D -- No --> E
+    E --> AL
+    D -- Yes --> F
+    F --> G
+    G -- No --> H
+    H --> AL
+    G -- Yes --> I
+    I -- Yes --> J
+    J --> AL
+    I -- No --> K
+    K -- Yes --> L
+    L --> AL
+    K -- No --> M
+    M --> N
+    N -- No --> O
+    O --> AL
+    N -- Yes --> P
+    P --> Q
+    Q -- No --> R
+    R --> AL
+    Q -- Yes --> S
+    S --> T
+    T -- No --> U
+    U --> AL
+    T -- Yes --> V
+    V --> W
+    W -- No --> X
+    X --> AL
+    W -- Yes --> Y
+    Y --> Z
+    Z -- No --> AA
+    AA --> AL
+    Z -- Yes --> AB
+    AB --> AC
+    AC --> AD
+    AD --> AE
+    AE -- No --> AF
+    AF --> AL
+    AE -- Yes --> AG
+    AG --> AH
+    AH -- No --> AI
+    AI --> AL
+    AH -- Yes --> AJ
+    AJ --> AK
+    AK --> AL
+</div>
+<hr>
+<h3 id="52-processing-logic-description" tabindex="-1">5.2 Processing Logic Description</h3>
+<h4 id="521-high-level-summary" tabindex="-1">5.2.1 High-level Summary</h4>
+<p><strong>CREACC</strong> is a CICS/DB2 COBOL program that creates a new bank account for an existing customer. It enforces a series of business rules — customer validation, account count ceiling, account type whitelisting — before serialising account number assignment via a CICS ENQ/DEQ mechanism, persisting the new account to DB2, and recording the creation event in a processed-transaction audit table. The entire result (success/failure and new account details) is communicated back through a shared COMMAREA structure.</p>
+<hr>
+<h4 id="522-execution-flow" tabindex="-1">5.2.2 Execution Flow</h4>
+<p><strong>Step 1 – Initialisation</strong>
+The program begins in the <code>PREMIERE</code> section. It copies the bank’s sort code into the local working-storage keys, zeros the <code>ACCOUNT-NUMBER</code> field, and initialises the <code>INQCUST-COMMAREA</code> before any external calls are made.</p>
+<hr>
+<p><strong>Step 2 – Customer Existence Validation</strong>
+<code>COMM-CUSTNO</code> from the COMMAREA is moved into <code>INQCUST-CUSTNO</code>, and the program issues a <code>CICS LINK</code> to <strong>INQCUST</strong>. On return, both <code>EIBRESP</code> and <code>INQCUST-INQ-SUCCESS</code> are checked.</p>
+<ul>
+<li>If either is abnormal/non-<code>'Y'</code>: <code>COMM-SUCCESS = 'N'</code>, <code>COMM-FAIL-CODE = '1'</code>, and execution immediately terminates via <code>GET-ME-OUT-OF-HERE</code> (CICS RETURN).</li>
+</ul>
+<hr>
+<p><strong>Step 3 – Account Count Check (CUSTOMER-ACCOUNT-COUNT)</strong>
+The program sets <code>NUMBER-OF-ACCOUNTS</code> to a sentinel value of 20, then issues a <code>CICS LINK SYNCONRETURN</code> to <strong>INQACCCU</strong> to retrieve the actual count of accounts held by the customer.</p>
+<p>Three sub-conditions are checked in sequence:</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Fail Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CICS RESP not NORMAL</td>
+<td><code>'9'</code></td>
+<td>LINK itself failed</td>
+</tr>
+<tr>
+<td><code>COMM-SUCCESS</code> in INQACCCU-COMMAREA = <code>'N'</code></td>
+<td><code>'9'</code></td>
+<td>INQACCCU reported an error</td>
+</tr>
+<tr>
+<td><code>NUMBER-OF-ACCOUNTS &gt; 9</code></td>
+<td><code>'8'</code></td>
+<td>Customer already holds maximum 9 accounts</td>
+</tr>
+</tbody>
+</table>
+<p>Any failure results in an immediate return with <code>COMM-SUCCESS = 'N'</code>.</p>
+<hr>
+<p><strong>Step 4 – Account Type Validation (ACCOUNT-TYPE-CHECK)</strong>
+<code>COMM-ACC-TYPE</code> is validated against an explicit whitelist using an <code>EVALUATE TRUE</code> construct:</p>
+<ul>
+<li><strong>Valid types:</strong> <code>ISA</code>, <code>MORTGAGE</code>, <code>SAVING</code>, <code>CURRENT</code>, <code>LOAN</code></li>
+<li>If the type matches any of these, <code>COMM-SUCCESS = 'Y'</code> is set.</li>
+<li>Any other value sets <code>COMM-SUCCESS = 'N'</code> and <code>COMM-FAIL-CODE = 'A'</code>, causing immediate exit.</li>
+</ul>
+<hr>
+<p><strong>Step 5 – Serialise Account Number Assignment (ENQ-NAMED-COUNTER)</strong>
+The CICS Named Counter resource name is constructed from the literal <code>'BANKZACCT'</code> concatenated with the bank’s sort code (e.g., <code>BANKZACCT123456</code>). A <code>CICS ENQ</code> is issued against this 16-byte resource name to prevent concurrent account creation from producing duplicate account numbers.</p>
+<ul>
+<li>If ENQ fails: <code>COMM-FAIL-CODE = '3'</code>, immediate exit.</li>
+</ul>
+<hr>
+<p><strong>Step 6 – Determine Next Account Number (FIND-NEXT-ACCOUNT)</strong></p>
+<p>This section performs four DB2 operations in sequence:</p>
+<ol>
+<li><strong>SELECT from CONTROL</strong> where <code>CONTROL_NAME = '&lt;sortcode&gt;-ACCOUNT-LAST'</code> — retrieves the last-assigned account number.
+<ul>
+<li>Failure → ABEND <code>HNCS</code> (after linking to <code>ABNDPROC</code> abend handler).</li>
+</ul>
+</li>
+<li><strong>Increment</strong> <code>HV-CONTROL-VALUE-NUM</code> by 1 → propagated to <code>ACCOUNT-NUMBER</code>, <code>COMM-NUMBER</code>, <code>NCS-ACC-NO-VALUE</code>.</li>
+<li><strong>UPDATE CONTROL</strong> to persist the new last account number.
+<ul>
+<li>Failure → ABEND <code>HNCS</code>.</li>
+</ul>
+</li>
+<li><strong>SELECT from CONTROL</strong> where <code>CONTROL_NAME = '&lt;sortcode&gt;-ACCOUNT-COUNT'</code> — retrieves total account count.
+<ul>
+<li>Failure → ABEND <code>HNCS</code>.</li>
+</ul>
+</li>
+<li><strong>Increment</strong> the count by 1 and <strong>UPDATE CONTROL</strong>.
+<ul>
+<li>Failure → ABEND <code>HNCS</code>.</li>
+</ul>
+</li>
+</ol>
+<p>DB2 failures here are treated as fatal — the program calls the <code>ABNDPROC</code> abend handler program and issues <code>EXEC CICS ABEND ABCODE('HNCS')</code>.</p>
+<hr>
+<p><strong>Step 7 – Write Account to DB2 (WRITE-ACCOUNT-DB2)</strong></p>
+<p>All host variables are populated from the COMMAREA and computed values:</p>
+<ul>
+<li><code>ACCOUNT_EYECATCHER</code> = <code>'ACCT'</code></li>
+<li>Customer number, sort code, account number, account type, interest rate, overdraft limit, available balance, actual balance — all sourced from <code>DFHCOMMAREA</code>.</li>
+<li><strong>Date Calculation (CALCULATE-DATES):</strong>
+<ul>
+<li><code>ACCOUNT_OPENED</code> and <code>ACCOUNT_LAST_STATEMENT</code> = today’s date (via <code>CICS ASKTIME</code> / <code>FORMATTIME</code>).</li>
+<li><code>ACCOUNT_NEXT_STATEMENT</code> = today + 30 days, computed using <code>INTEGER-OF-DATE</code> / <code>DATE-OF-INTEGER</code> COBOL intrinsic functions. February is handled with leap-year logic (divisible by 4, except centuries unless divisible by 400).</li>
+</ul>
+</li>
+<li>A <code>NEXT-STMT</code> date is independently recalculated in <code>WRITE-ACCOUNT-DB2</code> and written to <code>HV-ACCOUNT-NEXT-STMT</code>.</li>
+</ul>
+<p>An <code>EXEC SQL INSERT INTO ACCOUNT</code> is then executed.</p>
+<ul>
+<li>If <code>SQLCODE ≠ 0</code>: <code>COMM-SUCCESS = 'N'</code>, <code>COMM-FAIL-CODE = '7'</code>, <strong>DEQ</strong> the named counter, then exit.</li>
+</ul>
+<hr>
+<p><strong>Step 8 – Write Processed Transaction Audit Record (WRITE-PROCTRAN-DB2)</strong></p>
+<p>On a successful account INSERT, an audit row is written to the <strong>PROCTRAN</strong> table:</p>
+<ul>
+<li><code>PROCTRAN_EYECATCHER</code> = <code>'PRTR'</code></li>
+<li><code>PROCTRAN_TYPE</code> = <code>'OCA'</code> (Open Current Account — generic for all account opens)</li>
+<li><code>PROCTRAN_AMOUNT</code> = <code>0</code></li>
+<li><code>PROCTRAN_DESC</code> contains a concatenation of: customer number, account type, last statement date, next statement date.</li>
+<li><code>PROCTRAN_REF</code> = <code>EIBTASKN</code> (the CICS task number).</li>
+<li>Date and time populated via <code>CICS ASKTIME</code> / <code>FORMATTIME</code>.</li>
+</ul>
+<p>If the PROCTRAN INSERT fails: <strong>DEQ</strong>, link to <code>ABNDPROC</code>, then issue <code>EXEC CICS ABEND ABCODE('HWPT')</code>.</p>
+<hr>
+<p><strong>Step 9 – Release Serialisation and Return</strong></p>
+<p><code>DEQ-NAMED-COUNTER</code> is performed to release the ENQ lock on the account number sequence.</p>
+<p>The COMMAREA is then populated with the final account details:</p>
+<ul>
+<li><code>COMM-SORTCODE</code>, <code>COMM-NUMBER</code>, <code>COMM-OPENED</code>, <code>COMM-LAST-STMT-DT</code>, <code>COMM-NEXT-STMT-DT</code></li>
+<li><code>COMM-EYECATCHER = 'ACCT'</code></li>
+<li><code>COMM-SUCCESS = 'Y'</code></li>
+<li><code>COMM-FAIL-CODE = ' '</code></li>
+</ul>
+<p>Finally, <code>GET-ME-OUT-OF-HERE</code> issues <code>EXEC CICS RETURN</code>.</p>
+<hr>
+<h4 id="523-external-interactions" tabindex="-1">5.2.3 External Interactions</h4>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Type</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>INQCUST</strong></td>
+<td>CICS LINK</td>
+<td>Validates that the customer number supplied in the COMMAREA corresponds to an existing customer record</td>
+</tr>
+<tr>
+<td><strong>INQACCCU</strong></td>
+<td>CICS LINK (SYNCONRETURN)</td>
+<td>Retrieves the count of accounts already held by the customer to enforce the 9-account ceiling</td>
+</tr>
+<tr>
+<td><strong>ABNDPROC</strong></td>
+<td>CICS LINK</td>
+<td>Abend handler — receives diagnostic information (ABNDINFO-REC) before a fatal CICS ABEND is issued</td>
+</tr>
+<tr>
+<td><strong>DB2 CONTROL table</strong></td>
+<td>SQL SELECT + UPDATE</td>
+<td>Reads and increments the last-assigned account number (<code>ACCOUNT-LAST</code>) and total account count (<code>ACCOUNT-COUNT</code>) keyed by sort code</td>
+</tr>
+<tr>
+<td><strong>DB2 ACCOUNT table</strong></td>
+<td>SQL INSERT</td>
+<td>Persists the new bank account record with all its attributes</td>
+</tr>
+<tr>
+<td><strong>DB2 PROCTRAN table</strong></td>
+<td>SQL INSERT</td>
+<td>Writes an audit/processed-transaction record of type <code>OCA</code> for the account creation event</td>
+</tr>
+<tr>
+<td><strong>CICS ENQ / DEQ</strong></td>
+<td>CICS API</td>
+<td>Serialises concurrent access to the account number counter using resource name <code>BANKZACCT&lt;sortcode&gt;</code></td>
+</tr>
+<tr>
+<td><strong>CICS ASKTIME / FORMATTIME</strong></td>
+<td>CICS API</td>
+<td>Retrieves and formats the current date and time for account opened, statement, and audit timestamps</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="524-plain-language-summary" tabindex="-1">5.2.4 Plain Language Summary</h4>
+<p>When a bank operator requests the creation of a new account for a customer, <strong>CREACC</strong> acts as the gatekeeper and creator:</p>
+<ol>
+<li><strong>Is the customer real?</strong> — It asks the INQCUST program to confirm the customer exists. If not, it refuses immediately.</li>
+<li><strong>Does the customer already have too many accounts?</strong> — It asks INQACCCU how many accounts the customer currently holds. If they already have 9, no more can be added.</li>
+<li><strong>Is the account type recognised?</strong> — Only ISA, Mortgage, Saving, Current, and Loan accounts are permitted. Anything else is rejected.</li>
+<li><strong>Lock the account number counter</strong> — Before assigning a new account number, it places a lock (ENQ) on the counter resource so no two simultaneous requests can get the same number.</li>
+<li><strong>Get the next available account number</strong> — It reads the last-used account number from a control table in DB2, adds one to it, and updates the table to record the new last-used number. It also increments the total account count.</li>
+<li><strong>Create the account</strong> — It inserts a full account record into the DB2 ACCOUNT table, including today’s date as the opened date and today + 30 days as the first statement date.</li>
+<li><strong>Write an audit trail</strong> — It records the account creation as a processed transaction (type “OCA”) in the PROCTRAN table.</li>
+<li><strong>Release the lock</strong> — The ENQ lock is released (DEQ) so other account creations can proceed.</li>
+<li><strong>Return the result</strong> — The COMMAREA is updated with the new account number, dates, and a success indicator, and control is returned to the calling application.</li>
+</ol>
+<p>If anything fails along the way, the program sets a specific failure code in the COMMAREA and returns immediately. For critical DB2 failures (on the control-table or PROCTRAN operations), the program escalates to a CICS ABEND after calling the central abend handler to capture full diagnostic information.</p>
+<hr>
+<h3 id="53-database-tables" tabindex="-1">5.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+
+    ACCOUNT {
+        string ACCOUNT_EYECATCHER "Always ACCT"
+        string ACCOUNT_CUSTOMER_NUMBER "Customer ID FK"
+        string ACCOUNT_SORTCODE "Bank sort code"
+        string ACCOUNT_NUMBER "Unique account number"
+        string ACCOUNT_TYPE "ISA MORTGAGE SAVING CURRENT LOAN"
+        decimal ACCOUNT_INTEREST_RATE "Packed decimal S9_4_V99"
+        string ACCOUNT_OPENED "Date account opened DD_MM_YYYY"
+        int ACCOUNT_OVERDRAFT_LIMIT "Signed binary S9_9"
+        string ACCOUNT_LAST_STATEMENT "Last statement date DD_MM_YYYY"
+        string ACCOUNT_NEXT_STATEMENT "Next statement date today plus 30 days"
+        decimal ACCOUNT_AVAILABLE_BALANCE "Packed decimal S9_10_V99"
+        decimal ACCOUNT_ACTUAL_BALANCE "Packed decimal S9_10_V99"
+    }
+
+    PROCTRAN {
+        string PROCTRAN_EYECATCHER "Always PRTR"
+        string PROCTRAN_SORTCODE "Bank sort code"
+        string PROCTRAN_NUMBER "Account number"
+        string PROCTRAN_DATE "Transaction date DD_MM_YYYY"
+        string PROCTRAN_TIME "Transaction time HHMMSS"
+        string PROCTRAN_REF "CICS task number EIBTASKN"
+        string PROCTRAN_TYPE "OCA for Open Account"
+        string PROCTRAN_DESC "Custno acctype last_stmt next_stmt"
+        decimal PROCTRAN_AMOUNT "Always 0 for account open"
+    }
+
+    CONTROL {
+        string CONTROL_NAME "Key e_g_ sortcode-ACCOUNT-LAST"
+        int CONTROL_VALUE_NUM "Numeric counter value"
+        string CONTROL_VALUE_STR "String value if applicable"
+    }
+
+    ACCOUNT ||--o{ PROCTRAN : "has audit records"
+    CONTROL ||--|| ACCOUNT : "provides account number sequence"
+</div>
+<h2 id="6-paragraphs" tabindex="-1">6. Paragraphs</h2>
+<h3 id="61-p010--main-entry-point-and-orchestration" tabindex="-1">6.1 P010 — Main Entry Point and Orchestration</h3>
+<ul>
+<li>Acts as the primary controller for the account creation workflow, invoked at program entry via <code>PROCEDURE DIVISION USING DFHCOMMAREA</code>.</li>
+<li>Initialises key working-storage fields: zeroes <code>ACCOUNT-NUMBER</code>, populates sort-code fields (<code>REQUIRED-SORT-CODE</code>, <code>REQUIRED-SORT-CODE2</code>) from the global <code>SORTCODE</code>, and initialises <code>INQCUST-COMMAREA</code>.</li>
+<li><strong>Customer validation:</strong> Moves <code>COMM-CUSTNO</code> into the INQCUST communication area and issues a <code>CICS LINK</code> to <code>INQCUST</code> to confirm the customer exists.
+<ul>
+<li>If the CICS response is abnormal or <code>INQCUST-INQ-SUCCESS</code> is not <code>'Y'</code>, sets <code>COMM-SUCCESS</code> to <code>'N'</code> and <code>COMM-FAIL-CODE</code> to <code>'1'</code>, then performs <code>GET-ME-OUT-OF-HERE</code>.</li>
+</ul>
+</li>
+<li><strong>Account count check:</strong> Calls <code>CUSTOMER-ACCOUNT-COUNT</code> (which links to <code>INQACCCU</code>) to retrieve the number of existing accounts for the customer.
+<ul>
+<li>If the CICS response is abnormal, sets failure code <code>'9'</code> and exits.</li>
+<li>If <code>COMM-SUCCESS</code> in the INQACCCU area is <code>'N'</code>, sets failure code <code>'9'</code> and exits.</li>
+<li>If the account count exceeds 9, sets failure code <code>'8'</code> and exits — enforcing the maximum-accounts business rule.</li>
+</ul>
+</li>
+<li><strong>Account type validation:</strong> Calls <code>ACCOUNT-TYPE-CHECK</code> to confirm the requested account type is permitted.
+<ul>
+<li>If <code>COMM-SUCCESS</code> is <code>'N'</code> on return, exits immediately.</li>
+</ul>
+</li>
+<li><strong>Account number reservation:</strong> Calls <code>ENQ-NAMED-COUNTER</code> to serialize access to the account number counter via a CICS ENQ.</li>
+<li><strong>Account number assignment and persistence:</strong> Calls <code>FIND-NEXT-ACCOUNT</code> to derive and persist the next sequential account number.</li>
+<li><strong>Account record writing:</strong> Calls <code>WRITE-ACCOUNT-DB2</code> to perform the DB2 INSERT to the ACCOUNT table and write a PROCTRAN entry.</li>
+<li>Terminates by performing <code>GET-ME-OUT-OF-HERE</code> to issue <code>CICS RETURN</code>.</li>
+</ul>
+<hr>
+<h3 id="62-enq-named-counter--enqueue-named-counter-resource" tabindex="-1">6.2 ENQ-NAMED-COUNTER — Enqueue Named Counter Resource</h3>
+<ul>
+<li>Serialises concurrent access to the account number sequence by acquiring an exclusive CICS enqueue on the Named Counter Service (NCS) resource.</li>
+<li>Moves the bank <code>SORTCODE</code> into <code>NCS-ACC-NO-TEST-SORT</code> to form the full resource name (<code>NCS-ACC-NO-NAME</code>, constructed as <code>'BANKZACCT' + SORTCODE</code>).</li>
+<li>Issues <code>EXEC CICS ENQ RESOURCE(NCS-ACC-NO-NAME) LENGTH(16)</code>, capturing the response in <code>WS-CICS-RESP</code> and <code>WS-CICS-RESP2</code>.</li>
+<li>If the ENQ fails (response not <code>DFHRESP(NORMAL)</code>), sets <code>COMM-SUCCESS</code> to <code>'N'</code>, <code>COMM-FAIL-CODE</code> to <code>'3'</code>, and performs <code>GET-ME-OUT-OF-HERE</code>.</li>
+</ul>
+<hr>
+<h3 id="63-deq-named-counter--dequeue-named-counter-resource" tabindex="-1">6.3 DEQ-NAMED-COUNTER — Dequeue Named Counter Resource</h3>
+<ul>
+<li>Releases the CICS enqueue on the NCS resource acquired by <code>ENQ-NAMED-COUNTER</code>, allowing other tasks to proceed with account number assignment.</li>
+<li>Reconstructs the resource name identically by moving <code>SORTCODE</code> to <code>NCS-ACC-NO-TEST-SORT</code>.</li>
+<li>Issues <code>EXEC CICS DEQ RESOURCE(NCS-ACC-NO-NAME) LENGTH(16)</code>.</li>
+<li>If the DEQ fails, sets <code>COMM-SUCCESS</code> to <code>'N'</code>, <code>COMM-FAIL-CODE</code> to <code>'5'</code>, and performs <code>GET-ME-OUT-OF-HERE</code>.</li>
+<li>Called both on the success path (after writing PROCTRAN) and on error paths (after a failed ACCOUNT or PROCTRAN DB2 INSERT) to ensure the enqueue is always released.</li>
+</ul>
+<hr>
+<h3 id="64-find-next-account--determine-and-reserve-the-next-account-number" tabindex="-1">6.4 FIND-NEXT-ACCOUNT — Determine and Reserve the Next Account Number</h3>
+<ul>
+<li>Derives the next available account number by reading and incrementing sequence counters in the DB2 <code>CONTROL</code> table under the exclusive protection of the CICS enqueue.</li>
+<li><strong>ACCOUNT-LAST retrieval:</strong>
+<ul>
+<li>Constructs the control name <code>&lt;SORTCODE&gt;-ACCOUNT-LAST</code> and executes a DB2 <code>SELECT</code> against the <code>CONTROL</code> table.</li>
+<li>If the SELECT fails (non-zero SQLCODE), populates <code>ABNDINFO-REC</code> with CICS diagnostic fields (APPLID, task number, transaction ID, date/time, SQLCODE) via <code>POPULATE-TIME-DATE2</code>, then links to <code>WS-ABEND-PGM</code> (<code>ABNDPROC</code>) and issues <code>EXEC CICS ABEND ABCODE('HNCS')</code>.</li>
+<li>On success, adds 1 to <code>HV-CONTROL-VALUE-NUM</code> and propagates the new value to <code>COMM-NUMBER</code>, <code>ACCOUNT-NUMBER</code>, <code>REQUIRED-ACCT-NUMBER3</code>, <code>NCS-ACC-NO-VALUE</code>, and <code>HV-CONTROL-VALUE-NUM</code>.</li>
+<li>Executes a DB2 <code>UPDATE</code> on <code>CONTROL</code> to persist the incremented <code>ACCOUNT-LAST</code> value; a failing UPDATE triggers the same ABEND path with abend code <code>'HNCS'</code>.</li>
+</ul>
+</li>
+<li><strong>ACCOUNT-COUNT update:</strong>
+<ul>
+<li>Constructs the control name <code>&lt;SORTCODE&gt;-ACCOUNT-COUNT</code> and executes a DB2 <code>SELECT</code>.</li>
+<li>A failing SELECT triggers the abend handler and <code>CICS ABEND 'HNCS'</code>.</li>
+<li>On success, increments <code>HV-CONTROL-VALUE-NUM</code> by 1 and executes a DB2 <code>UPDATE</code>; a failing UPDATE likewise abends.</li>
+</ul>
+</li>
+<li>Moves the final <code>NCS-ACC-NO-VALUE</code> back to <code>COMM-NUMBER</code>, <code>ACCOUNT-NUMBER</code>, and <code>REQUIRED-ACCT-NUMBER3</code> after both counters are updated.</li>
+</ul>
+<hr>
+<h3 id="65-write-account-db2--populate-and-insert-account-row-into-db2" tabindex="-1">6.5 WRITE-ACCOUNT-DB2 — Populate and Insert Account Row into DB2</h3>
+<ul>
+<li>Constructs the complete account host-variable record (<code>HOST-ACCOUNT-ROW</code>) from the COMMAREA and computed date values, then inserts it into the DB2 <code>ACCOUNT</code> table.</li>
+<li>Initialises <code>HOST-ACCOUNT-ROW</code> and populates fields: eyecatcher (<code>'ACCT'</code>), customer number, sort code, account number (derived from <code>NCS-ACC-NO-VALUE</code> rightmost 8 digits), account type, interest rate (<code>COMM-INT-RT</code>), overdraft limit (<code>COMM-OVERDR-LIM</code>), available balance (<code>COMM-AVAIL-BAL</code>), and actual balance (<code>COMM-ACT-BAL</code>).</li>
+<li>Calls <code>CALCULATE-DATES</code> to populate the account-opened, last-statement, and next-statement date host variables.</li>
+<li>Independently recomputes the next-statement date by converting today’s date to an integer, adding 30 days using <code>FUNCTION DATE-OF-INTEGER</code>, and mapping the result into the <code>HV-ACCOUNT-NEXT-STMT</code> group fields.</li>
+<li>Executes <code>EXEC SQL INSERT INTO ACCOUNT … VALUES …</code> with all 12 host variables.
+<ul>
+<li>If SQLCODE is non-zero, sets <code>COMM-SUCCESS</code> to <code>'N'</code>, <code>COMM-FAIL-CODE</code> to <code>'7'</code>, calls <code>DEQ-NAMED-COUNTER</code>, and exits via <code>GET-ME-OUT-OF-HERE</code>.</li>
+</ul>
+</li>
+<li>On a successful INSERT:
+<ul>
+<li>Stages key account field values into <code>STORED-*</code> working-storage variables for use by <code>WRITE-PROCTRAN</code>.</li>
+<li>Reformats date strings (DD.MM.YYYY → DDMMYYYY) for storage.</li>
+<li>Calls <code>WRITE-PROCTRAN</code> to record the transaction, then <code>DEQ-NAMED-COUNTER</code> to release the enqueue.</li>
+<li>Populates the return COMMAREA fields (sort code, account number, opened date, last/next statement dates), sets <code>COMM-SUCCESS</code> to <code>'Y'</code>, and clears <code>COMM-FAIL-CODE</code>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="66-write-proctran--processed-transaction-write-dispatcher" tabindex="-1">6.6 WRITE-PROCTRAN — Processed Transaction Write Dispatcher</h3>
+<ul>
+<li>A thin wrapper that delegates directly to <code>WRITE-PROCTRAN-DB2</code> via a single <code>PERFORM</code>.</li>
+<li>Provides a logical separation point allowing the PROCTRAN write mechanism to be swapped or extended without modifying the caller.</li>
+</ul>
+<hr>
+<h3 id="67-write-proctran-db2--insert-processed-transaction-record-into-db2" tabindex="-1">6.7 WRITE-PROCTRAN-DB2 — Insert Processed Transaction Record into DB2</h3>
+<ul>
+<li>Records the account creation event as an audit/transaction entry in the DB2 <code>PROCTRAN</code> table.</li>
+<li>Initialises <code>HOST-PROCTRAN-ROW</code> and <code>WS-EIBTASKN12</code>, then sets the eyecatcher (<code>'PRTR'</code>), sort code, and account number from <code>STORED-ACCNO</code>.</li>
+<li>Uses <code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code> to capture the current absolute time into <code>WS-U-TIME</code>, format the date (DDMMYYYY) into <code>WS-ORIG-DATE</code>, and the time into <code>HV-PROCTRAN-TIME</code>.</li>
+<li>Constructs <code>HV-PROCTRAN-DESC</code> (40 bytes) by concatenating: customer number (positions 1–10), account type (11–18), last statement date (19–26), next statement date (27–34), and spaces (35–40).</li>
+<li>Sets transaction type to <code>'OCA'</code> (Open Current Account) and amount to zero.</li>
+<li>Executes <code>EXEC SQL INSERT INTO PROCTRAN … VALUES …</code>.
+<ul>
+<li>If SQLCODE is non-zero, calls <code>DEQ-NAMED-COUNTER</code>, populates <code>ABNDINFO-REC</code> with full diagnostics (APPLID, task, transaction, date/time via <code>POPULATE-TIME-DATE2</code>, SQLCODE), links to <code>ABNDPROC</code>, and issues <code>EXEC CICS ABEND ABCODE('HWPT')</code>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="68-get-me-out-of-here--program-termination" tabindex="-1">6.8 GET-ME-OUT-OF-HERE — Program Termination</h3>
+<ul>
+<li>Serves as the single exit point for the program, regardless of whether processing succeeded or failed.</li>
+<li>Issues <code>EXEC CICS RETURN</code> to return control to CICS, passing the populated (or failure-flagged) COMMAREA back to the caller.</li>
+<li>Called from multiple points in the program to enforce a consistent and centralised termination strategy.</li>
+</ul>
+<hr>
+<h3 id="69-customer-account-count--retrieve-existing-account-count-via-inqacccu" tabindex="-1">6.9 CUSTOMER-ACCOUNT-COUNT — Retrieve Existing Account Count via INQACCCU</h3>
+<ul>
+<li>Prepares and issues a <code>CICS LINK</code> to the <code>INQACCCU</code> program to determine how many accounts the customer currently holds.</li>
+<li>Initialises <code>NUMBER-OF-ACCOUNTS</code> in <code>INQACCCU-COMMAREA</code> to a sentinel value of 20 before the call.</li>
+<li>Moves <code>COMM-CUSTNO</code> from the COMMAREA into <code>CUSTOMER-NUMBER</code> in <code>INQACCCU-COMMAREA</code> and nullifies <code>COMM-PCB-POINTER</code> via <code>SET … TO NULL</code>.</li>
+<li>Executes <code>EXEC CICS LINK PROGRAM('INQACCCU') COMMAREA(INQACCCU-COMMAREA) SYNCONRETURN</code>, capturing the CICS response in <code>WS-CICS-RESP</code>.</li>
+<li>The caller (<code>P010</code>) evaluates the returned <code>WS-CICS-RESP</code>, <code>COMM-SUCCESS</code>, and <code>NUMBER-OF-ACCOUNTS</code> to determine whether to continue or reject the account creation.</li>
+</ul>
+<hr>
+<h3 id="610-calculate-dates--derive-account-date-fields" tabindex="-1">6.10 CALCULATE-DATES — Derive Account Date Fields</h3>
+<ul>
+<li>Computes and populates the account-opened date, last-statement date, and next-statement date for the new account record.</li>
+<li>Retrieves the current absolute time using <code>EXEC CICS ASKTIME ABSTIME(WS-U-TIME)</code> and formats it via <code>EXEC CICS FORMATTIME</code> into <code>WS-ORIG-DATE</code> (DDMMYYYY format) and the PROCTRAN time field.</li>
+<li>Converts <code>WS-ORIG-DATE</code> from DDMMYYYY to the integer-of-date representation using <code>FUNCTION INTEGER-OF-DATE</code>.</li>
+<li>Calculates the next-statement date by adding 30 to the integer date, with special handling for February using an <code>EVALUATE</code> on <code>WS-ORIG-DATE-MM</code>:
+<ul>
+<li>For months with 30 or 31 days, adds 30 unconditionally.</li>
+<li>For February (month 2), adds 28 then applies a three-step leap-year correction: divisible by 4 but not 100, or divisible by 400 → adds 1 extra day.</li>
+</ul>
+</li>
+<li>Converts the resulting integer back to a Gregorian date using <code>FUNCTION DATE-OF-INTEGER</code> into <code>WS-FUTURE-DATE</code>.</li>
+<li>Populates DB2 host variable date groups for <code>HV-ACCOUNT-OPENED</code>, <code>HV-ACCOUNT-LAST-STMT</code>, and the <code>OUTPUT-DATA</code> account structure’s opened, last-statement, and next-statement fields.</li>
+</ul>
+<hr>
+<h3 id="611-account-type-check--validate-the-requested-account-type" tabindex="-1">6.11 ACCOUNT-TYPE-CHECK — Validate the Requested Account Type</h3>
+<ul>
+<li>Enforces the business rule that only the five permitted account types may be created.</li>
+<li>Uses an <code>EVALUATE TRUE</code> construct to test <code>COMM-ACC-TYPE</code> against the allowed values: <code>'ISA'</code> (3 chars), <code>'MORTGAGE'</code> (8 chars), <code>'SAVING'</code> (6 chars), <code>'CURRENT'</code> (7 chars), and <code>'LOAN'</code> (4 chars).</li>
+<li>If any match is found, sets <code>COMM-SUCCESS</code> to <code>'Y'</code>.</li>
+<li>If no match (<code>WHEN OTHER</code>), sets <code>COMM-SUCCESS</code> to <code>'N'</code> and <code>COMM-FAIL-CODE</code> to <code>'A'</code> to signal an invalid account type to the caller.</li>
+</ul>
+<hr>
+<h3 id="612-populate-time-date2--capture-current-date-and-time-for-abend-diagnostics" tabindex="-1">6.12 POPULATE-TIME-DATE2 — Capture Current Date and Time for Abend Diagnostics</h3>
+<ul>
+<li>A utility paragraph used exclusively to populate <code>WS-U-TIME</code>, <code>WS-ORIG-DATE</code>, and <code>WS-TIME-NOW</code> with the current CICS system time and date.</li>
+<li>Issues <code>EXEC CICS ASKTIME ABSTIME(WS-U-TIME)</code> to obtain the current absolute time.</li>
+<li>Issues <code>EXEC CICS FORMATTIME</code> to convert the absolute time into <code>WS-ORIG-DATE</code> (DDMMYYYY) and <code>WS-TIME-NOW</code> (HHMMSS), using date separator.</li>
+<li>Called from error-handling blocks in <code>FIND-NEXT-ACCOUNT</code> and <code>WRITE-PROCTRAN-DB2</code> to ensure that abend diagnostic records (<code>ABNDINFO-REC</code>) contain accurate timestamps.</li>
+</ul>
+<h2 id="7-dependencies" tabindex="-1">7. Dependencies</h2>
+<h3 id="71-cics-programs-linked-modules" tabindex="-1">7.1 CICS Programs (Linked Modules)</h3>
+<ul>
+<li><strong><code>INQCUST</code></strong> — Invoked via <code>EXEC CICS LINK</code> to validate that the customer identified by <code>COMM-CUSTNO</code> actually exists before account creation proceeds. The result flag <code>INQCUST-INQ-SUCCESS</code> in the returned <code>INQCUST-COMMAREA</code> is checked; a non-<code>'Y'</code> response triggers an immediate failure with code <code>'1'</code>.</li>
+<li><strong><code>INQACCCU</code></strong> — Invoked via <code>EXEC CICS LINK</code> (with <code>SYNCONRETURN</code>) to retrieve the total count of existing accounts held by the customer. The returned <code>NUMBER-OF-ACCOUNTS</code> is used to enforce the business rule that no customer may hold more than 9 accounts simultaneously.</li>
+<li><strong><code>ABNDPROC</code></strong> (<code>WS-ABEND-PGM</code>) — Invoked via <code>EXEC CICS LINK</code> whenever a fatal DB2 error occurs (e.g., failures on <code>SELECT</code> or <code>UPDATE</code> of the <code>CONTROL</code> table, or <code>INSERT</code> into <code>PROCTRAN</code>). It receives the <code>ABNDINFO-REC</code> communication area containing diagnostic information (RESP codes, SQLCODE, timestamp, applid) and handles structured abend processing.</li>
+</ul>
+<hr>
+<h3 id="72-db2-tables" tabindex="-1">7.2 DB2 Tables</h3>
+<ul>
+<li><strong><code>ACCOUNT</code></strong> — The primary target of the program. A new row is inserted with all account details (customer number, sort code, account number, type, interest rate, overdraft limit, balances, opened/last-statement/next-statement dates) upon successful account creation.</li>
+<li><strong><code>CONTROL</code></strong> — Used for two sequential lookups:
+<ul>
+<li><code>&lt;SORTCODE&gt;-ACCOUNT-LAST</code> row — read and updated (incremented by 1) to generate the next unique account number.</li>
+<li><code>&lt;SORTCODE&gt;-ACCOUNT-COUNT</code> row — read and updated (incremented by 1) to maintain the total account count for the bank.</li>
+</ul>
+</li>
+<li><strong><code>PROCTRAN</code></strong> — Receives an audit/transaction record (<code>OCA</code> type) after a successful <code>ACCOUNT</code> insert, recording the sort code, account number, date, time, task reference, and descriptive details of the new account.</li>
+</ul>
+<hr>
+<h3 id="73-db2-sql-copybooks-embedded-via-exec-sql-include" tabindex="-1">7.3 DB2 SQL Copybooks (Embedded via <code>EXEC SQL INCLUDE</code>)</h3>
+<ul>
+<li><strong><code>ACCDB2</code></strong> — SQL DCLGEN copybook providing the DB2 table declaration for the <code>ACCOUNT</code> table; included to provide column definitions used by the host variable structure.</li>
+<li><strong><code>PROCDB2</code></strong> — SQL DCLGEN copybook providing the DB2 table declaration for the <code>PROCTRAN</code> table.</li>
+<li><strong><code>SQLCA</code></strong> — Standard SQL Communication Area; included via <code>EXEC SQL INCLUDE SQLCA</code>. Provides <code>SQLCODE</code> and related fields used throughout for DB2 return-code checking.</li>
+</ul>
+<hr>
+<h3 id="74-cobol-copybooks" tabindex="-1">7.4 COBOL Copybooks</h3>
+<ul>
+<li><strong><code>SORTCODE</code></strong> — Supplies the bank’s sort code constant (<code>SORTCODE</code>) used to construct DB2 <code>CONTROL</code> table keys, the NCS resource name (<code>NCS-ACC-NO-NAME</code>), and to populate account and processed-transaction records.</li>
+<li><strong><code>CREACC</code></strong> — Defines the <code>DFHCOMMAREA</code> (LINKAGE SECTION) layout — the external interface through which all input parameters (<code>COMM-CUSTNO</code>, <code>COMM-ACC-TYPE</code>, <code>COMM-INT-RT</code>, <code>COMM-OVERDR-LIM</code>, <code>COMM-AVAIL-BAL</code>, <code>COMM-ACT-BAL</code>) are received and output fields (<code>COMM-SUCCESS</code>, <code>COMM-FAIL-CODE</code>, <code>COMM-NUMBER</code>, <code>COMM-SORTCODE</code>, <code>COMM-OPENED</code>, <code>COMM-NEXT-STMT-DT</code>, etc.) are returned to the caller.</li>
+<li><strong><code>INQCUSTZ</code></strong> — Defines the communication area structure (<code>INQCUST-COMMAREA</code>) passed to and returned from the <code>INQCUST</code> linked program, including the <code>INQCUST-CUSTNO</code> input and <code>INQCUST-INQ-SUCCESS</code> output fields.</li>
+<li><strong><code>INQACCCU</code></strong> — Defines the communication area structure (<code>INQACCCU-COMMAREA</code>) passed to and returned from the <code>INQACCCU</code> linked program, including <code>CUSTOMER-NUMBER</code>, <code>NUMBER-OF-ACCOUNTS</code>, and <code>COMM-SUCCESS</code>.</li>
+<li><strong><code>ACCOUNT</code></strong> — Provides the <code>OUTPUT-DATA</code> working layout for an account record (used in the <code>LOCAL-STORAGE SECTION</code>).</li>
+<li><strong><code>CUSTOMER</code></strong> — Provides the <code>OUTPUTC-DATA</code> working layout for a customer record (used in the <code>LOCAL-STORAGE SECTION</code>).</li>
+<li><strong><code>PROCTRAN</code></strong> — Defines the <code>PROCTRAN-AREA</code> record layout used to hold processed-transaction data in working storage.</li>
+<li><strong><code>ACCTCTRL</code></strong> — Defines the <code>ACCOUNT-CONTROL</code> structure used in working storage for account control record handling.</li>
+<li><strong><code>ABNDINFO</code></strong> — Defines the <code>ABNDINFO-REC</code> structure populated with diagnostic fields (RESP codes, SQLCODE, applid, task number, transaction ID, timestamp, free-form message) and passed to <code>ABNDPROC</code> on fatal errors.</li>
+</ul>
+<hr>
+<h3 id="75-cics-services--resources" tabindex="-1">7.5 CICS Services &amp; Resources</h3>
+<ul>
+<li><strong><code>EXEC CICS ENQ / DEQ</code> on <code>NCS-ACC-NO-NAME</code></strong> — The Named Counter Service (NCS) resource, named <code>'BANKZACCT'</code> concatenated with the bank sort code, is used as a serialisation lock. <code>ENQ</code> is issued before reading and updating the <code>CONTROL</code> table account-number counter to prevent concurrent duplicate account number assignment; <code>DEQ</code> releases the lock after DB2 operations complete (or on failure).</li>
+<li><strong><code>EXEC CICS ASKTIME</code> / <code>EXEC CICS FORMATTIME</code></strong> — CICS time services used in <code>CALCULATE-DATES</code>, <code>WRITE-PROCTRAN-DB2</code>, and <code>POPULATE-TIME-DATE2</code> to obtain the current date and time for populating opened-date, last-statement-date, and processed-transaction timestamp fields.</li>
+<li><strong><code>EXEC CICS ASSIGN APPLID</code> / <code>EXEC CICS ASSIGN PROGRAM</code></strong> — Used within error paths to retrieve the CICS application identifier and currently running program name, which are written into the <code>ABNDINFO-REC</code> diagnostic record before linking to <code>ABNDPROC</code>.</li>
+<li><strong><code>EXEC CICS RETURN</code></strong> — Terminates the CICS task and returns control to the caller after processing (whether successful or failed).</li>
+<li><strong><code>EXEC CICS ABEND</code></strong> — Issued on unrecoverable DB2 failures (abend codes <code>HNCS</code>, <code>HWPT</code>) after the abend handler has been called, to force a CICS task abend and prevent partial data commitment.</li>
+</ul>
+<hr>
+<h3 id="76-input-parameters-via-commarea" tabindex="-1">7.6 Input Parameters (via COMMAREA)</h3>
+<ul>
+<li><strong><code>COMM-CUSTNO</code></strong> — The customer number identifying the account owner; validated against <code>INQCUST</code> before any processing occurs.</li>
+<li><strong><code>COMM-ACC-TYPE</code></strong> — The requested account type (<code>ISA</code>, <code>MORTGAGE</code>, <code>SAVING</code>, <code>CURRENT</code>, or <code>LOAN</code>); validated by the <code>ACCOUNT-TYPE-CHECK</code> section.</li>
+<li><strong><code>COMM-INT-RT</code></strong> — The interest rate to apply to the new account.</li>
+<li><strong><code>COMM-OVERDR-LIM</code></strong> — The overdraft limit for the new account.</li>
+<li><strong><code>COMM-AVAIL-BAL</code></strong> — The opening available balance for the new account.</li>
+<li><strong><code>COMM-ACT-BAL</code></strong> — The opening actual (ledger) balance for the new account.</li>
+</ul>
+<hr>
+<h3 id="77-cics-eiblock-fields-runtime-environment" tabindex="-1">7.7 CICS EIBLOCK Fields (Runtime Environment)</h3>
+<ul>
+<li><strong><code>EIBRESP</code> / <code>EIBRESP2</code></strong> — CICS-provided response codes checked after every <code>EXEC CICS</code> command to detect failures; also captured into <code>ABNDINFO-REC</code> for diagnostic reporting.</li>
+<li><strong><code>EIBTASKN</code></strong> — The CICS task number, used to populate the <code>PROCTRAN</code> reference field and the abend diagnostic record.</li>
+<li><strong><code>EIBTRNID</code></strong> — The CICS transaction identifier, captured into the abend diagnostic record.</li>
+</ul>
+<h2 id="8-constraints" tabindex="-1">8. Constraints</h2>
+<h3 id="81-input-validation-constraints" tabindex="-1">8.1 Input Validation Constraints</h3>
+<ul>
+<li>
+<p><strong>Customer number must reference an existing customer</strong></p>
+<ul>
+<li>Before any account is created, the program performs a <code>CICS LINK</code> to <code>INQCUST</code>, passing <code>COMM-CUSTNO</code> in the commarea</li>
+<li>If the CICS link call does not return <code>DFHRESP(NORMAL)</code>, or if <code>INQCUST-INQ-SUCCESS</code> is not equal to <code>'Y'</code>, processing is immediately halted</li>
+<li><code>COMM-SUCCESS</code> is set to <code>'N'</code> and <code>COMM-FAIL-CODE</code> is set to <code>'1'</code>, and the program exits via <code>GET-ME-OUT-OF-HERE</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Account type must be one of five permitted values</strong></p>
+<ul>
+<li>The <code>ACCOUNT-TYPE-CHECK</code> section enforces an explicit whitelist of valid account types via an <code>EVALUATE TRUE</code> construct</li>
+<li>The only accepted values for <code>COMM-ACC-TYPE</code> (matched against leading characters of the 8-byte field) are:
+<ul>
+<li><code>'ISA'</code> (first 3 characters)</li>
+<li><code>'MORTGAGE'</code> (first 8 characters)</li>
+<li><code>'SAVING'</code> (first 6 characters)</li>
+<li><code>'CURRENT'</code> (first 7 characters)</li>
+<li><code>'LOAN'</code> (first 4 characters)</li>
+</ul>
+</li>
+<li>Any other value causes <code>COMM-SUCCESS</code> to be set to <code>'N'</code> and <code>COMM-FAIL-CODE</code> to be set to <code>'A'</code>, terminating processing immediately</li>
+</ul>
+</li>
+</ul>
+<h3 id="82-business-rule-constraints" tabindex="-1">8.2 Business Rule Constraints</h3>
+<ul>
+<li>
+<p><strong>A customer may hold no more than 9 accounts</strong></p>
+<ul>
+<li>The program links to <code>INQACCCU</code> to obtain the current account count for the customer (<code>NUMBER-OF-ACCOUNTS</code>)</li>
+<li>If this count is strictly greater than 9 (<code>&gt; 9</code>), <code>COMM-SUCCESS</code> is set to <code>'N'</code>, <code>COMM-FAIL-CODE</code> is set to <code>'8'</code>, and account creation is rejected</li>
+<li>Note: the initial value of <code>NUMBER-OF-ACCOUNTS</code> is set to <code>20</code> before the <code>INQACCCU</code> link call, meaning that if <code>INQACCCU</code> fails silently without updating the field, the request will be blocked by the count check</li>
+</ul>
+</li>
+<li>
+<p><strong>Account count retrieval must succeed</strong></p>
+<ul>
+<li>If the CICS link call to <code>INQACCCU</code> does not return <code>DFHRESP(NORMAL)</code>, processing is halted with <code>COMM-FAIL-CODE</code> set to <code>'9'</code></li>
+<li>Additionally, if the <code>COMM-SUCCESS</code> flag returned from <code>INQACCCU</code> in its own commarea is <code>'N'</code>, processing is equally halted with <code>COMM-FAIL-CODE</code> set to <code>'9'</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Next statement date is always set to today plus 30 days</strong></p>
+<ul>
+<li><code>CALCULATE-DATES</code> computes the next statement date by adding exactly 30 days to the current date for all months, with a special case for February: if the account is opened in February, only 28 days are added, with leap-year logic applied (divisibility by 4, 100, and 400) to conditionally add one further day</li>
+<li>This calculation is mandatory and cannot be overridden by the caller; the next statement date field in the commarea is always populated by the program, not accepted from input</li>
+</ul>
+</li>
+</ul>
+<h3 id="83-sequencing-and-ordering-constraints" tabindex="-1">8.3 Sequencing and Ordering Constraints</h3>
+<ul>
+<li>
+<p><strong>Customer existence must be validated before all other processing</strong></p>
+<ul>
+<li>The <code>CICS LINK</code> to <code>INQCUST</code> and its success check is the very first substantive operation performed; no account type validation, account count check, or any DB2 operation is attempted unless customer validation succeeds</li>
+</ul>
+</li>
+<li>
+<p><strong>Account count must be verified before account type is checked</strong></p>
+<ul>
+<li><code>CUSTOMER-ACCOUNT-COUNT</code> is called before <code>ACCOUNT-TYPE-CHECK</code>, so a customer with too many accounts is rejected even if the account type is also invalid</li>
+</ul>
+</li>
+<li>
+<p><strong>Account type must be validated before the named counter is enqueued</strong></p>
+<ul>
+<li><code>ACCOUNT-TYPE-CHECK</code> is called before <code>ENQ-NAMED-COUNTER</code>, ensuring the exclusive resource lock is never acquired for an invalid account type</li>
+</ul>
+</li>
+<li>
+<p><strong>The CONTROL table must be read and updated before the ACCOUNT DB2 insert</strong></p>
+<ul>
+<li><code>FIND-NEXT-ACCOUNT</code> reads the <code>SORTCODE-ACCOUNT-LAST</code> row from the CONTROL table and increments it to produce the new account number, then updates the row; this must complete successfully before the DB2 INSERT into ACCOUNT is issued</li>
+</ul>
+</li>
+<li>
+<p><strong>The ACCOUNT DB2 insert must succeed before the PROCTRAN DB2 insert</strong></p>
+<ul>
+<li><code>WRITE-PROCTRAN</code> is only called from inside <code>WRITE-ACCOUNT-DB2</code> after a successful INSERT into the ACCOUNT table; a non-zero SQLCODE on the ACCOUNT INSERT causes an immediate exit with fail code <code>'7'</code> and the PROCTRAN write is never attempted</li>
+</ul>
+</li>
+<li>
+<p><strong>The named counter must be dequeued only after all DB2 operations are complete (or on failure)</strong></p>
+<ul>
+<li><code>DEQ-NAMED-COUNTER</code> is called either after both the ACCOUNT and PROCTRAN writes succeed, or as part of the failure cleanup path if the ACCOUNT INSERT fails or the PROCTRAN INSERT fails; it is never called before the DB2 operations</li>
+</ul>
+</li>
+</ul>
+<h3 id="84-resource-and-concurrency-constraints" tabindex="-1">8.4 Resource and Concurrency Constraints</h3>
+<ul>
+<li>
+<p><strong>Concurrent account number assignment is serialised via a CICS ENQ on a named counter</strong></p>
+<ul>
+<li><code>ENQ-NAMED-COUNTER</code> issues a <code>CICS ENQ</code> on the resource <code>NCS-ACC-NO-NAME</code>, which is constructed as <code>'BANKZACCT'</code> concatenated with the 6-character bank sort code and padded to 16 characters</li>
+<li>If the ENQ does not return <code>DFHRESP(NORMAL)</code>, <code>COMM-SUCCESS</code> is set to <code>'N'</code>, <code>COMM-FAIL-CODE</code> is set to <code>'3'</code>, and processing is aborted</li>
+<li>The ENQ is held for the duration of the CONTROL table update and the DB2 ACCOUNT INSERT, guaranteeing that no two concurrent transactions can obtain the same account number</li>
+</ul>
+</li>
+<li>
+<p><strong>The DEQ must always be issued to release the named counter lock</strong></p>
+<ul>
+<li><code>DEQ-NAMED-COUNTER</code> is called on both the success path and the error path following an ACCOUNT INSERT failure or a PROCTRAN INSERT failure, ensuring the lock is released regardless of outcome</li>
+<li>If the DEQ itself fails (non-<code>DFHRESP(NORMAL)</code> response), <code>COMM-SUCCESS</code> is set to <code>'N'</code> and <code>COMM-FAIL-CODE</code> is set to <code>'5'</code></li>
+</ul>
+</li>
+<li>
+<p><strong>The CONTROL table account counter (<code>SORTCODE-ACCOUNT-COUNT</code>) must be incremented atomically with the new account record</strong></p>
+<ul>
+<li>Inside <code>FIND-NEXT-ACCOUNT</code>, immediately after updating <code>SORTCODE-ACCOUNT-LAST</code>, the program also reads and increments the <code>SORTCODE-ACCOUNT-COUNT</code> control row; a non-zero SQLCODE on either the SELECT or the UPDATE of this counter causes an immediate CICS ABEND (<code>ABCODE('HNCS')</code>) rather than a graceful failure</li>
+</ul>
+</li>
+</ul>
+<h3 id="85-db2-error-handling-constraints" tabindex="-1">8.5 DB2 Error Handling Constraints</h3>
+<ul>
+<li><strong>Non-zero SQLCODE on any DB2 operation is treated as fatal or near-fatal</strong>
+<ul>
+<li>A non-zero SQLCODE on the <code>SELECT</code> from CONTROL (for <code>ACCOUNT-LAST</code>) triggers an abend via <code>EXEC CICS ABEND ABCODE('HNCS')</code> with no graceful return</li>
+<li>A non-zero SQLCODE on the <code>UPDATE</code> of CONTROL (for <code>ACCOUNT-LAST</code>) equally triggers an abend with <code>ABCODE('HNCS')</code></li>
+<li>A non-zero SQLCODE on the <code>SELECT</code> from CONTROL (for <code>ACCOUNT-COUNT</code>) triggers an abend with <code>ABCODE('HNCS')</code></li>
+<li>A non-zero SQLCODE on the <code>UPDATE</code> of CONTROL (for <code>ACCOUNT-COUNT</code>) triggers an abend with <code>ABCODE('HNCS')</code></li>
+<li>A non-zero SQLCODE on the <code>INSERT INTO ACCOUNT</code> is handled gracefully: <code>COMM-SUCCESS</code> is set to <code>'N'</code>, <code>COMM-FAIL-CODE</code> is set to <code>'7'</code>, the named counter DEQ is performed, and the program returns normally</li>
+<li>A non-zero SQLCODE on the <code>INSERT INTO PROCTRAN</code> triggers an abend via <code>EXEC CICS ABEND ABCODE('HWPT')</code>; in all abend cases the <code>ABNDPROC</code> handler program is linked to before the abend is issued</li>
+</ul>
+</li>
+</ul>
+<h3 id="86-output-constraints" tabindex="-1">8.6 Output Constraints</h3>
+<ul>
+<li>
+<p><strong>The COMMAREA eyecatcher is always set to <code>'ACCT'</code> on success</strong></p>
+<ul>
+<li>The literal <code>'ACCT'</code> is moved to <code>COMM-EYECATCHER</code> only after all DB2 writes succeed, and <code>COMM-SUCCESS</code> is set to <code>'Y'</code> and <code>COMM-FAIL-CODE</code> is blanked</li>
+</ul>
+</li>
+<li>
+<p><strong>Date fields in the returned COMMAREA are always in <code>DDMMYYYY</code> format</strong></p>
+<ul>
+<li>The opened date, last statement date, and next statement date are all assembled into the commarea by moving individual day, month, and year components in that specific order, without delimiters, producing a fixed 8-character <code>DDMMYYYY</code> string</li>
+</ul>
+</li>
+<li>
+<p><strong>The PROCTRAN description field layout is fixed</strong></p>
+<ul>
+<li>The description field (<code>HV-PROCTRAN-DESC</code>, 40 characters) is always populated with customer number in positions 1–10, account type in positions 11–18, last statement date in positions 19–26, next statement date in positions 27–34, and spaces in positions 35–40; this layout is hardcoded and cannot vary</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-error-handling" tabindex="-1">9. Error handling</h2>
+<h3 id="91-business-rule-validation-checks" tabindex="-1">9.1 Business Rule Validation Checks</h3>
+<ul>
+<li>
+<p><strong>Customer existence validation</strong>: Before any account creation begins, the program links to the INQCUST program to confirm the customer identified by COMM-CUSTNO actually exists in the system. Upon return, the program checks both the CICS EIBRESP value and the INQCUST-INQ-SUCCESS flag. If either indicates a failure, COMM-SUCCESS is set to ‘N’ and COMM-FAIL-CODE is set to ‘1’, and the program immediately terminates via GET-ME-OUT-OF-HERE.</p>
+</li>
+<li>
+<p><strong>Customer account count check</strong>: The program links to INQACCCU to obtain the current number of accounts held by the customer. Two separate failure conditions are then evaluated:</p>
+<ul>
+<li>If the CICS RESP code returned from the link is not normal, COMM-SUCCESS is set to ‘N’, COMM-FAIL-CODE is set to ‘9’, and the program exits.</li>
+<li>If the INQACCCU COMM-SUCCESS flag within the returned COMMAREA is ‘N’, COMM-SUCCESS is set to ‘N’, COMM-FAIL-CODE is set to ‘9’, and the program exits.</li>
+</ul>
+</li>
+<li>
+<p><strong>Maximum account limit enforcement</strong>: If the customer already holds more than 9 accounts, the program sets COMM-SUCCESS to ‘N’ and COMM-FAIL-CODE to ‘8’, then routes to GET-ME-OUT-OF-HERE without proceeding further.</p>
+</li>
+<li>
+<p><strong>Account type validation</strong>: The ACCOUNT-TYPE-CHECK section uses an EVALUATE statement to verify the incoming COMM-ACC-TYPE is one of the five permitted values: ISA, MORTGAGE, SAVING, CURRENT, or LOAN. Any unrecognised type falls to the WHEN OTHER branch, which sets COMM-SUCCESS to ‘N’ and COMM-FAIL-CODE to ‘A’. The calling section then checks COMM-SUCCESS and exits if it is ‘N’.</p>
+</li>
+</ul>
+<hr>
+<h3 id="92-cics-resource-lock-enqdeq-error-handling" tabindex="-1">9.2 CICS Resource Lock (ENQ/DEQ) Error Handling</h3>
+<ul>
+<li>
+<p><strong>ENQ failure detection</strong>: In the ENQ-NAMED-COUNTER section, after issuing a CICS ENQ on the Named Counter Service resource name, WS-CICS-RESP is compared against DFHRESP(NORMAL). If the enqueue did not succeed, COMM-SUCCESS is set to ‘N’, COMM-FAIL-CODE is set to ‘3’, and the program terminates immediately without attempting any DB2 writes.</p>
+</li>
+<li>
+<p><strong>DEQ failure detection</strong>: The DEQ-NAMED-COUNTER section similarly checks WS-CICS-RESP after issuing a CICS DEQ. On failure, COMM-SUCCESS is set to ‘N’ and COMM-FAIL-CODE is set to ‘5’, and the program exits. This section is invoked both on the normal success path and as a cleanup step when DB2 write operations fail, ensuring the resource lock is always released regardless of the outcome.</p>
+</li>
+</ul>
+<hr>
+<h3 id="93-db2-operation-error-handling" tabindex="-1">9.3 DB2 Operation Error Handling</h3>
+<ul>
+<li>
+<p><strong>CONTROL table SELECT failure (ACCOUNT-LAST)</strong>: In the FIND-NEXT-ACCOUNT section, after selecting the last account number from the CONTROL table, SQLCODE is evaluated. A non-zero SQLCODE triggers the structured abend path described below; the program does not attempt to continue account creation.</p>
+</li>
+<li>
+<p><strong>CONTROL table UPDATE failure (ACCOUNT-LAST)</strong>: If the subsequent UPDATE of the account number counter returns a non-zero SQLCODE, the same abend path is invoked, also using abend code ‘HNCS’.</p>
+</li>
+<li>
+<p><strong>CONTROL table SELECT failure (ACCOUNT-COUNT)</strong>: A second SELECT is issued to retrieve the current account count from the CONTROL table. A non-zero SQLCODE here triggers the same abend procedure with abend code ‘HNCS’ and a uniquely labelled free-form message.</p>
+</li>
+<li>
+<p><strong>CONTROL table UPDATE failure (ACCOUNT-COUNT)</strong>: If the UPDATE of the account count counter fails, a non-zero SQLCODE is handled by the same abend invocation path.</p>
+</li>
+<li>
+<p><strong>ACCOUNT table INSERT failure</strong>: In WRITE-ACCOUNT-DB2, after the DB2 INSERT into the ACCOUNT table, SQLCODE is checked. A non-zero result sets COMM-SUCCESS to ‘N’, COMM-FAIL-CODE to ‘7’, triggers DEQ-NAMED-COUNTER to release the resource lock, and then routes to GET-ME-OUT-OF-HERE. This represents the only DB2 error path that performs a graceful controlled exit rather than an abend.</p>
+</li>
+<li>
+<p><strong>PROCTRAN table INSERT failure</strong>: In WRITE-PROCTRAN-DB2, after inserting into the PROCTRAN table, a non-zero SQLCODE triggers the structured abend path — DEQ-NAMED-COUNTER is called first to release the resource lock, then the abend handler is invoked, and a CICS ABEND with code ‘HWPT’ is issued.</p>
+</li>
+</ul>
+<hr>
+<h3 id="94-structured-abend-handling-and-escalation" tabindex="-1">9.4 Structured Abend Handling and Escalation</h3>
+<ul>
+<li>
+<p><strong>Abend information assembly</strong>: For all fatal DB2 errors, the program follows a consistent structured pattern before issuing the abend. It initialises ABNDINFO-REC, populates ABND-RESPCODE and ABND-RESP2CODE from EIBRESP and EIBRESP2, retrieves the CICS application identifier via EXEC CICS ASSIGN APPLID, captures the task number (EIBTASKN), transaction identifier (EIBTRNID), and absolute timestamp. This diagnostic information is assembled into a free-form message describing the context of the failure (e.g., which specific DB2 operation failed and at which internal label such as FNAND010, FNAND010(2), FNAND010(3), FNAND010(4), or WPD010).</p>
+</li>
+<li>
+<p><strong>Abend handler linkage</strong>: Once the ABNDINFO-REC is populated, the program links to the external program named in WS-ABEND-PGM (set to ‘ABNDPROC’) passing the diagnostic record via COMMAREA. This delegates the abend handling and any associated logging or notification to a dedicated abend-processing program.</p>
+</li>
+<li>
+<p><strong>CICS ABEND issuance</strong>: Following the link to ABNDPROC, the program issues EXEC CICS ABEND with a specific abend code — ‘HNCS’ for Named Counter / CONTROL table failures, and ‘HWPT’ for PROCTRAN write failures. Most DB2-related abends use the NODUMP option to suppress a system dump; the PROCTRAN abend does not include NODUMP, allowing a dump to be taken.</p>
+</li>
+</ul>
+<hr>
+<h3 id="95-diagnostic-logging-via-display" tabindex="-1">9.5 Diagnostic Logging via DISPLAY</h3>
+<ul>
+<li>
+<p>Throughout the entire program, DISPLAY statements emit progress and diagnostic messages to the CICS system log at each significant processing step. This includes the customer number received on entry, the INQCUST and INQACCCU response values, account counts, SQLCODE values from each DB2 operation, and the final account number generated. On account count failures, an explicit message is displayed before the program sets fail codes and exits.</p>
+</li>
+<li>
+<p>On PROCTRAN INSERT failure, a detailed DISPLAY statement is issued that includes the CICS RESP and RESP2 codes alongside the full HOST-PROCTRAN-ROW content, providing a complete snapshot of the failed record for diagnostic purposes.</p>
+</li>
+</ul>
+<hr>
+<h3 id="96-controlled-program-termination" tabindex="-1">9.6 Controlled Program Termination</h3>
+<ul>
+<li><strong>GET-ME-OUT-OF-HERE</strong>: A dedicated termination section that issues a CICS RETURN command. All error paths (customer not found, too many accounts, invalid account type, ENQ/DEQ failure, ACCOUNT INSERT failure) route to this section after setting the appropriate COMM-SUCCESS and COMM-FAIL-CODE values in the COMMAREA. This ensures the calling program always receives a populated COMMAREA clearly describing the outcome, whether success or failure.</li>
+</ul>
+<h2 id="10-examples" tabindex="-1">10. Examples</h2>
+<h3 id="101-example-1--successful-account-creation" tabindex="-1">10.1 Example 1 — Successful Account Creation</h3>
+<p><strong>Input (COMMAREA fields):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COMM-CUSTNO</code></td>
+<td><code>0000000042</code></td>
+</tr>
+<tr>
+<td><code>COMM-ACC-TYPE</code></td>
+<td><code>CURRENT </code></td>
+</tr>
+<tr>
+<td><code>COMM-INT-RT</code></td>
+<td><code>1.50</code></td>
+</tr>
+<tr>
+<td><code>COMM-OVERDR-LIM</code></td>
+<td><code>500</code></td>
+</tr>
+<tr>
+<td><code>COMM-AVAIL-BAL</code></td>
+<td><code>1000.00</code></td>
+</tr>
+<tr>
+<td><code>COMM-ACT-BAL</code></td>
+<td><code>1000.00</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pre-conditions:</strong></p>
+<ul>
+<li>Customer <code>0000000042</code> exists (INQCUST returns success = <code>'Y'</code>).</li>
+<li>The customer currently holds <strong>2</strong> accounts (well below the 9-account limit).</li>
+<li>The DB2 <code>CONTROL</code> table row <code>&lt;sortcode&gt;-ACCOUNT-LAST</code> currently holds value <code>00000099</code>.</li>
+<li>Today’s date (from CICS) is <code>15.06.2025</code>.</li>
+</ul>
+<p><strong>Processing steps:</strong></p>
+<ol>
+<li>CREACC links to <strong>INQCUST</strong> — customer found, <code>INQCUST-INQ-SUCCESS = 'Y'</code>.</li>
+<li>CREACC links to <strong>INQACCCU</strong> — returns account count = <code>2</code> (≤ 9, so creation proceeds).</li>
+<li>Account type <code>CURRENT</code> passes the <code>ACCOUNT-TYPE-CHECK</code> validation.</li>
+<li>A CICS <strong>ENQ</strong> is issued on the Named Counter resource <code>BANKZACCT&lt;sortcode&gt;</code> to serialise access.</li>
+<li><code>FIND-NEXT-ACCOUNT</code> reads the CONTROL table (<code>&lt;sortcode&gt;-ACCOUNT-LAST = 99</code>), increments it to <code>100</code>, updates the CONTROL table, and also increments <code>&lt;sortcode&gt;-ACCOUNT-COUNT</code>.</li>
+<li><code>WRITE-ACCOUNT-DB2</code> inserts a new row into the DB2 <code>ACCOUNT</code> table:
+<ul>
+<li><code>ACCOUNT_NUMBER = 00000100</code></li>
+<li><code>ACCOUNT_TYPE = CURRENT</code></li>
+<li><code>ACCOUNT_OPENED = 15.06.2025</code></li>
+<li><code>ACCOUNT_LAST_STATEMENT = 15.06.2025</code></li>
+<li><code>ACCOUNT_NEXT_STATEMENT = 15.07.2025</code> <em>(today + 30 days)</em></li>
+<li><code>ACCOUNT_AVAILABLE_BALANCE = 1000.00</code></li>
+</ul>
+</li>
+<li>A <code>PROCTRAN</code> row (type <code>OCA</code>) is inserted to audit the account opening.</li>
+<li>CICS <strong>DEQ</strong> releases the Named Counter resource.</li>
+</ol>
+<p><strong>Output (COMMAREA fields returned):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COMM-SUCCESS</code></td>
+<td><code>Y</code></td>
+</tr>
+<tr>
+<td><code>COMM-FAIL-CODE</code></td>
+<td><code> </code> (space)</td>
+</tr>
+<tr>
+<td><code>COMM-NUMBER</code></td>
+<td><code>00000100</code></td>
+</tr>
+<tr>
+<td><code>COMM-SORTCODE</code></td>
+<td><code>&lt;bank sort code&gt;</code></td>
+</tr>
+<tr>
+<td><code>COMM-OPENED</code></td>
+<td><code>15062025</code></td>
+</tr>
+<tr>
+<td><code>COMM-LAST-STMT-DT</code></td>
+<td><code>15062025</code></td>
+</tr>
+<tr>
+<td><code>COMM-NEXT-STMT-DT</code></td>
+<td><code>15072025</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="102-example-2--failure-customer-not-found" tabindex="-1">10.2 Example 2 — Failure: Customer Not Found</h3>
+<p><strong>Input (COMMAREA fields):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COMM-CUSTNO</code></td>
+<td><code>0000009999</code></td>
+</tr>
+<tr>
+<td><code>COMM-ACC-TYPE</code></td>
+<td><code>SAVING  </code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Processing steps:</strong></p>
+<ol>
+<li>CREACC links to <strong>INQCUST</strong> passing customer number <code>0000009999</code>.</li>
+<li>INQCUST cannot locate the customer and returns <code>INQCUST-INQ-SUCCESS = 'N'</code>.</li>
+<li>CREACC detects the failure condition immediately — no account count check, no type check, no DB2 insert is attempted.</li>
+<li><code>COMM-SUCCESS</code> is set to <code>'N'</code> and <code>COMM-FAIL-CODE</code> to <code>'1'</code>.</li>
+<li><code>GET-ME-OUT-OF-HERE</code> issues a CICS RETURN.</li>
+</ol>
+<p><strong>Output (COMMAREA fields returned):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COMM-SUCCESS</code></td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td><code>COMM-FAIL-CODE</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>COMM-NUMBER</code></td>
+<td><em>(unchanged / zeros)</em></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="103-example-3--failure-too-many-accounts" tabindex="-1">10.3 Example 3 — Failure: Too Many Accounts</h3>
+<p><strong>Input (COMMAREA fields):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COMM-CUSTNO</code></td>
+<td><code>0000000007</code></td>
+</tr>
+<tr>
+<td><code>COMM-ACC-TYPE</code></td>
+<td><code>ISA     </code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pre-conditions:</strong></p>
+<ul>
+<li>Customer <code>0000000007</code> exists (INQCUST succeeds).</li>
+<li>The customer already holds <strong>10</strong> accounts (above the permitted maximum of 9).</li>
+</ul>
+<p><strong>Processing steps:</strong></p>
+<ol>
+<li>INQCUST succeeds — customer found.</li>
+<li>INQACCCU returns <code>NUMBER-OF-ACCOUNTS = 10</code>.</li>
+<li>The check <code>IF NUMBER-OF-ACCOUNTS &gt; 9</code> triggers, rejecting the request immediately.</li>
+<li>No account type check or DB2 activity is performed.</li>
+</ol>
+<p><strong>Output (COMMAREA fields returned):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COMM-SUCCESS</code></td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td><code>COMM-FAIL-CODE</code></td>
+<td><code>8</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="104-example-4--failure-invalid-account-type" tabindex="-1">10.4 Example 4 — Failure: Invalid Account Type</h3>
+<p><strong>Input (COMMAREA fields):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COMM-CUSTNO</code></td>
+<td><code>0000000015</code></td>
+</tr>
+<tr>
+<td><code>COMM-ACC-TYPE</code></td>
+<td><code>PREMIUM </code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pre-conditions:</strong></p>
+<ul>
+<li>Customer <code>0000000015</code> exists and holds 1 account.</li>
+<li><code>PREMIUM</code> is not among the valid types (<code>ISA</code>, <code>MORTGAGE</code>, <code>SAVING</code>, <code>CURRENT</code>, <code>LOAN</code>).</li>
+</ul>
+<p><strong>Processing steps:</strong></p>
+<ol>
+<li>INQCUST succeeds.</li>
+<li>INQACCCU returns count = 1 (within limit).</li>
+<li><code>ACCOUNT-TYPE-CHECK</code> finds that <code>PREMIUM</code> is not a recognised type and sets <code>COMM-SUCCESS = 'N'</code> and <code>COMM-FAIL-CODE = 'A'</code>.</li>
+<li>No ENQ, no DB2 insert, and no PROCTRAN write are performed.</li>
+</ol>
+<p><strong>Output (COMMAREA fields returned):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COMM-SUCCESS</code></td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td><code>COMM-FAIL-CODE</code></td>
+<td><code>A</code></td>
+</tr>
+</tbody>
+</table>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a>
+<ul>
+<li class="toc-level-3"><a href="#21-communication-area-dfhcommarea--caller-supplied-inputs">2.1 Communication Area (DFHCOMMAREA) — Caller-Supplied Inputs</a></li>
+<li class="toc-level-3"><a href="#22-db2-external-data-sources">2.2 DB2 External Data Sources</a></li>
+<li class="toc-level-3"><a href="#23-linked-programs-cics-link--external-program-inputs">2.3 Linked Programs (CICS LINK — External Program Inputs)</a></li>
+<li class="toc-level-3"><a href="#24-static--configuration-inputs">2.4 Static / Configuration Inputs</a></li>
+<li class="toc-level-3"><a href="#25-cics-runtime-inputs">2.5 CICS Runtime Inputs</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a>
+<ul>
+<li class="toc-level-3"><a href="#31-communication-area-commarea--returned-to-caller">3.1 Communication Area (COMMAREA) — Returned to Caller</a></li>
+<li class="toc-level-3"><a href="#32-db2-account-table--inserted-record">3.2 DB2 ACCOUNT Table — Inserted Record</a></li>
+<li class="toc-level-3"><a href="#33-db2-control-table--updated-records">3.3 DB2 CONTROL Table — Updated Records</a></li>
+<li class="toc-level-3"><a href="#34-db2-proctran-table--inserted-record">3.4 DB2 PROCTRAN Table — Inserted Record</a></li>
+<li class="toc-level-3"><a href="#35-cics-abend-handler-abndproc--linked-on-fatal-errors">3.5 CICS Abend Handler (ABNDPROC) — Linked on Fatal Errors</a></li>
+<li class="toc-level-3"><a href="#36-console--cics-display-messages">3.6 Console / CICS DISPLAY Messages</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-business-rules">4. Business Rules</a>
+<ul>
+<li class="toc-level-3"><a href="#41-paragraph-premiere_p010">4.1 Paragraph: PREMIERE_P010</a>
+<ul>
+<li class="toc-level-4"><a href="#411-customer-existence-validation-via-inqcust">4.1.1 Customer Existence Validation via INQCUST</a></li>
+<li class="toc-level-4"><a href="#412-account-count-error-handling--cics-response-failure">4.1.2 Account Count Error Handling — CICS Response Failure</a></li>
+<li class="toc-level-4"><a href="#413-account-count-error-handling--inqacccu-business-failure">4.1.3 Account Count Error Handling — INQACCCU Business Failure</a></li>
+<li class="toc-level-4"><a href="#414-maximum-account-limit-enforcement">4.1.4 Maximum Account Limit Enforcement</a></li>
+<li class="toc-level-4"><a href="#415-account-type-validation-gate">4.1.5 Account Type Validation Gate</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#42-paragraph-write-account-db2_wad010">4.2 Paragraph: WRITE-ACCOUNT-DB2_WAD010</a>
+<ul>
+<li class="toc-level-4"><a href="#421-next-statement-date-calculation-today--30-days">4.2.1 Next Statement Date Calculation (Today + 30 Days)</a></li>
+<li class="toc-level-4"><a href="#422-new-account-db2-insert">4.2.2 New Account DB2 Insert</a></li>
+<li class="toc-level-4"><a href="#423-db2-insert-failure--account-creation-rejection">4.2.3 DB2 Insert Failure — Account Creation Rejection</a></li>
+<li class="toc-level-4"><a href="#424-processed-transaction-proctran-write-on-successful-account-creation">4.2.4 Processed Transaction (PROCTRAN) Write on Successful Account Creation</a></li>
+<li class="toc-level-4"><a href="#425-successful-account-creation--communication-area-population">4.2.5 Successful Account Creation — Communication Area Population</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#43-paragraph-enq-named-counter_enc010">4.3 Paragraph: ENQ-NAMED-COUNTER_ENC010</a>
+<ul>
+<li class="toc-level-4"><a href="#431-named-counter-enqueue-failure--account-creation-rejection">4.3.1 Named Counter Enqueue Failure — Account Creation Rejection</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#44-paragraph-deq-named-counter_dnc010">4.4 Paragraph: DEQ-NAMED-COUNTER_DNC010</a>
+<ul>
+<li class="toc-level-4"><a href="#441-named-counter-dequeue-failure--account-creation-rejection">4.4.1 Named Counter Dequeue Failure — Account Creation Rejection</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#45-paragraph-find-next-account_fna010">4.5 Paragraph: FIND-NEXT-ACCOUNT_FNA010</a>
+<ul>
+<li class="toc-level-4"><a href="#451-next-sequential-account-number-assignment-and-control-table-update">4.5.1 Next Sequential Account Number Assignment and CONTROL Table Update</a></li>
+<li class="toc-level-4"><a href="#452-account-count-increment-in-control-table">4.5.2 Account Count Increment in CONTROL Table</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#46-paragraph-write-proctran_wp010">4.6 Paragraph: WRITE-PROCTRAN_WP010</a>
+<ul>
+<li class="toc-level-4"><a href="#461-trigger-processed-transaction-write">4.6.1 Trigger Processed Transaction Write</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#47-paragraph-write-proctran-db2_wpd010">4.7 Paragraph: WRITE-PROCTRAN-DB2_WPD010</a>
+<ul>
+<li class="toc-level-4"><a href="#471-insert-account-creation-transaction-into-proctran">4.7.1 Insert Account Creation Transaction into PROCTRAN</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#48-paragraph-customer-account-count_cac010">4.8 Paragraph: CUSTOMER-ACCOUNT-COUNT_CAC010</a>
+<ul>
+<li class="toc-level-4"><a href="#481-retrieve-existing-account-count-for-customer">4.8.1 Retrieve Existing Account Count for Customer</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#49-paragraph-calculate-dates_cd010">4.9 Paragraph: CALCULATE-DATES_CD010</a>
+<ul>
+<li class="toc-level-4"><a href="#491-calculate-account-opened-last-statement-and-next-statement-dates">4.9.1 Calculate Account Opened, Last Statement, and Next Statement Dates</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#410-paragraph-account-type-check_atc010">4.10 Paragraph: ACCOUNT-TYPE-CHECK_ATC010</a>
+<ul>
+<li class="toc-level-4"><a href="#4101-validate-account-type-against-permitted-values">4.10.1 Validate Account Type Against Permitted Values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-processing-logic">5. Processing logic</a>
+<ul>
+<li class="toc-level-3"><a href="#51-mermaid-flow-diagram">5.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#52-processing-logic-description">5.2 Processing Logic Description</a>
+<ul>
+<li class="toc-level-4"><a href="#521-high-level-summary">5.2.1 High-level Summary</a></li>
+<li class="toc-level-4"><a href="#522-execution-flow">5.2.2 Execution Flow</a></li>
+<li class="toc-level-4"><a href="#523-external-interactions">5.2.3 External Interactions</a></li>
+<li class="toc-level-4"><a href="#524-plain-language-summary">5.2.4 Plain Language Summary</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#53-database-tables">5.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#6-paragraphs">6. Paragraphs</a>
+<ul>
+<li class="toc-level-3"><a href="#61-p010--main-entry-point-and-orchestration">6.1 P010 — Main Entry Point and Orchestration</a></li>
+<li class="toc-level-3"><a href="#62-enq-named-counter--enqueue-named-counter-resource">6.2 ENQ-NAMED-COUNTER — Enqueue Named Counter Resource</a></li>
+<li class="toc-level-3"><a href="#63-deq-named-counter--dequeue-named-counter-resource">6.3 DEQ-NAMED-COUNTER — Dequeue Named Counter Resource</a></li>
+<li class="toc-level-3"><a href="#64-find-next-account--determine-and-reserve-the-next-account-number">6.4 FIND-NEXT-ACCOUNT — Determine and Reserve the Next Account Number</a></li>
+<li class="toc-level-3"><a href="#65-write-account-db2--populate-and-insert-account-row-into-db2">6.5 WRITE-ACCOUNT-DB2 — Populate and Insert Account Row into DB2</a></li>
+<li class="toc-level-3"><a href="#66-write-proctran--processed-transaction-write-dispatcher">6.6 WRITE-PROCTRAN — Processed Transaction Write Dispatcher</a></li>
+<li class="toc-level-3"><a href="#67-write-proctran-db2--insert-processed-transaction-record-into-db2">6.7 WRITE-PROCTRAN-DB2 — Insert Processed Transaction Record into DB2</a></li>
+<li class="toc-level-3"><a href="#68-get-me-out-of-here--program-termination">6.8 GET-ME-OUT-OF-HERE — Program Termination</a></li>
+<li class="toc-level-3"><a href="#69-customer-account-count--retrieve-existing-account-count-via-inqacccu">6.9 CUSTOMER-ACCOUNT-COUNT — Retrieve Existing Account Count via INQACCCU</a></li>
+<li class="toc-level-3"><a href="#610-calculate-dates--derive-account-date-fields">6.10 CALCULATE-DATES — Derive Account Date Fields</a></li>
+<li class="toc-level-3"><a href="#611-account-type-check--validate-the-requested-account-type">6.11 ACCOUNT-TYPE-CHECK — Validate the Requested Account Type</a></li>
+<li class="toc-level-3"><a href="#612-populate-time-date2--capture-current-date-and-time-for-abend-diagnostics">6.12 POPULATE-TIME-DATE2 — Capture Current Date and Time for Abend Diagnostics</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-dependencies">7. Dependencies</a>
+<ul>
+<li class="toc-level-3"><a href="#71-cics-programs-linked-modules">7.1 CICS Programs (Linked Modules)</a></li>
+<li class="toc-level-3"><a href="#72-db2-tables">7.2 DB2 Tables</a></li>
+<li class="toc-level-3"><a href="#73-db2-sql-copybooks-embedded-via-exec-sql-include">7.3 DB2 SQL Copybooks (Embedded via EXEC SQL INCLUDE)</a></li>
+<li class="toc-level-3"><a href="#74-cobol-copybooks">7.4 COBOL Copybooks</a></li>
+<li class="toc-level-3"><a href="#75-cics-services--resources">7.5 CICS Services &amp;amp; Resources</a></li>
+<li class="toc-level-3"><a href="#76-input-parameters-via-commarea">7.6 Input Parameters (via COMMAREA)</a></li>
+<li class="toc-level-3"><a href="#77-cics-eiblock-fields-runtime-environment">7.7 CICS EIBLOCK Fields (Runtime Environment)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-constraints">8. Constraints</a>
+<ul>
+<li class="toc-level-3"><a href="#81-input-validation-constraints">8.1 Input Validation Constraints</a></li>
+<li class="toc-level-3"><a href="#82-business-rule-constraints">8.2 Business Rule Constraints</a></li>
+<li class="toc-level-3"><a href="#83-sequencing-and-ordering-constraints">8.3 Sequencing and Ordering Constraints</a></li>
+<li class="toc-level-3"><a href="#84-resource-and-concurrency-constraints">8.4 Resource and Concurrency Constraints</a></li>
+<li class="toc-level-3"><a href="#85-db2-error-handling-constraints">8.5 DB2 Error Handling Constraints</a></li>
+<li class="toc-level-3"><a href="#86-output-constraints">8.6 Output Constraints</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-error-handling">9. Error handling</a>
+<ul>
+<li class="toc-level-3"><a href="#91-business-rule-validation-checks">9.1 Business Rule Validation Checks</a></li>
+<li class="toc-level-3"><a href="#92-cics-resource-lock-enqdeq-error-handling">9.2 CICS Resource Lock (ENQ/DEQ) Error Handling</a></li>
+<li class="toc-level-3"><a href="#93-db2-operation-error-handling">9.3 DB2 Operation Error Handling</a></li>
+<li class="toc-level-3"><a href="#94-structured-abend-handling-and-escalation">9.4 Structured Abend Handling and Escalation</a></li>
+<li class="toc-level-3"><a href="#95-diagnostic-logging-via-display">9.5 Diagnostic Logging via DISPLAY</a></li>
+<li class="toc-level-3"><a href="#96-controlled-program-termination">9.6 Controlled Program Termination</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#10-examples">10. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#101-example-1--successful-account-creation">10.1 Example 1 — Successful Account Creation</a></li>
+<li class="toc-level-3"><a href="#102-example-2--failure-customer-not-found">10.2 Example 2 — Failure: Customer Not Found</a></li>
+<li class="toc-level-3"><a href="#103-example-3--failure-too-many-accounts">10.3 Example 3 — Failure: Too Many Accounts</a></li>
+<li class="toc-level-3"><a href="#104-example-4--failure-invalid-account-type">10.4 Example 4 — Failure: Invalid Account Type</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">CREACC</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

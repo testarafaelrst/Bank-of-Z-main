@@ -1,0 +1,1589 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Reference - Bank of Z - IBM Z Enterprise Banking Application</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../assets/prism-tomorrow.css">
+    <script src="../assets/prism-core.js"></script>
+    <script src="../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../index.html" style="color: inherit; text-decoration: none;">Bank of Z - IBM Z Enterprise Banking Application</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">About Bank of Z</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="what-is-bank-of-z.html" class="nav-link" data-page-id="what-is-bank-of-z">What is Bank of Z?</a>
+                <a href="key-capabilities.html" class="nav-link" data-page-id="key-capabilities">Key Capabilities</a>
+                <a href="architecture-overview.html" class="nav-link" data-page-id="architecture-overview">Architecture Overview</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="application-components.html" class="nav-link" data-page-id="application-components">Application Components</a>
+                <a href="application-flow.html" class="nav-link" data-page-id="application-flow">Application Flow</a>
+                <a href="build-and-deployment-architecture.html" class="nav-link" data-page-id="build-and-deployment-architecture">Build &amp; Deployment Architecture</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Installation &amp; Setup</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="prerequisites-and-environment.html" class="nav-link" data-page-id="prerequisites-and-environment">Prerequisites &amp; Environment Configuration</a>
+                <a href="local-tools-setup.html" class="nav-link" data-page-id="local-tools-setup">Local Tools Setup</a>
+                <a href="deploying-bank-of-z.html" class="nav-link" data-page-id="deploying-bank-of-z">Deploying Bank of Z</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Development Workflows</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="workflow-overview.html" class="nav-link" data-page-id="workflow-overview">Development Workflow Overview</a>
+                <a href="zowe-cli-workflow.html" class="nav-link" data-page-id="zowe-cli-workflow">Zowe CLI Workflow</a>
+                <a href="grub-workflow.html" class="nav-link" data-page-id="grub-workflow">Grub Workflow</a>
+                <a href="development-best-practices.html" class="nav-link" data-page-id="development-best-practices">Development Best Practices</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Tutorials</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="deploy-tutorial.html" class="nav-link" data-page-id="deploy-tutorial">Tutorial: Deploy Bank of Z</a>
+                <a href="incremental-build-tutorial.html" class="nav-link" data-page-id="incremental-build-tutorial">Tutorial: Incremental Build</a>
+                <a href="cics-enhancement-tutorial.html" class="nav-link" data-page-id="cics-enhancement-tutorial">Tutorial: CICS Enhancement Scenario</a>
+                <a href="debug-cics-tutorial.html" class="nav-link" data-page-id="debug-cics-tutorial">Tutorial: Debug a CICS Transaction</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">Reference</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="glossary.html" class="nav-link" data-page-id="glossary">Glossary</a>
+                <a href="commands-reference.html" class="nav-link" data-page-id="commands-reference">Commands Reference</a>
+                <a href="configuration-reference.html" class="nav-link active" data-page-id="configuration-reference">Configuration Reference</a>
+                <a href="repository-structure.html" class="nav-link" data-page-id="repository-structure">Repository Structure</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Program Internals</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="creacc-program.html" class="nav-link" data-page-id="creacc-program">CREACC - Create Account Program</a>
+                <a href="crdtagy4-program.html" class="nav-link" data-page-id="crdtagy4-program">CRDTAGY4 - Simulated Credit Agency Program</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">docs</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">about-bank-of-z</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../sources/docs/about-bank-of-z/index.html" class="nav-link">index</a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">src</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+            <div class="nav-section">
+                <button class="nav-section-toggle" type="button">
+                    <span class="nav-toggle-text">base</span>
+                    <span class="nav-section-chevron">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </button>
+                <div class="nav-section-items">
+                <div class="nav-section">
+                    <button class="nav-section-toggle" type="button">
+                        <span class="nav-toggle-text">cics</span>
+                        <span class="nav-section-chevron">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="nav-section-items">
+                    <div class="nav-section">
+                        <button class="nav-section-toggle" type="button">
+                            <span class="nav-toggle-text">cobol</span>
+                            <span class="nav-section-chevron">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="nav-section-items">
+                            <a href="../sources/program/src/base/cics/cobol/CRDTAGY4.html" class="nav-link">CRDTAGY4</a>
+                            <a href="../sources/program/src/base/cics/cobol/CREACC.html" class="nav-link">CREACC</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="page-container">
+                <div class="content-layout">
+                    <div class="prose">
+                        
+                        <h1 id="configuration-reference" tabindex="-1">Configuration Reference</h1>
+<p>Bank of Z uses the <code>.setup/config/config.yaml</code> file to define all environment-specific settings used during setup, build, and deployment. This reference document describes every configuration parameter available, including required and optional settings, variable expansion rules, validation constraints, and environment-specific examples. The configuration file is written in YAML format and supports hierarchical organization, variable expansion, and environment variable references.</p>
+<hr>
+<h2 id="1-overview" tabindex="-1">1. Overview</h2>
+<p>The Bank of Z configuration system is driven by a single YAML file located at <code>.setup/config/config.yaml</code>. This file is the authoritative source for all paths, middleware settings, application identifiers, and infrastructure references consumed by setup scripts, build tools, and deployment automation.</p>
+<p>The configuration file supports the following features:</p>
+<ul>
+<li><strong>Hierarchical configuration</strong> using YAML sections for logical grouping of related settings</li>
+<li><strong>Variable expansion</strong> using <code>{{ section.key }}</code> syntax for referencing values within the file</li>
+<li><strong>Environment variable references</strong> using <code>${ENV_VAR}</code> syntax for injecting runtime or sensitive values</li>
+<li><strong>Comments</strong> using the <code>#</code> character for inline documentation</li>
+</ul>
+<p>Below is a minimal example illustrating these features together:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml"># Global properties
+global:
+  sandbox_root: &quot;/usr/local/sandboxes&quot;
+  app_base_name: &quot;BANKZ&quot;
+  app_hlq: &quot;{{ global.app_base_name }}&quot;       # Variable expansion
+  zos_current_user: &quot;${ZOS_CURRENT_USER}&quot;      # Environment variable reference
+  db2_sqlid: &quot;{{ global.zos_current_user }}&quot;  # Chained variable reference</code></pre>
+</div>
+<hr>
+<h2 id="2-system-architecture" tabindex="-1">2. System Architecture</h2>
+<p>Bank of Z is a mainframe-native application that spans multiple middleware layers on z/OS. The configuration file defines how each of these layers is located, connected, and identified. Understanding the overall architecture helps clarify why certain configuration sections are required and how they relate to one another.</p>
+<p>The following diagram illustrates the high-level system architecture and the configuration sections that govern each component:</p>
+<div class="mermaid">
+graph TD
+    A[config.yaml] --> B[global section]
+    B --> C[Sandbox & Application Identity]
+    B --> D[z/OS System Settings]
+    B --> E[Tool Paths]
+    B --> F[Middleware Configuration]
+
+    F --> G[CICS Region]
+    F --> H[IMS Datastore]
+    F --> I[DB2 Subsystem]
+    F --> J[z/OS Connect GUI Layer]
+    F --> K[Liberty Frontend]
+
+    E --> L[DBB - Dependency Based Build]
+    E --> M[Wazi Deploy]
+    E --> N[ZCodeScan]
+    E --> O[zConfig / CRB]
+    E --> P[Gradle / Java / Python / ZOAU]
+
+    C --> Q[Dataset HLQ: BANKZ.V0R1M0.*]
+    D --> R[RACF: Keyring / CA / Users]
+</div>
+<p>The diagram above shows how <code>config.yaml</code> acts as the single source of truth feeding into all layers of the deployment. The <code>global</code> section drives everything from dataset naming conventions to middleware port assignments.</p>
+<p>The following diagram shows how configuration values flow through the setup and deployment pipeline:</p>
+<div class="mermaid">
+sequenceDiagram
+    participant Dev as Developer
+    participant Cfg as config.yaml
+    participant Setup as Setup Scripts
+    participant zOS as z/OS Environment
+    participant MW as Middleware (CICS/IMS/DB2)
+
+    Dev->>Cfg: Edit global section values
+    Dev->>Setup: Run setup script
+    Setup->>Cfg: Read and validate config.yaml
+    Cfg-->>Setup: Resolved configuration values
+    Setup->>zOS: Apply system settings (RACF, datasets, USS paths)
+    Setup->>MW: Configure CICS regions, IMS datastores, DB2 subsystem
+    MW-->>zOS: Middleware ready
+    zOS-->>Dev: Deployment complete
+</div>
+<hr>
+<h2 id="3-required-settings" tabindex="-1">3. Required Settings</h2>
+<p>The <code>global</code> section is the primary configuration block. All settings within it are shared across setup scripts, middleware configurations, and supporting tools. The subsections below document each parameter group in detail.</p>
+<h3 id="31-sandbox" tabindex="-1">3.1 Sandbox</h3>
+<p>The <code>sandbox_root</code> parameter defines the root directory on z/OS UNIX System Services (USS) where all Bank of Z components are installed. It must be an absolute path, the user must have write permissions, and the parent directory must already exist.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sandbox_root</code></td>
+<td><code>/usr/local/sandboxes</code></td>
+<td>Root directory of the sandbox</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  sandbox_root: &quot;/usr/local/sandboxes&quot;</code></pre>
+</div>
+<p><strong>Environment-specific examples:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml"># Development environment
+global:
+  sandbox_root: &quot;/usr/local/sandboxes/dev&quot;
+
+# Test environment
+global:
+  sandbox_root: &quot;/usr/local/sandboxes/test&quot;
+
+# Personal sandbox
+global:
+  sandbox_root: &quot;/u/userid/sandboxes&quot;</code></pre>
+</div>
+<hr>
+<h3 id="32-application" tabindex="-1">3.2 Application</h3>
+<p>The <code>app</code> parameters define naming conventions used for datasets, CICS resources, and deployment artifacts. These identifiers must conform to z/OS dataset naming rules and character length limits.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app_base_name</code></td>
+<td><code>BANKZ</code></td>
+<td>Application base name (dataset HLQ, max 8 characters)</td>
+</tr>
+<tr>
+<td><code>app_hlq</code></td>
+<td><code>{{ global.app_base_name }}</code></td>
+<td>Application high-level qualifier</td>
+</tr>
+<tr>
+<td><code>app_short_name</code></td>
+<td><code>BOZ</code></td>
+<td>Application short name (max 3 characters)</td>
+</tr>
+<tr>
+<td><code>app_version</code></td>
+<td><code>0</code></td>
+<td>Application version number</td>
+</tr>
+<tr>
+<td><code>app_release</code></td>
+<td><code>1</code></td>
+<td>Application release number</td>
+</tr>
+<tr>
+<td><code>app_modification</code></td>
+<td><code>0</code></td>
+<td>Application modification level</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  app_base_name: &quot;BANKZ&quot;
+  app_hlq: &quot;{{ global.app_base_name }}&quot;
+  app_short_name: &quot;BOZ&quot;
+  app_version: &quot;0&quot;
+  app_release: &quot;1&quot;
+  app_modification: &quot;0&quot;</code></pre>
+</div>
+<p>These values combine to form dataset names in the pattern <code>BANKZ.V0R1M0.LOAD</code>, where the version string is derived from <code>app_version</code>, <code>app_release</code>, and <code>app_modification</code>.</p>
+<p><strong>Examples for different environments:</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml"># Development version
+global:
+  app_base_name: &quot;BANKZD&quot;
+  app_short_name: &quot;BOZ&quot;
+  app_version: &quot;0&quot;
+  app_release: &quot;1&quot;
+  app_modification: &quot;0&quot;
+
+# Production version
+global:
+  app_base_name: &quot;BANKZP&quot;
+  app_short_name: &quot;BOZ&quot;
+  app_version: &quot;1&quot;
+  app_release: &quot;0&quot;
+  app_modification: &quot;0&quot;</code></pre>
+</div>
+<hr>
+<h3 id="33-tools" tabindex="-1">3.3 Tools</h3>
+<p>The <code>tools</code> parameters specify installation paths for all external tools and runtimes consumed by Bank of Z. These paths must point to valid z/OS USS directories containing the respective tool installations.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>java_home</code></td>
+<td><code>{{ sandbox.root }}/tools/J21.0_64</code></td>
+<td>Java installation path</td>
+</tr>
+<tr>
+<td><code>python_home</code></td>
+<td><code>/usr/lpp/IBM/cyp/v3r14/pyz</code></td>
+<td>Python installation path</td>
+</tr>
+<tr>
+<td><code>zoau_home</code></td>
+<td><code>/usr/lpp/IBM/zoau</code></td>
+<td>ZOAU installation path</td>
+</tr>
+<tr>
+<td><code>zconfig_home</code></td>
+<td><code>{{ global.sandbox_root }}/tools/zconfig</code></td>
+<td>zconfig installation path</td>
+</tr>
+<tr>
+<td><code>zcb_home</code></td>
+<td><code>{{ global.sandbox_root }}/tools/zrb/cics-resource-builder-1.0.6</code></td>
+<td>CICS Resource Builder installation path</td>
+</tr>
+<tr>
+<td><code>dbb_home</code></td>
+<td><code>{{ global.sandbox_root }}/tools/dbb</code></td>
+<td>DBB installation path</td>
+</tr>
+<tr>
+<td><code>gradle_home</code></td>
+<td><code>{{ global.sandbox_root }}/tools/gradle-9.5.1</code></td>
+<td>Gradle installation path</td>
+</tr>
+<tr>
+<td><code>zcodescan_home</code></td>
+<td><code>/global/opt/pyenv/akf</code></td>
+<td>ZCodeScan tool installation path</td>
+</tr>
+<tr>
+<td><code>wazideploy_home</code></td>
+<td><code>/global/opt/pyenv/gdp</code></td>
+<td>Wazi Deploy installation path</td>
+</tr>
+<tr>
+<td><code>zosconnect_home</code></td>
+<td><code>/usr/lpp/IBM/zosconnect</code></td>
+<td>z/OS Connect installation path</td>
+</tr>
+<tr>
+<td><code>liberty_home</code></td>
+<td><code>/usr/lpp/liberty_zos/25.0.0.9</code></td>
+<td>Liberty installation path</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  java_home: &quot;{{ sandbox.root }}/tools/J21.0_64&quot;
+  python_home: &quot;/usr/lpp/IBM/cyp/v3r14/pyz&quot;
+  zoau_home: &quot;/usr/lpp/IBM/zoau&quot;
+  zconfig_home: &quot;{{ global.sandbox_root }}/tools/zconfig&quot;
+  zcb_home: &quot;{{ global.sandbox_root }}/tools/zrb/cics-resource-builder-1.0.6&quot;
+  dbb_home: &quot;{{ global.sandbox_root }}/tools/dbb&quot;
+  gradle_home: &quot;{{ global.sandbox_root }}/tools/gradle-9.5.1&quot;
+  zcodescan_home: &quot;/global/opt/pyenv/akf&quot;
+  wazideploy_home: &quot;/global/opt/pyenv/gdp&quot;
+  zosconnect_home: &quot;/usr/lpp/IBM/zosconnect&quot;
+  liberty_home: &quot;/usr/lpp/liberty_zos/25.0.0.9&quot;</code></pre>
+</div>
+<hr>
+<h3 id="34-zos-system" tabindex="-1">3.4 z/OS System</h3>
+<p>These parameters identify z/OS system-level resources including security definitions, compiler HLQs, and system datasets. They are consumed by RACF automation scripts and compiler invocations during the build phase.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zos_admin_user</code></td>
+<td><code>IBMUSER</code></td>
+<td>z/OS administrator user ID</td>
+</tr>
+<tr>
+<td><code>zos_current_user</code></td>
+<td><code>${ZOS_CURRENT_USER}</code></td>
+<td>Current z/OS user ID (from environment)</td>
+</tr>
+<tr>
+<td><code>zos_ca_label</code></td>
+<td><code>VSICA</code></td>
+<td>RACF certificate authority (CA) label</td>
+</tr>
+<tr>
+<td><code>zos_keyring</code></td>
+<td><code>BOZRING</code></td>
+<td>RACF keyring name</td>
+</tr>
+<tr>
+<td><code>sys_proclib</code></td>
+<td><code>SYS1.PROCLIB</code></td>
+<td>System PROCLIB dataset</td>
+</tr>
+<tr>
+<td><code>tcpip_hlq</code></td>
+<td><code>TCPIP</code></td>
+<td>TCP/IP high-level qualifier</td>
+</tr>
+<tr>
+<td><code>asm_hlq</code></td>
+<td><code>ASM</code></td>
+<td>High-level qualifier for Assembler resources</td>
+</tr>
+<tr>
+<td><code>igzxjni2</code></td>
+<td><code>/usr/lpp/IBM/cobol/igyv6r5/lib/igzxjni2.x</code></td>
+<td>COBOL IGZXJNI2 library path</td>
+</tr>
+<tr>
+<td><code>igy_hlq</code></td>
+<td><code>IGY.V6R5M0</code></td>
+<td>COBOL compiler high-level qualifier</td>
+</tr>
+<tr>
+<td><code>fel_hlq</code></td>
+<td><code>FEL</code></td>
+<td>High-level qualifier (FEL)</td>
+</tr>
+<tr>
+<td><code>ipv_hlq</code></td>
+<td><code>IPV</code></td>
+<td>High-level qualifier (IPV)</td>
+</tr>
+<tr>
+<td><code>pli_hlq</code></td>
+<td><code>PLI.V6R2M0</code></td>
+<td>PL/I compiler high-level qualifier</td>
+</tr>
+<tr>
+<td><code>debug_hlq</code></td>
+<td><code>EQAW</code></td>
+<td>Debug tool high-level qualifier</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  zos_admin_user: &quot;IBMUSER&quot;
+  zos_current_user: &quot;${ZOS_CURRENT_USER}&quot;
+  zos_ca_label: &quot;VSICA&quot;
+  zos_keyring: &quot;BOZRING&quot;
+  sys_proclib: &quot;SYS1.PROCLIB&quot;
+  tcpip_hlq: &quot;TCPIP&quot;
+  asm_hlq: &quot;ASM&quot;
+  igzxjni2: &quot;/usr/lpp/IBM/cobol/igyv6r5/lib/igzxjni2.x&quot;
+  igy_hlq: &quot;IGY.V6R5M0&quot;
+  fel_hlq: &quot;FEL&quot;
+  ipv_hlq: &quot;IPV&quot;
+  pli_hlq: &quot;PLI.V6R2M0&quot;
+  debug_hlq: &quot;EQAW&quot;</code></pre>
+</div>
+<hr>
+<h3 id="35-gui-zos-connect" tabindex="-1">3.5 GUI (z/OS Connect)</h3>
+<p>The GUI parameters configure the z/OS Connect instance that exposes backend services to the frontend application. Both HTTP and HTTPS ports must be available and not blocked by your network security configuration.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zosconnect_http_port</code></td>
+<td><code>9080</code></td>
+<td>z/OS Connect HTTP port</td>
+</tr>
+<tr>
+<td><code>zosconnect_https_port</code></td>
+<td><code>9444</code></td>
+<td>z/OS Connect HTTPS port</td>
+</tr>
+<tr>
+<td><code>zosconnect_task_user</code></td>
+<td><code>{{ global.zos_admin_user }}</code></td>
+<td>z/OS Connect task user</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  zosconnect_http_port: 9080
+  zosconnect_https_port: 9444
+  zosconnect_task_user: &quot;{{ global.zos_admin_user }}&quot;</code></pre>
+</div>
+<hr>
+<h3 id="36-frontend-liberty" tabindex="-1">3.6 Frontend (Liberty)</h3>
+<p>The frontend parameters configure the Liberty server that hosts the Bank of Z web application.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>frontend_http_port</code></td>
+<td><code>9081</code></td>
+<td>Frontend HTTP port</td>
+</tr>
+<tr>
+<td><code>frontend_https_port</code></td>
+<td><code>9445</code></td>
+<td>Frontend HTTPS port</td>
+</tr>
+<tr>
+<td><code>frontend_task_user</code></td>
+<td><code>{{ global.zos_admin_user }}</code></td>
+<td>Frontend task user</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  frontend_http_port: 9081
+  frontend_https_port: 9445
+  frontend_task_user: &quot;{{ global.zos_admin_user }}&quot;</code></pre>
+</div>
+<hr>
+<h3 id="37-cics" tabindex="-1">3.7 CICS</h3>
+<p>The CICS parameters identify the CICS Transaction Server installation and control security enforcement for CICS regions used by Bank of Z.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cics_hlq</code></td>
+<td><code>CICSTS63</code></td>
+<td>CICS high-level qualifier</td>
+</tr>
+<tr>
+<td><code>cics_uss_dir</code></td>
+<td><code>/usr/lpp/cicsts/cicsts63</code></td>
+<td>CICS USS directory</td>
+</tr>
+<tr>
+<td><code>cics_sec</code></td>
+<td><code>YES</code></td>
+<td>CICS security enabled flag</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  cics_hlq: &quot;CICSTS63&quot;
+  cics_uss_dir: &quot;/usr/lpp/cicsts/cicsts63&quot;
+  cics_sec: &quot;YES&quot;</code></pre>
+</div>
+<hr>
+<h3 id="38-ims" tabindex="-1">3.8 IMS</h3>
+<p>The IMS parameters configure the IMS database subsystem used by the Bank of Z backend. IMS can be disabled for environments where only DB2 is used.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ims_disabled</code></td>
+<td><code>false</code></td>
+<td>Set to <code>true</code> to disable IMS integration</td>
+</tr>
+<tr>
+<td><code>ims_sys_hlq</code></td>
+<td><code>IMSV15</code></td>
+<td>IMS system high-level qualifier</td>
+</tr>
+<tr>
+<td><code>ims_java_dir</code></td>
+<td><code>/usr/lpp/ims/imsjava</code></td>
+<td>IMS Java installation path</td>
+</tr>
+<tr>
+<td><code>ims_datastore</code></td>
+<td><code>IMS2</code></td>
+<td>IMS datastore name</td>
+</tr>
+<tr>
+<td><code>ims_dfsplex</code></td>
+<td><code>PLEX2</code></td>
+<td>IMS DFSPLEX name</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  ims_disabled: &quot;false&quot;
+  ims_sys_hlq: &quot;IMSV15&quot;
+  ims_java_dir: &quot;/usr/lpp/ims/imsjava&quot;
+  ims_datastore: &quot;IMS2&quot;
+  ims_dfsplex: &quot;PLEX2&quot;</code></pre>
+</div>
+<hr>
+<h3 id="39-db2" tabindex="-1">3.9 DB2</h3>
+<p>The DB2 parameters identify the Db2 subsystem and control how the setup scripts connect to and configure the database layer. The <code>db2_grants</code> list specifies which user IDs should be granted access to Bank of Z Db2 objects.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>db2_hlq</code></td>
+<td><code>DB2V13</code></td>
+<td>DB2 high-level qualifier</td>
+</tr>
+<tr>
+<td><code>db2_dsntep</code></td>
+<td><code>DSNTEP13</code></td>
+<td>DB2 DSNTEP program name</td>
+</tr>
+<tr>
+<td><code>db2_ssid</code></td>
+<td><code>DBD1</code></td>
+<td>DB2 subsystem ID</td>
+</tr>
+<tr>
+<td><code>db2_runlib</code></td>
+<td><code>{{ global.db2_ssid }}.RUNLIB.LOAD</code></td>
+<td>DB2 RUNLIB dataset</td>
+</tr>
+<tr>
+<td><code>db2_sqlid</code></td>
+<td><code>{{ global.zos_current_user }}</code></td>
+<td>DB2 SQL ID</td>
+</tr>
+<tr>
+<td><code>db2_java_dir</code></td>
+<td><code>/usr/lpp/db2d10</code></td>
+<td>DB2 Java installation path</td>
+</tr>
+<tr>
+<td><code>db2_grants</code></td>
+<td><code>CICSUSER</code></td>
+<td>List of DB2 grantees</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  db2_hlq: &quot;DB2V13&quot;
+  db2_dsntep: &quot;DSNTEP13&quot;
+  db2_ssid: &quot;DBD1&quot;
+  db2_runlib: &quot;{{ global.db2_ssid }}.RUNLIB.LOAD&quot;
+  db2_sqlid: &quot;{{ global.zos_current_user }}&quot;
+  db2_java_dir: &quot;/usr/lpp/db2d10&quot;
+  db2_grants:
+    - &quot;CICSUSER&quot;</code></pre>
+</div>
+<hr>
+<h2 id="4-optional-configuration-sections" tabindex="-1">4. Optional Configuration Sections</h2>
+<p>Beyond the <code>global</code> section, additional named sections can be defined to configure specific tools and subsystems. These sections are only required when the corresponding tooling or capability is enabled in your deployment.</p>
+<p>The following diagram illustrates the relationship between optional configuration sections and the deployment pipeline stages they support:</p>
+<div class="mermaid">
+graph LR
+    A[config.yaml Optional Sections] --> B[repositories]
+    A --> C[zbuilder]
+    A --> D[zconfig]
+    A --> E[zcodescan]
+    A --> F[wazideploy]
+    A --> G[taz]
+    A --> H[cics credentials]
+
+    B --> I[Git Clone Stage]
+    C --> J[Build Stage]
+    D --> J
+    E --> K[Scan Stage]
+    F --> L[Deploy Stage]
+    G --> M[Test Stage]
+    H --> L
+</div>
+<hr>
+<h3 id="41-repository-configuration" tabindex="-1">4.1 Repository Configuration</h3>
+<p>Defines the Git repositories that are cloned during setup. Each entry specifies a repository name, its clone URL, and the target directory within the workspace.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">repositories:
+  - name: dbb
+    url: https://github.com/IBM/dbb.git
+    target_dir: dbb
+  - name: custom-tools
+    url: https://github.com/company/tools.git
+    target_dir: tools</code></pre>
+</div>
+<p><strong>Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Repository identifier used in logs and scripts</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>Git clone URL (HTTPS or SSH)</td>
+</tr>
+<tr>
+<td><code>target_dir</code></td>
+<td>Directory name within the workspace</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="42-zbuilder-configuration" tabindex="-1">4.2 zBuilder Configuration</h3>
+<p>Defines where the zBuilder source and deployment artifacts are located. zBuilder is the framework used to manage build pipelines and dataset definitions.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">zbuilder:
+  source_dir: build
+  target_dir: &quot;${sandbox.path}/zBuilder&quot;
+  java_home: &quot;/usr/lpp/java/java21/current_64&quot;</code></pre>
+</div>
+<p><strong>Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source_dir</code></td>
+<td>Local directory containing zBuilder framework, relative to <code>.setup/</code></td>
+</tr>
+<tr>
+<td><code>target_dir</code></td>
+<td>USS directory where zBuilder is deployed (supports variable expansion)</td>
+</tr>
+<tr>
+<td><code>java_home</code></td>
+<td>Java runtime for zBuilder (minimum Java 17)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="43-zconfig-configuration" tabindex="-1">4.3 zconfig Configuration</h3>
+<p>Defines settings for z/OS configuration tooling, including the CICS Resource Builder (CRB). Required when using automated CICS resource provisioning.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">zconfig:
+  zconfig_home: &quot;/usr/local/sandboxes/tools/zconfig&quot;
+  zcb_home: &quot;/usr/local/sandboxes/tools/zrb/cics-resource-builder-1.0.6&quot;
+  java_home: &quot;/usr/lpp/java/java21/current_64&quot;</code></pre>
+</div>
+<hr>
+<h3 id="44-zcodescan-configuration" tabindex="-1">4.4 ZCodeScan Configuration</h3>
+<p>Defines settings used for static code analysis. The ZCodeScan configuration file must be encoded in <strong>ISO8859-1</strong> and is referenced here by path.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">zcodescan:
+  zcodescan_home: &quot;/global/opt/pyenv/akf&quot;
+  java_home: &quot;/usr/lpp/java/java21/current_64&quot;
+  src_folder: &quot;${sandbox.path}/Bank-of-Z/src/base&quot;
+  output_folder: &quot;${sandbox.path}/Bank-of-Z/zcodescan&quot;
+  src_encoding: &quot;IBM-1047&quot;
+  rseapi_user: &quot;${RESAPI_USER}&quot;
+  rseapi_password: &quot;${RESAPI_PASSWORD}&quot;</code></pre>
+</div>
+<p>The ZCodeScan license configuration file must be created separately and saved in ISO8859-1 encoding:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml"># ~/zcs_config_file.yml (encoded in ISO8859-1)
+license_server:
+  url: https://127.0.0.1:8195
+  user: MYUSER
+  password: MY_PASSWORD
+  verify: false</code></pre>
+</div>
+<blockquote>
+<p><strong>Note:</strong> The password is automatically encrypted after the first scan. Provide it in plain text only on first use.</p>
+</blockquote>
+<hr>
+<h3 id="45-wazi-deploy-configuration" tabindex="-1">4.5 Wazi Deploy Configuration</h3>
+<p>Defines deployment automation settings used by Wazi Deploy to manage package deployment to z/OS environments.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">wazideploy:
+  wazideploy_home: &quot;/global/opt/pyenv/gdp&quot;
+  deployment_method: &quot;${sandbox.path}/dbb/WaziDeploy/zDeploy/deployment-configuration/deployment-method.yml&quot;
+  deployment_envfile: &quot;${sandbox.path}/Bank-of-Z/.setup/deploy/Development.yml&quot;</code></pre>
+</div>
+<hr>
+<h3 id="46-taz-unit-test-configuration" tabindex="-1">4.6 TAZ Unit Test Configuration</h3>
+<p>Defines settings for automated unit testing using the TAZ test framework. Required when running automated test suites as part of the pipeline.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">taz:
+  taz_home: &quot;/usr/local/sandboxes/tools/taz-280/test-cli&quot;
+  test_folder: &quot;${sandbox.path}/Bank-of-Z/tests&quot;
+  proclib: &quot;SYS1.PROCLIB&quot;
+  library: &quot;${app.base_name}.${app.zos_version}.LOAD&quot;</code></pre>
+</div>
+<hr>
+<h3 id="47-cics-credentials" tabindex="-1">4.7 CICS Credentials</h3>
+<p>Provides connection details for the CICS region used during deployment and automation tasks. Using environment variables for credentials is strongly recommended.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml"># Recommended: use environment variables for sensitive values
+cics:
+  user: &quot;${CICS_USER}&quot;
+  password: &quot;${CICS_PASSWORD}&quot;
+  cmci_port: 27100
+  ipic_port: 27114</code></pre>
+</div>
+<p>Similarly, IMS credentials must be exported as environment variables before running setup:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">export IMS_USER=&lt;your_ims_user&gt;
+export IMS_PASSWORD=&lt;your_ims_password&gt;
+
+export CICS_USER=&lt;your_cics_user&gt;
+export CICS_PASSWORD=&lt;your_cics_password&gt;</code></pre>
+</div>
+<hr>
+<h2 id="5-variable-expansion" tabindex="-1">5. Variable Expansion</h2>
+<p>Variable expansion allows configuration values to reference other values defined elsewhere in <code>config.yaml</code> or in the runtime environment. This avoids duplication and ensures consistency across related settings.</p>
+<h3 id="51-section-references" tabindex="-1">5.1 Section References</h3>
+<p>Use the <code>{{ section.key }}</code> syntax to reference a value from within the configuration file itself.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  sandbox_root: &quot;/usr/local/sandboxes&quot;
+  dbb_home: &quot;{{ global.sandbox_root }}/tools/dbb&quot;
+  gradle_home: &quot;{{ global.sandbox_root }}/tools/gradle-9.5.1&quot;</code></pre>
+</div>
+<p>Resolution is recursive, meaning a variable can reference another variable that itself uses variable expansion:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  db2_ssid: &quot;DBD1&quot;
+  db2_runlib: &quot;{{ global.db2_ssid }}.RUNLIB.LOAD&quot;
+  db2_sqlid: &quot;{{ global.zos_current_user }}&quot;
+  zos_current_user: &quot;${ZOS_CURRENT_USER}&quot;</code></pre>
+</div>
+<h3 id="52-environment-variable-references" tabindex="-1">5.2 Environment Variable References</h3>
+<p>Use <code>${ENV_VAR}</code> syntax to inject values from the shell environment. This pattern is required for sensitive information such as credentials and user identities:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  zos_current_user: &quot;${ZOS_CURRENT_USER}&quot;
+
+cics:
+  user: &quot;${CICS_USER}&quot;
+  password: &quot;${CICS_PASSWORD}&quot;
+
+zcodescan:
+  rseapi_user: &quot;${RESAPI_USER}&quot;
+  rseapi_password: &quot;${RESAPI_PASSWORD}&quot;</code></pre>
+</div>
+<blockquote>
+<p><strong>Note:</strong> The referenced environment variable must be exported in the shell before running setup scripts, otherwise variable resolution will fail.</p>
+</blockquote>
+<hr>
+<h2 id="6-environment-specific-configurations" tabindex="-1">6. Environment-Specific Configurations</h2>
+<p>The same <code>config.yaml</code> structure applies across all deployment environments. The values within the <code>global</code> section are adjusted per environment to isolate resources and avoid naming conflicts.</p>
+<h3 id="61-development-environment" tabindex="-1">6.1 Development Environment</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  sandbox_root: &quot;/usr/local/sandboxes/dev&quot;
+  app_base_name: &quot;BANKZD&quot;
+  app_short_name: &quot;BOZ&quot;
+  app_version: &quot;0&quot;
+  app_release: &quot;1&quot;
+  app_modification: &quot;0&quot;
+  dbb_home: &quot;{{ global.sandbox_root }}/tools/dbb&quot;
+  java_home: &quot;{{ global.sandbox_root }}/tools/J21.0_64&quot;</code></pre>
+</div>
+<h3 id="62-test-environment" tabindex="-1">6.2 Test Environment</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  sandbox_root: &quot;/usr/local/sandboxes/test&quot;
+  app_base_name: &quot;BANKZT&quot;
+  app_short_name: &quot;BOZ&quot;
+  app_version: &quot;0&quot;
+  app_release: &quot;2&quot;
+  app_modification: &quot;0&quot;
+  dbb_home: &quot;{{ global.sandbox_root }}/tools/dbb&quot;
+  java_home: &quot;{{ global.sandbox_root }}/tools/J21.0_64&quot;</code></pre>
+</div>
+<h3 id="63-production-environment" tabindex="-1">6.3 Production Environment</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml">global:
+  sandbox_root: &quot;/usr/local/sandboxes/prod&quot;
+  app_base_name: &quot;BANKZP&quot;
+  app_short_name: &quot;BOZ&quot;
+  app_version: &quot;1&quot;
+  app_release: &quot;0&quot;
+  app_modification: &quot;0&quot;
+  dbb_home: &quot;{{ global.sandbox_root }}/tools/dbb&quot;
+  java_home: &quot;{{ global.sandbox_root }}/tools/J21.0_64&quot;</code></pre>
+</div>
+<hr>
+<h2 id="7-validation-rules" tabindex="-1">7. Validation Rules</h2>
+<p>Before any setup script runs, the configuration file is validated to ensure all required fields are present, all references can be resolved, and all values conform to z/OS naming and path constraints. Correcting configuration issues before running setup prevents build and deployment failures.</p>
+<p>The following diagram shows the validation flow:</p>
+<div class="mermaid">
+graph TD
+    A[Load config.yaml] --> B{Required fields present?}
+    B -- No --> Z1[Error: Missing required field]
+    B -- Yes --> C{All variable references resolvable?}
+    C -- No --> Z2[Error: Unresolved variable reference]
+    C -- Yes --> D{All paths are absolute?}
+    D -- No --> Z3[Error: Invalid path format]
+    D -- Yes --> E{Character limits respected?}
+    E -- No --> Z4[Error: Name too long]
+    E -- Yes --> F{Tool locations defined?}
+    F -- No --> Z5[Warning: Optional tool not configured]
+    F -- Yes --> G[Validation Passed - Proceed with Setup]
+</div>
+<h3 id="71-required-fields" tabindex="-1">7.1 Required Fields</h3>
+<p>The following fields must be present and non-empty in <code>config.yaml</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Section</th>
+<th>Constraint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sandbox_root</code></td>
+<td><code>global</code></td>
+<td>Must be an absolute path</td>
+</tr>
+<tr>
+<td><code>app_base_name</code></td>
+<td><code>global</code></td>
+<td>Maximum 8 characters, alphanumeric</td>
+</tr>
+<tr>
+<td><code>app_short_name</code></td>
+<td><code>global</code></td>
+<td>Maximum 3 characters</td>
+</tr>
+<tr>
+<td><code>dbb_home</code></td>
+<td><code>global</code></td>
+<td>Must point to a valid DBB installation</td>
+</tr>
+<tr>
+<td><code>java_home</code></td>
+<td><code>global</code></td>
+<td>Must point to Java 8 or higher</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-path-format-rules" tabindex="-1">7.2 Path Format Rules</h3>
+<ul>
+<li>All paths must be absolute (begin with <code>/</code>)</li>
+<li>No trailing slashes</li>
+<li>Paths must reference existing directories at setup time</li>
+</ul>
+<h3 id="73-variable-resolution-rules" tabindex="-1">7.3 Variable Resolution Rules</h3>
+<ul>
+<li>All <code>{{ section.key }}</code> references must resolve to a defined key</li>
+<li>All <code>${ENV_VAR}</code> references must correspond to an exported environment variable</li>
+<li>Circular references are not permitted</li>
+</ul>
+<h3 id="74-character-limits" tabindex="-1">7.4 Character Limits</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Maximum Length</th>
+<th>Used In</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app_base_name</code></td>
+<td>8 characters</td>
+<td>Dataset HLQ</td>
+</tr>
+<tr>
+<td><code>app_short_name</code></td>
+<td>3 characters</td>
+<td>CICS region names, transaction IDs</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="8-troubleshooting" tabindex="-1">8. Troubleshooting</h2>
+<h3 id="81-configuration-file-not-found" tabindex="-1">8.1 Configuration File Not Found</h3>
+<p><strong>Symptom:</strong> Setup script reports that <code>config.yaml</code> is missing.</p>
+<p><strong>Resolution:</strong> Verify the file exists at the correct path and that you are running the script from the repository root:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash"># Verify the file exists
+ls -la .setup/config/config.yaml
+
+# Confirm the working directory
+pwd</code></pre>
+</div>
+<h3 id="82-variable-reference-cannot-be-resolved" tabindex="-1">8.2 Variable Reference Cannot Be Resolved</h3>
+<p><strong>Symptom:</strong> Setup fails with an error indicating an unresolved variable.</p>
+<p><strong>Cause:</strong> A <code>{{ section.key }}</code> reference points to a section or key that does not exist.</p>
+<p><strong>Resolution:</strong> Ensure the referenced section and key match exactly:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml"># Incorrect: references a non-existent section name
+dbb:
+  build_dir: &quot;${workspace.path}/build&quot;   # &#039;workspace&#039; does not exist
+
+# Correct: uses the defined section name
+dbb:
+  build_dir: &quot;${sandbox.path}/build&quot;</code></pre>
+</div>
+<h3 id="83-invalid-path-format" tabindex="-1">8.3 Invalid Path Format</h3>
+<p><strong>Symptom:</strong> Validation reports an invalid path.</p>
+<p><strong>Cause:</strong> A path value is relative rather than absolute.</p>
+<p><strong>Resolution:</strong> Ensure all path values start with <code>/</code>:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">YAML</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-yaml"># Incorrect: relative path
+global:
+  sandbox_root: &quot;sandboxes/bank-of-z&quot;
+
+# Correct: absolute path
+global:
+  sandbox_root: &quot;/usr/local/sandboxes/bank-of-z&quot;</code></pre>
+</div>
+<h3 id="84-environment-variable-not-set" tabindex="-1">8.4 Environment Variable Not Set</h3>
+<p><strong>Symptom:</strong> Setup fails with an unresolved <code>${ENV_VAR}</code> reference.</p>
+<p><strong>Cause:</strong> The required environment variable was not exported before running setup.</p>
+<p><strong>Resolution:</strong> Export the variable in your shell session:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">BASH</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-bash">export ZOS_CURRENT_USER=myuserid
+export CICS_USER=myuserid
+export CICS_PASSWORD=mypassword
+export IMS_USER=myuserid
+export IMS_PASSWORD=mypassword</code></pre>
+</div>
+                        <div class="related-pages">
+                            <p class="related-pages-title">Related Pages</p>
+                            <div class="card-grid">
+                                
+            <a href="commands-reference.html" class="card">
+                <span class="card-title">Commands Reference</span>
+                <span class="card-description">Comprehensive reference for all CLI commands, scripts, and utilities used in Bank of Z workflows.</span>
+            </a>
+            <a href="prerequisites-and-environment.html" class="card">
+                <span class="card-title">Prerequisites &amp; Environment Configuration</span>
+                <span class="card-description">System requirements, prerequisites, and environment configuration needed before installing Bank of Z.</span>
+            </a>
+            <a href="deploying-bank-of-z.html" class="card">
+                <span class="card-title">Deploying Bank of Z</span>
+                <span class="card-description">Step-by-step instructions for deploying Bank of Z using different methods: direct deployment, Zowe CLI, and Grub.</span>
+            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-overview">1. Overview</a></li>
+<li class="toc-level-2"><a href="#2-system-architecture">2. System Architecture</a></li>
+<li class="toc-level-2"><a href="#3-required-settings">3. Required Settings</a>
+<ul>
+<li class="toc-level-3"><a href="#31-sandbox">3.1 Sandbox</a></li>
+<li class="toc-level-3"><a href="#32-application">3.2 Application</a></li>
+<li class="toc-level-3"><a href="#33-tools">3.3 Tools</a></li>
+<li class="toc-level-3"><a href="#34-zos-system">3.4 z/OS System</a></li>
+<li class="toc-level-3"><a href="#35-gui-zos-connect">3.5 GUI (z/OS Connect)</a></li>
+<li class="toc-level-3"><a href="#36-frontend-liberty">3.6 Frontend (Liberty)</a></li>
+<li class="toc-level-3"><a href="#37-cics">3.7 CICS</a></li>
+<li class="toc-level-3"><a href="#38-ims">3.8 IMS</a></li>
+<li class="toc-level-3"><a href="#39-db2">3.9 DB2</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-optional-configuration-sections">4. Optional Configuration Sections</a>
+<ul>
+<li class="toc-level-3"><a href="#41-repository-configuration">4.1 Repository Configuration</a></li>
+<li class="toc-level-3"><a href="#42-zbuilder-configuration">4.2 zBuilder Configuration</a></li>
+<li class="toc-level-3"><a href="#43-zconfig-configuration">4.3 zconfig Configuration</a></li>
+<li class="toc-level-3"><a href="#44-zcodescan-configuration">4.4 ZCodeScan Configuration</a></li>
+<li class="toc-level-3"><a href="#45-wazi-deploy-configuration">4.5 Wazi Deploy Configuration</a></li>
+<li class="toc-level-3"><a href="#46-taz-unit-test-configuration">4.6 TAZ Unit Test Configuration</a></li>
+<li class="toc-level-3"><a href="#47-cics-credentials">4.7 CICS Credentials</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-variable-expansion">5. Variable Expansion</a>
+<ul>
+<li class="toc-level-3"><a href="#51-section-references">5.1 Section References</a></li>
+<li class="toc-level-3"><a href="#52-environment-variable-references">5.2 Environment Variable References</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#6-environment-specific-configurations">6. Environment-Specific Configurations</a>
+<ul>
+<li class="toc-level-3"><a href="#61-development-environment">6.1 Development Environment</a></li>
+<li class="toc-level-3"><a href="#62-test-environment">6.2 Test Environment</a></li>
+<li class="toc-level-3"><a href="#63-production-environment">6.3 Production Environment</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-validation-rules">7. Validation Rules</a>
+<ul>
+<li class="toc-level-3"><a href="#71-required-fields">7.1 Required Fields</a></li>
+<li class="toc-level-3"><a href="#72-path-format-rules">7.2 Path Format Rules</a></li>
+<li class="toc-level-3"><a href="#73-variable-resolution-rules">7.3 Variable Resolution Rules</a></li>
+<li class="toc-level-3"><a href="#74-character-limits">7.4 Character Limits</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-troubleshooting">8. Troubleshooting</a>
+<ul>
+<li class="toc-level-3"><a href="#81-configuration-file-not-found">8.1 Configuration File Not Found</a></li>
+<li class="toc-level-3"><a href="#82-variable-reference-cannot-be-resolved">8.2 Variable Reference Cannot Be Resolved</a></li>
+<li class="toc-level-3"><a href="#83-invalid-path-format">8.3 Invalid Path Format</a></li>
+<li class="toc-level-3"><a href="#84-environment-variable-not-set">8.4 Environment Variable Not Set</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* sidebar-toggle.js — persists open/closed state across navigation */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — only stamps sessionStorage when clicking a source-file link
+       that lives inside the "Source Files" disclosure section, not from sidebar or cards. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('sources/') === -1) return;
+        /* Only set referrer when the click originates from inside the Source Files
+           disclosure (.source-files-disclosure). Any other path — sidebar, cards,
+           direct navigation — must not set a referrer. */
+        if (!link.closest('.source-files-disclosure')) return;
+        try {
+          sessionStorage.setItem('wiki_referrer', JSON.stringify({
+            href: location.href,
+            title: document.title,
+            file: location.pathname.split('/').pop()
+          }));
+        } catch (_e) {}
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>
