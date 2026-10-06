@@ -10,5 +10,6 @@
     },
     "zopeneditor.zowe": {
         "defaultCliProfile": "bank-of-z.rse"
-    }
+    },
+    "zopendebug.profileView.showWelcome": false
 }
